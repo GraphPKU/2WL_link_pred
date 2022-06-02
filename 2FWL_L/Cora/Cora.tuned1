@@ -1,0 +1,1344 @@
+nohup: ignoring input
+Cora cuda:0
+repeat 5
+  0%|          | 0/10556 [00:00<?, ?it/s] 53%|█████▎    | 5546/10556 [00:00<00:00, 55450.14it/s]100%|██████████| 10556/10556 [00:00<00:00, 62415.52it/s]
+torch.Size([2, 5278])
+Val param {'lr': 0.001, 'layer1': 1, 'layer2': 2, 'hidden_dim_1wl': 128, 'hidden_dim_2wl': 32, 'dp1': 0.5, 'dp2': 0.0, 'dp3': 0.8, 'ln0': False, 'ln1': True, 'ln2': True, 'ln3': False, 'act1': False, 'act2': False, 'act3': True}
+use_feat
+batch size1053
+epoch 0: trn: time 2.47 s, loss 0.9905, trn 0.4937, val 0.6297 best
+tst 0.6778
+epoch 1: trn: time 1.38 s, loss 0.8473, trn 0.6651, val 0.6813 best
+tst 0.7160
+epoch 2: trn: time 1.78 s, loss 1.4795, trn 0.6720, val 0.7167 best
+tst 0.7440
+epoch 3: trn: time 1.44 s, loss 3.2580, trn 0.7364, val 0.7536 best
+tst 0.7767
+epoch 4: trn: time 1.72 s, loss 0.6665, trn 0.7469, val 0.7833 best
+tst 0.8136
+epoch 5: trn: time 1.49 s, loss 0.7790, trn 0.8253, val 0.8122 best
+tst 0.8435
+epoch 6: trn: time 1.60 s, loss 1.1952, trn 0.8203, val 0.8341 best
+tst 0.8637
+epoch 7: trn: time 1.27 s, loss 1.1502, trn 0.8542, val 0.8565 best
+tst 0.8788
+epoch 8: trn: time 1.60 s, loss 0.7299, trn 0.8685, val 0.8726 best
+tst 0.8892
+epoch 9: trn: time 1.42 s, loss 5.1340, trn 0.8734, val 0.8817 best
+tst 0.8975
+epoch 10: trn: time 1.58 s, loss 1.1793, trn 0.8782, val 0.8910 best
+tst 0.9059
+epoch 11: trn: time 1.35 s, loss 0.5305, trn 0.9095, val 0.8981 best
+tst 0.9127
+epoch 12: trn: time 1.29 s, loss 1.7552, trn 0.9120, val 0.9013 best
+tst 0.9176
+epoch 13: trn: time 1.49 s, loss 1.0467, trn 0.9067, val 0.9036 best
+tst 0.9208
+epoch 14: trn: time 1.32 s, loss 0.7863, trn 0.9236, val 0.9050 best
+tst 0.9237
+epoch 15: trn: time 1.31 s, loss 0.7498, trn 0.9150, val 0.9069 best
+tst 0.9262
+epoch 16: trn: time 1.24 s, loss 0.8862, trn 0.9215, val 0.9086 best
+tst 0.9278
+epoch 17: trn: time 1.60 s, loss 2.0421, trn 0.9197, val 0.9101 best
+tst 0.9293
+epoch 18: trn: time 1.53 s, loss 1.3325, trn 0.9325, val 0.9120 best
+tst 0.9313
+epoch 19: trn: time 1.29 s, loss 0.6491, trn 0.9360, val 0.9150 best
+tst 0.9332
+epoch 20: trn: time 1.43 s, loss 0.3777, trn 0.9411, val 0.9171 best
+tst 0.9344
+epoch 21: trn: time 1.65 s, loss 0.6426, trn 0.9320, val 0.9181 best
+tst 0.9359
+epoch 22: trn: time 1.53 s, loss 0.4333, trn 0.9454, val 0.9188 best
+tst 0.9376
+epoch 23: trn: time 1.40 s, loss 0.3983, trn 0.9306, val 0.9195 best
+tst 0.9391
+epoch 24: trn: time 1.50 s, loss 1.4980, trn 0.9219, val 0.9198 best
+tst 0.9406
+epoch 25: trn: time 1.43 s, loss 0.7917, trn 0.9381, val 0.9199 best
+tst 0.9417
+epoch 26: trn: time 1.78 s, loss 1.1074, trn 0.9452, val 0.9212 best
+tst 0.9429
+epoch 27: trn: time 1.43 s, loss 0.6998, trn 0.9525, val 0.9217 best
+tst 0.9436
+epoch 28: trn: time 1.55 s, loss 0.8090, trn 0.9425, val 0.9225 best
+tst 0.9444
+epoch 29: trn: time 1.47 s, loss 0.3476, trn 0.9449, val 0.9230 best
+tst 0.9451
+epoch 30: trn: time 1.52 s, loss 0.6689, trn 0.9434, val 0.9245 best
+tst 0.9462
+epoch 31: trn: time 1.41 s, loss 0.7846, trn 0.9622, val 0.9256 best
+tst 0.9479
+epoch 32: trn: time 1.52 s, loss 0.5685, trn 0.9567, val 0.9273 best
+tst 0.9488
+epoch 33: trn: time 1.47 s, loss 0.4388, trn 0.9616, val 0.9275 best
+tst 0.9484
+epoch 34: trn: time 1.32 s, loss 0.3038, trn 0.9634, val 0.9277 best
+tst 0.9486
+epoch 35: trn: time 1.25 s, loss 0.7320, trn 0.9597, val 0.9273 tst 0.9495
+epoch 36: trn: time 1.44 s, loss 0.4195, trn 0.9608, val 0.9265 tst 0.9503
+epoch 37: trn: time 1.42 s, loss 0.5569, trn 0.9620, val 0.9245 tst 0.9503
+epoch 38: trn: time 1.50 s, loss 1.5824, trn 0.9586, val 0.9224 tst 0.9499
+epoch 39: trn: time 1.53 s, loss 0.5248, trn 0.9496, val 0.9209 tst 0.9498
+epoch 40: trn: time 1.60 s, loss 0.6632, trn 0.9553, val 0.9201 tst 0.9496
+epoch 41: trn: time 1.33 s, loss 1.1579, trn 0.9480, val 0.9213 tst 0.9508
+epoch 42: trn: time 1.62 s, loss 0.5131, trn 0.9644, val 0.9226 tst 0.9518
+epoch 43: trn: time 1.44 s, loss 0.4659, trn 0.9615, val 0.9240 tst 0.9526
+epoch 44: trn: time 1.45 s, loss 0.5882, trn 0.9590, val 0.9257 tst 0.9537
+epoch 45: trn: time 1.47 s, loss 0.7746, trn 0.9616, val 0.9274 tst 0.9547
+epoch 46: trn: time 1.55 s, loss 0.3144, trn 0.9554, val 0.9293 best
+tst 0.9558
+epoch 47: trn: time 1.58 s, loss 0.3590, trn 0.9750, val 0.9314 best
+tst 0.9568
+epoch 48: trn: time 1.20 s, loss 0.2668, trn 0.9678, val 0.9330 best
+tst 0.9571
+epoch 49: trn: time 1.52 s, loss 0.3126, trn 0.9728, val 0.9331 best
+tst 0.9568
+epoch 50: trn: time 1.42 s, loss 0.2779, trn 0.9715, val 0.9326 tst 0.9566
+epoch 51: trn: time 1.71 s, loss 0.4390, trn 0.9699, val 0.9305 tst 0.9556
+epoch 52: trn: time 1.28 s, loss 0.2856, trn 0.9695, val 0.9289 tst 0.9553
+epoch 53: trn: time 1.61 s, loss 0.2501, trn 0.9709, val 0.9285 tst 0.9554
+epoch 54: trn: time 1.55 s, loss 0.3476, trn 0.9725, val 0.9290 tst 0.9558
+epoch 55: trn: time 1.63 s, loss 0.4216, trn 0.9668, val 0.9305 tst 0.9568
+epoch 56: trn: time 1.34 s, loss 0.3470, trn 0.9724, val 0.9323 tst 0.9578
+epoch 57: trn: time 1.54 s, loss 0.9006, trn 0.9742, val 0.9325 tst 0.9580
+epoch 58: trn: time 1.69 s, loss 0.2563, trn 0.9743, val 0.9333 best
+tst 0.9583
+epoch 59: trn: time 1.37 s, loss 0.5131, trn 0.9719, val 0.9333 tst 0.9589
+epoch 60: trn: time 1.65 s, loss 0.3133, trn 0.9777, val 0.9327 tst 0.9597
+epoch 61: trn: time 1.30 s, loss 0.2321, trn 0.9735, val 0.9322 tst 0.9602
+epoch 62: trn: time 1.58 s, loss 0.4875, trn 0.9745, val 0.9313 tst 0.9604
+epoch 63: trn: time 1.50 s, loss 0.7145, trn 0.9785, val 0.9299 tst 0.9606
+epoch 64: trn: time 1.45 s, loss 0.6655, trn 0.9758, val 0.9282 tst 0.9599
+epoch 65: trn: time 1.59 s, loss 0.1758, trn 0.9861, val 0.9258 tst 0.9588
+epoch 66: trn: time 1.34 s, loss 0.2975, trn 0.9741, val 0.9249 tst 0.9585
+epoch 67: trn: time 1.63 s, loss 0.2878, trn 0.9776, val 0.9253 tst 0.9586
+epoch 68: trn: time 1.62 s, loss 0.2167, trn 0.9809, val 0.9278 tst 0.9591
+epoch 69: trn: time 1.82 s, loss 0.2000, trn 0.9860, val 0.9294 tst 0.9596
+epoch 70: trn: time 1.45 s, loss 0.1868, trn 0.9820, val 0.9317 tst 0.9596
+epoch 71: trn: time 1.75 s, loss 0.6900, trn 0.9751, val 0.9336 best
+tst 0.9595
+epoch 72: trn: time 1.80 s, loss 0.4341, trn 0.9800, val 0.9348 best
+tst 0.9595
+epoch 73: trn: time 1.59 s, loss 0.1758, trn 0.9823, val 0.9356 best
+tst 0.9595
+epoch 74: trn: time 1.43 s, loss 0.1741, trn 0.9838, val 0.9352 tst 0.9598
+epoch 75: trn: time 1.53 s, loss 0.1951, trn 0.9775, val 0.9352 tst 0.9601
+epoch 76: trn: time 1.38 s, loss 0.1853, trn 0.9826, val 0.9333 tst 0.9608
+epoch 77: trn: time 1.69 s, loss 0.2590, trn 0.9848, val 0.9315 tst 0.9607
+epoch 78: trn: time 1.58 s, loss 0.1863, trn 0.9809, val 0.9294 tst 0.9608
+epoch 79: trn: time 1.57 s, loss 0.2159, trn 0.9842, val 0.9275 tst 0.9606
+epoch 80: trn: time 1.62 s, loss 0.3044, trn 0.9861, val 0.9272 tst 0.9606
+epoch 81: trn: time 1.61 s, loss 0.5649, trn 0.9793, val 0.9277 tst 0.9611
+epoch 82: trn: time 1.45 s, loss 0.1957, trn 0.9832, val 0.9302 tst 0.9614
+epoch 83: trn: time 1.41 s, loss 0.1428, trn 0.9906, val 0.9323 tst 0.9615
+epoch 84: trn: time 1.64 s, loss 0.2415, trn 0.9799, val 0.9332 tst 0.9606
+epoch 85: trn: time 1.54 s, loss 0.1401, trn 0.9891, val 0.9335 tst 0.9596
+epoch 86: trn: time 1.50 s, loss 0.6310, trn 0.9806, val 0.9336 tst 0.9593
+epoch 87: trn: time 1.46 s, loss 0.1431, trn 0.9893, val 0.9335 tst 0.9594
+epoch 88: trn: time 1.48 s, loss 0.1285, trn 0.9931, val 0.9338 tst 0.9592
+epoch 89: trn: time 1.63 s, loss 0.1648, trn 0.9878, val 0.9334 tst 0.9592
+epoch 90: trn: time 1.64 s, loss 0.2145, trn 0.9792, val 0.9331 tst 0.9595
+epoch 91: trn: time 1.66 s, loss 0.2262, trn 0.9887, val 0.9331 tst 0.9598
+epoch 92: trn: time 1.67 s, loss 0.1462, trn 0.9888, val 0.9321 tst 0.9599
+epoch 93: trn: time 1.40 s, loss 1.2924, trn 0.9867, val 0.9321 tst 0.9603
+epoch 94: trn: time 1.51 s, loss 0.1344, trn 0.9897, val 0.9321 tst 0.9604
+epoch 95: trn: time 1.66 s, loss 0.3428, trn 0.9844, val 0.9328 tst 0.9602
+epoch 96: trn: time 1.50 s, loss 0.1362, trn 0.9909, val 0.9345 tst 0.9601
+epoch 97: trn: time 1.84 s, loss 0.2335, trn 0.9842, val 0.9359 best
+tst 0.9595
+epoch 98: trn: time 1.78 s, loss 0.1780, trn 0.9857, val 0.9366 best
+tst 0.9587
+epoch 99: trn: time 1.65 s, loss 0.3392, trn 0.9873, val 0.9370 best
+tst 0.9583
+epoch 100: trn: time 1.30 s, loss 0.1407, trn 0.9894, val 0.9372 best
+tst 0.9580
+epoch 101: trn: time 1.60 s, loss 0.1252, trn 0.9910, val 0.9369 tst 0.9581
+epoch 102: trn: time 1.58 s, loss 0.1839, trn 0.9816, val 0.9360 tst 0.9581
+epoch 103: trn: time 1.38 s, loss 0.4400, trn 0.9776, val 0.9351 tst 0.9582
+epoch 104: trn: time 1.45 s, loss 0.4317, trn 0.9872, val 0.9344 tst 0.9581
+epoch 105: trn: time 1.51 s, loss 0.1279, trn 0.9911, val 0.9336 tst 0.9581
+epoch 106: trn: time 1.69 s, loss 0.4039, trn 0.9884, val 0.9341 tst 0.9586
+epoch 107: trn: time 1.80 s, loss 0.1316, trn 0.9892, val 0.9341 tst 0.9593
+epoch 108: trn: time 1.54 s, loss 0.1980, trn 0.9908, val 0.9353 tst 0.9599
+epoch 109: trn: time 1.55 s, loss 0.1340, trn 0.9888, val 0.9370 tst 0.9607
+epoch 110: trn: time 1.77 s, loss 0.1213, trn 0.9911, val 0.9380 best
+tst 0.9609
+epoch 111: trn: time 1.72 s, loss 0.1046, trn 0.9947, val 0.9387 best
+tst 0.9609
+epoch 112: trn: time 1.34 s, loss 0.2531, trn 0.9918, val 0.9388 best
+tst 0.9609
+epoch 113: trn: time 1.51 s, loss 0.1016, trn 0.9951, val 0.9384 tst 0.9612
+epoch 114: trn: time 1.80 s, loss 0.1771, trn 0.9894, val 0.9380 tst 0.9612
+epoch 115: trn: time 1.60 s, loss 0.1820, trn 0.9870, val 0.9377 tst 0.9611
+epoch 116: trn: time 1.34 s, loss 0.1040, trn 0.9946, val 0.9366 tst 0.9608
+epoch 117: trn: time 1.65 s, loss 0.2446, trn 0.9881, val 0.9359 tst 0.9604
+epoch 118: trn: time 1.92 s, loss 0.1258, trn 0.9894, val 0.9362 tst 0.9601
+epoch 119: trn: time 1.44 s, loss 0.1018, trn 0.9948, val 0.9366 tst 0.9599
+epoch 120: trn: time 1.71 s, loss 0.0986, trn 0.9956, val 0.9364 tst 0.9601
+epoch 121: trn: time 1.56 s, loss 0.6702, trn 0.9939, val 0.9357 tst 0.9604
+epoch 122: trn: time 1.61 s, loss 0.0845, trn 0.9981, val 0.9348 tst 0.9602
+epoch 123: trn: time 1.54 s, loss 0.1825, trn 0.9914, val 0.9343 tst 0.9599
+epoch 124: trn: time 1.65 s, loss 0.1061, trn 0.9934, val 0.9343 tst 0.9597
+epoch 125: trn: time 1.82 s, loss 0.1071, trn 0.9909, val 0.9342 tst 0.9593
+epoch 126: trn: time 1.69 s, loss 0.3799, trn 0.9901, val 0.9345 tst 0.9587
+epoch 127: trn: time 1.56 s, loss 0.1302, trn 0.9899, val 0.9335 tst 0.9582
+epoch 128: trn: time 1.67 s, loss 0.2793, trn 0.9896, val 0.9342 tst 0.9590
+epoch 129: trn: time 1.56 s, loss 0.1531, trn 0.9880, val 0.9346 tst 0.9598
+epoch 130: trn: time 1.60 s, loss 0.0837, trn 0.9972, val 0.9361 tst 0.9605
+epoch 131: trn: time 1.87 s, loss 0.1313, trn 0.9903, val 0.9375 tst 0.9609
+epoch 132: trn: time 1.77 s, loss 0.1702, trn 0.9920, val 0.9388 tst 0.9609
+epoch 133: trn: time 1.55 s, loss 0.4395, trn 0.9860, val 0.9391 best
+tst 0.9607
+epoch 134: trn: time 1.59 s, loss 0.0981, trn 0.9947, val 0.9392 best
+tst 0.9607
+epoch 135: trn: time 1.32 s, loss 0.3120, trn 0.9935, val 0.9392 tst 0.9610
+epoch 136: trn: time 1.58 s, loss 0.1467, trn 0.9892, val 0.9385 tst 0.9612
+epoch 137: trn: time 1.65 s, loss 0.1501, trn 0.9890, val 0.9376 tst 0.9607
+epoch 138: trn: time 1.42 s, loss 0.0900, trn 0.9958, val 0.9371 tst 0.9605
+epoch 139: trn: time 1.72 s, loss 0.2212, trn 0.9919, val 0.9368 tst 0.9599
+epoch 140: trn: time 1.71 s, loss 0.0827, trn 0.9968, val 0.9368 tst 0.9596
+epoch 141: trn: time 1.71 s, loss 0.1437, trn 0.9876, val 0.9371 tst 0.9592
+epoch 142: trn: time 1.66 s, loss 0.1000, trn 0.9926, val 0.9370 tst 0.9587
+epoch 143: trn: time 1.71 s, loss 0.0938, trn 0.9939, val 0.9371 tst 0.9587
+epoch 144: trn: time 1.62 s, loss 0.0839, trn 0.9968, val 0.9374 tst 0.9591
+epoch 145: trn: time 1.39 s, loss 0.0877, trn 0.9957, val 0.9375 tst 0.9595
+epoch 146: trn: time 1.53 s, loss 0.1086, trn 0.9940, val 0.9378 tst 0.9598
+epoch 147: trn: time 1.66 s, loss 0.6350, trn 0.9940, val 0.9376 tst 0.9599
+epoch 148: trn: time 1.53 s, loss 0.4288, trn 0.9913, val 0.9370 tst 0.9598
+epoch 149: trn: time 1.62 s, loss 0.0941, trn 0.9947, val 0.9361 tst 0.9598
+epoch 150: trn: time 1.57 s, loss 0.0844, trn 0.9952, val 0.9358 tst 0.9597
+epoch 151: trn: time 1.71 s, loss 0.2423, trn 0.9923, val 0.9357 tst 0.9599
+epoch 152: trn: time 1.68 s, loss 0.0871, trn 0.9946, val 0.9359 tst 0.9605
+epoch 153: trn: time 1.31 s, loss 0.1046, trn 0.9920, val 0.9361 tst 0.9608
+epoch 154: trn: time 1.35 s, loss 0.3174, trn 0.9911, val 0.9367 tst 0.9608
+epoch 155: trn: time 1.46 s, loss 0.0680, trn 0.9955, val 0.9372 tst 0.9607
+epoch 156: trn: time 1.70 s, loss 0.0770, trn 0.9960, val 0.9381 tst 0.9605
+epoch 157: trn: time 1.80 s, loss 0.1208, trn 0.9923, val 0.9384 tst 0.9601
+epoch 158: trn: time 1.61 s, loss 0.1520, trn 0.9905, val 0.9389 tst 0.9596
+epoch 159: trn: time 1.78 s, loss 0.0713, trn 0.9972, val 0.9384 tst 0.9589
+epoch 160: trn: time 1.62 s, loss 0.1597, trn 0.9912, val 0.9377 tst 0.9583
+epoch 161: trn: time 1.48 s, loss 0.0855, trn 0.9951, val 0.9370 tst 0.9580
+epoch 162: trn: time 1.57 s, loss 0.1017, trn 0.9910, val 0.9370 tst 0.9582
+epoch 163: trn: time 1.76 s, loss 0.1574, trn 0.9921, val 0.9374 tst 0.9586
+epoch 164: trn: time 1.87 s, loss 0.0872, trn 0.9955, val 0.9381 tst 0.9593
+epoch 165: trn: time 1.55 s, loss 0.1595, trn 0.9913, val 0.9393 best
+tst 0.9595
+epoch 166: trn: time 1.77 s, loss 0.1929, trn 0.9925, val 0.9400 best
+tst 0.9600
+epoch 167: trn: time 1.63 s, loss 0.2226, trn 0.9910, val 0.9403 best
+tst 0.9597
+epoch 168: trn: time 1.68 s, loss 0.8680, trn 0.9921, val 0.9394 tst 0.9593
+epoch 169: trn: time 1.51 s, loss 0.0866, trn 0.9956, val 0.9376 tst 0.9587
+epoch 170: trn: time 1.55 s, loss 0.0699, trn 0.9957, val 0.9362 tst 0.9584
+epoch 171: trn: time 1.77 s, loss 0.1105, trn 0.9933, val 0.9346 tst 0.9581
+epoch 172: trn: time 1.81 s, loss 0.0750, trn 0.9967, val 0.9336 tst 0.9582
+epoch 173: trn: time 1.73 s, loss 0.1036, trn 0.9929, val 0.9335 tst 0.9585
+epoch 174: trn: time 1.64 s, loss 0.8432, trn 0.9915, val 0.9332 tst 0.9585
+epoch 175: trn: time 1.67 s, loss 0.0955, trn 0.9930, val 0.9327 tst 0.9585
+epoch 176: trn: time 1.75 s, loss 0.0813, trn 0.9951, val 0.9330 tst 0.9584
+epoch 177: trn: time 1.65 s, loss 0.1092, trn 0.9919, val 0.9335 tst 0.9584
+epoch 178: trn: time 1.74 s, loss 0.0968, trn 0.9965, val 0.9341 tst 0.9582
+epoch 179: trn: time 1.48 s, loss 0.1357, trn 0.9924, val 0.9354 tst 0.9583
+epoch 180: trn: time 1.72 s, loss 0.0913, trn 0.9937, val 0.9361 tst 0.9583
+epoch 181: trn: time 1.53 s, loss 0.1076, trn 0.9917, val 0.9364 tst 0.9589
+epoch 182: trn: time 1.85 s, loss 0.2208, trn 0.9918, val 0.9361 tst 0.9588
+epoch 183: trn: time 1.57 s, loss 0.2102, trn 0.9966, val 0.9354 tst 0.9583
+epoch 184: trn: time 1.70 s, loss 0.0936, trn 0.9917, val 0.9346 tst 0.9576
+epoch 185: trn: time 1.50 s, loss 0.0729, trn 0.9943, val 0.9342 tst 0.9576
+epoch 186: trn: time 1.83 s, loss 0.0783, trn 0.9955, val 0.9345 tst 0.9585
+epoch 187: trn: time 1.27 s, loss 0.0711, trn 0.9973, val 0.9357 tst 0.9593
+epoch 188: trn: time 1.44 s, loss 0.0756, trn 0.9952, val 0.9361 tst 0.9601
+epoch 189: trn: time 1.33 s, loss 0.2238, trn 0.9932, val 0.9368 tst 0.9606
+epoch 190: trn: time 1.57 s, loss 0.0674, trn 0.9959, val 0.9374 tst 0.9606
+epoch 191: trn: time 1.72 s, loss 0.0951, trn 0.9912, val 0.9384 tst 0.9610
+epoch 192: trn: time 1.44 s, loss 0.1755, trn 0.9948, val 0.9390 tst 0.9611
+epoch 193: trn: time 1.56 s, loss 0.0846, trn 0.9967, val 0.9394 tst 0.9607
+epoch 194: trn: time 1.82 s, loss 0.0605, trn 0.9962, val 0.9390 tst 0.9599
+epoch 195: trn: time 1.75 s, loss 0.0927, trn 0.9923, val 0.9383 tst 0.9587
+epoch 196: trn: time 1.48 s, loss 0.3319, trn 0.9942, val 0.9372 tst 0.9576
+epoch 197: trn: time 1.69 s, loss 0.0635, trn 0.9964, val 0.9367 tst 0.9571
+epoch 198: trn: time 1.53 s, loss 0.0762, trn 0.9965, val 0.9353 tst 0.9560
+epoch 199: trn: time 1.76 s, loss 0.3018, trn 0.9903, val 0.9340 tst 0.9554
+end test 0.955 time 1.755 s
+repeat 6
+  0%|          | 0/10556 [00:00<?, ?it/s] 37%|███▋      | 3855/10556 [00:00<00:00, 38545.44it/s] 89%|████████▊ | 9354/10556 [00:00<00:00, 47077.29it/s]100%|██████████| 10556/10556 [00:00<00:00, 49042.11it/s]
+torch.Size([2, 5278])
+Val param {'lr': 0.001, 'layer1': 1, 'layer2': 2, 'hidden_dim_1wl': 128, 'hidden_dim_2wl': 32, 'dp1': 0.5, 'dp2': 0.0, 'dp3': 0.8, 'ln0': False, 'ln1': True, 'ln2': True, 'ln3': False, 'act1': False, 'act2': False, 'act3': True}
+use_feat
+batch size1053
+epoch 0: trn: time 1.53 s, loss 0.7883, trn 0.5258, val 0.6642 best
+tst 0.6198
+epoch 1: trn: time 1.71 s, loss 0.8193, trn 0.6211, val 0.7237 best
+tst 0.6651
+epoch 2: trn: time 1.73 s, loss 1.0369, trn 0.6840, val 0.7689 best
+tst 0.6952
+epoch 3: trn: time 1.54 s, loss 0.6320, trn 0.7248, val 0.8023 best
+tst 0.7282
+epoch 4: trn: time 1.81 s, loss 0.8200, trn 0.7656, val 0.8326 best
+tst 0.7671
+epoch 5: trn: time 1.55 s, loss 0.5750, trn 0.8154, val 0.8545 best
+tst 0.7986
+epoch 6: trn: time 1.80 s, loss 0.6826, trn 0.8394, val 0.8708 best
+tst 0.8167
+epoch 7: trn: time 1.59 s, loss 0.6217, trn 0.8589, val 0.8825 best
+tst 0.8283
+epoch 8: trn: time 1.46 s, loss 0.5261, trn 0.8734, val 0.8921 best
+tst 0.8386
+epoch 9: trn: time 1.70 s, loss 0.5103, trn 0.8983, val 0.8993 best
+tst 0.8466
+epoch 10: trn: time 1.48 s, loss 0.6089, trn 0.8781, val 0.9064 best
+tst 0.8563
+epoch 11: trn: time 1.44 s, loss 0.6418, trn 0.9179, val 0.9119 best
+tst 0.8663
+epoch 12: trn: time 1.66 s, loss 0.4553, trn 0.9187, val 0.9162 best
+tst 0.8755
+epoch 13: trn: time 1.55 s, loss 0.4995, trn 0.9274, val 0.9191 best
+tst 0.8822
+epoch 14: trn: time 1.81 s, loss 0.4671, trn 0.9144, val 0.9220 best
+tst 0.8872
+epoch 15: trn: time 1.54 s, loss 0.9780, trn 0.9319, val 0.9244 best
+tst 0.8898
+epoch 16: trn: time 1.32 s, loss 0.4550, trn 0.9374, val 0.9250 best
+tst 0.8921
+epoch 17: trn: time 1.52 s, loss 0.4075, trn 0.9344, val 0.9259 best
+tst 0.8947
+epoch 18: trn: time 1.82 s, loss 0.4260, trn 0.9305, val 0.9268 best
+tst 0.8974
+epoch 19: trn: time 1.79 s, loss 0.5120, trn 0.9390, val 0.9284 best
+tst 0.9003
+epoch 20: trn: time 1.66 s, loss 0.4076, trn 0.9414, val 0.9288 best
+tst 0.9032
+epoch 21: trn: time 1.73 s, loss 0.4172, trn 0.9352, val 0.9301 best
+tst 0.9040
+epoch 22: trn: time 1.37 s, loss 0.6085, trn 0.9398, val 0.9307 best
+tst 0.9045
+epoch 23: trn: time 1.52 s, loss 0.9956, trn 0.9493, val 0.9326 best
+tst 0.9042
+epoch 24: trn: time 1.47 s, loss 0.3444, trn 0.9480, val 0.9358 best
+tst 0.9051
+epoch 25: trn: time 1.22 s, loss 0.4807, trn 0.9423, val 0.9375 best
+tst 0.9073
+epoch 26: trn: time 1.69 s, loss 0.3685, trn 0.9501, val 0.9384 best
+tst 0.9104
+epoch 27: trn: time 1.65 s, loss 0.5655, trn 0.9569, val 0.9393 best
+tst 0.9127
+epoch 28: trn: time 1.81 s, loss 0.3316, trn 0.9499, val 0.9402 best
+tst 0.9146
+epoch 29: trn: time 1.53 s, loss 0.3307, trn 0.9572, val 0.9403 best
+tst 0.9163
+epoch 30: trn: time 1.68 s, loss 0.3739, trn 0.9504, val 0.9400 tst 0.9175
+epoch 31: trn: time 1.35 s, loss 0.4200, trn 0.9644, val 0.9387 tst 0.9178
+epoch 32: trn: time 1.50 s, loss 0.4103, trn 0.9559, val 0.9379 tst 0.9191
+epoch 33: trn: time 1.62 s, loss 0.7672, trn 0.9511, val 0.9382 tst 0.9208
+epoch 34: trn: time 1.48 s, loss 0.2880, trn 0.9578, val 0.9398 tst 0.9222
+epoch 35: trn: time 1.52 s, loss 0.3032, trn 0.9554, val 0.9415 best
+tst 0.9239
+epoch 36: trn: time 1.48 s, loss 0.3280, trn 0.9511, val 0.9427 best
+tst 0.9258
+epoch 37: trn: time 1.75 s, loss 0.5129, trn 0.9539, val 0.9440 best
+tst 0.9271
+epoch 38: trn: time 1.56 s, loss 0.6085, trn 0.9588, val 0.9443 best
+tst 0.9277
+epoch 39: trn: time 1.67 s, loss 0.2880, trn 0.9744, val 0.9433 tst 0.9266
+epoch 40: trn: time 1.61 s, loss 0.3415, trn 0.9620, val 0.9437 tst 0.9258
+epoch 41: trn: time 1.46 s, loss 0.2881, trn 0.9671, val 0.9438 tst 0.9266
+epoch 42: trn: time 1.71 s, loss 0.2890, trn 0.9678, val 0.9442 tst 0.9269
+epoch 43: trn: time 1.95 s, loss 0.7470, trn 0.9643, val 0.9454 best
+tst 0.9274
+epoch 44: trn: time 1.52 s, loss 0.2825, trn 0.9711, val 0.9461 best
+tst 0.9273
+epoch 45: trn: time 1.53 s, loss 0.2504, trn 0.9666, val 0.9466 best
+tst 0.9285
+epoch 46: trn: time 1.81 s, loss 0.5939, trn 0.9628, val 0.9468 best
+tst 0.9292
+epoch 47: trn: time 1.72 s, loss 0.3072, trn 0.9733, val 0.9468 tst 0.9297
+epoch 48: trn: time 1.34 s, loss 0.3088, trn 0.9678, val 0.9468 best
+tst 0.9322
+epoch 49: trn: time 1.66 s, loss 0.4147, trn 0.9678, val 0.9478 best
+tst 0.9345
+epoch 50: trn: time 1.64 s, loss 0.4061, trn 0.9697, val 0.9488 best
+tst 0.9354
+epoch 51: trn: time 1.49 s, loss 0.2525, trn 0.9743, val 0.9494 best
+tst 0.9357
+epoch 52: trn: time 1.61 s, loss 1.8412, trn 0.9705, val 0.9498 best
+tst 0.9360
+epoch 53: trn: time 1.65 s, loss 0.2799, trn 0.9771, val 0.9499 best
+tst 0.9364
+epoch 54: trn: time 1.78 s, loss 0.2060, trn 0.9768, val 0.9495 tst 0.9375
+epoch 55: trn: time 1.29 s, loss 0.2183, trn 0.9740, val 0.9498 tst 0.9381
+epoch 56: trn: time 1.71 s, loss 0.3908, trn 0.9658, val 0.9500 best
+tst 0.9387
+epoch 57: trn: time 1.56 s, loss 0.3495, trn 0.9696, val 0.9508 best
+tst 0.9393
+epoch 58: trn: time 1.61 s, loss 0.6039, trn 0.9720, val 0.9515 best
+tst 0.9389
+epoch 59: trn: time 1.80 s, loss 0.5441, trn 0.9799, val 0.9525 best
+tst 0.9388
+epoch 60: trn: time 1.55 s, loss 0.4474, trn 0.9759, val 0.9530 best
+tst 0.9383
+epoch 61: trn: time 1.68 s, loss 0.2020, trn 0.9784, val 0.9527 tst 0.9368
+epoch 62: trn: time 1.70 s, loss 0.2493, trn 0.9831, val 0.9531 best
+tst 0.9369
+epoch 63: trn: time 1.64 s, loss 0.2010, trn 0.9826, val 0.9526 tst 0.9375
+epoch 64: trn: time 1.52 s, loss 0.1989, trn 0.9783, val 0.9532 best
+tst 0.9390
+epoch 65: trn: time 1.41 s, loss 0.2033, trn 0.9798, val 0.9534 best
+tst 0.9402
+epoch 66: trn: time 1.59 s, loss 0.4098, trn 0.9720, val 0.9543 best
+tst 0.9416
+epoch 67: trn: time 1.63 s, loss 0.1760, trn 0.9844, val 0.9554 best
+tst 0.9417
+epoch 68: trn: time 1.75 s, loss 0.1663, trn 0.9871, val 0.9559 best
+tst 0.9417
+epoch 69: trn: time 1.74 s, loss 0.4115, trn 0.9773, val 0.9568 best
+tst 0.9420
+epoch 70: trn: time 1.42 s, loss 1.0967, trn 0.9848, val 0.9575 best
+tst 0.9423
+epoch 71: trn: time 1.66 s, loss 0.1845, trn 0.9844, val 0.9575 tst 0.9423
+epoch 72: trn: time 1.47 s, loss 0.1877, trn 0.9823, val 0.9566 tst 0.9419
+epoch 73: trn: time 1.84 s, loss 0.4883, trn 0.9741, val 0.9565 tst 0.9420
+epoch 74: trn: time 1.63 s, loss 0.4871, trn 0.9807, val 0.9567 tst 0.9430
+epoch 75: trn: time 1.51 s, loss 0.4108, trn 0.9813, val 0.9566 tst 0.9434
+epoch 76: trn: time 1.57 s, loss 0.1738, trn 0.9835, val 0.9560 tst 0.9433
+epoch 77: trn: time 1.73 s, loss 0.1797, trn 0.9878, val 0.9556 tst 0.9429
+epoch 78: trn: time 1.65 s, loss 0.1555, trn 0.9892, val 0.9551 tst 0.9434
+epoch 79: trn: time 1.54 s, loss 0.4654, trn 0.9864, val 0.9548 tst 0.9440
+epoch 80: trn: time 1.37 s, loss 0.3256, trn 0.9837, val 0.9550 tst 0.9450
+epoch 81: trn: time 1.72 s, loss 0.2148, trn 0.9863, val 0.9559 tst 0.9462
+epoch 82: trn: time 1.38 s, loss 0.1611, trn 0.9862, val 0.9573 tst 0.9472
+epoch 83: trn: time 1.68 s, loss 0.3112, trn 0.9866, val 0.9580 best
+tst 0.9475
+epoch 84: trn: time 1.66 s, loss 0.1987, trn 0.9853, val 0.9581 best
+tst 0.9475
+epoch 85: trn: time 1.57 s, loss 0.1431, trn 0.9897, val 0.9583 best
+tst 0.9473
+epoch 86: trn: time 1.57 s, loss 0.1496, trn 0.9871, val 0.9579 tst 0.9475
+epoch 87: trn: time 1.51 s, loss 0.1341, trn 0.9930, val 0.9557 tst 0.9464
+epoch 88: trn: time 1.58 s, loss 0.1627, trn 0.9860, val 0.9554 tst 0.9460
+epoch 89: trn: time 1.56 s, loss 0.6168, trn 0.9819, val 0.9554 tst 0.9456
+epoch 90: trn: time 1.71 s, loss 0.1661, trn 0.9863, val 0.9552 tst 0.9451
+epoch 91: trn: time 1.61 s, loss 0.3150, trn 0.9881, val 0.9551 tst 0.9450
+epoch 92: trn: time 1.69 s, loss 0.1285, trn 0.9906, val 0.9554 tst 0.9457
+epoch 93: trn: time 1.64 s, loss 0.6247, trn 0.9844, val 0.9555 tst 0.9473
+epoch 94: trn: time 1.65 s, loss 0.3518, trn 0.9845, val 0.9562 tst 0.9481
+epoch 95: trn: time 1.57 s, loss 0.1402, trn 0.9890, val 0.9562 tst 0.9483
+epoch 96: trn: time 1.50 s, loss 0.1662, trn 0.9883, val 0.9563 tst 0.9479
+epoch 97: trn: time 1.49 s, loss 0.5804, trn 0.9862, val 0.9560 tst 0.9477
+epoch 98: trn: time 1.47 s, loss 0.1250, trn 0.9915, val 0.9554 tst 0.9472
+epoch 99: trn: time 1.64 s, loss 0.3096, trn 0.9813, val 0.9545 tst 0.9471
+epoch 100: trn: time 1.53 s, loss 0.1076, trn 0.9942, val 0.9536 tst 0.9471
+epoch 101: trn: time 1.60 s, loss 0.2009, trn 0.9916, val 0.9535 tst 0.9475
+epoch 102: trn: time 1.54 s, loss 0.1344, trn 0.9894, val 0.9546 tst 0.9478
+epoch 103: trn: time 2.10 s, loss 0.1649, trn 0.9851, val 0.9556 tst 0.9486
+epoch 104: trn: time 1.51 s, loss 0.1227, trn 0.9920, val 0.9562 tst 0.9482
+epoch 105: trn: time 1.51 s, loss 0.1315, trn 0.9900, val 0.9568 tst 0.9484
+epoch 106: trn: time 1.56 s, loss 0.1200, trn 0.9924, val 0.9574 tst 0.9486
+epoch 107: trn: time 1.61 s, loss 0.1453, trn 0.9912, val 0.9576 tst 0.9485
+epoch 108: trn: time 1.64 s, loss 0.1484, trn 0.9910, val 0.9575 tst 0.9479
+epoch 109: trn: time 1.61 s, loss 0.1292, trn 0.9902, val 0.9568 tst 0.9484
+epoch 110: trn: time 1.77 s, loss 0.1745, trn 0.9900, val 0.9571 tst 0.9494
+epoch 111: trn: time 1.58 s, loss 0.1987, trn 0.9882, val 0.9572 tst 0.9503
+epoch 112: trn: time 1.64 s, loss 0.4510, trn 0.9847, val 0.9571 tst 0.9512
+epoch 113: trn: time 1.57 s, loss 0.1826, trn 0.9905, val 0.9569 tst 0.9511
+epoch 114: trn: time 1.67 s, loss 0.2816, trn 0.9909, val 0.9565 tst 0.9506
+epoch 115: trn: time 1.35 s, loss 0.1467, trn 0.9882, val 0.9560 tst 0.9505
+epoch 116: trn: time 1.52 s, loss 0.1285, trn 0.9881, val 0.9559 tst 0.9509
+epoch 117: trn: time 1.60 s, loss 0.1179, trn 0.9911, val 0.9556 tst 0.9509
+epoch 118: trn: time 1.51 s, loss 0.4170, trn 0.9865, val 0.9554 tst 0.9501
+epoch 119: trn: time 1.59 s, loss 0.1120, trn 0.9932, val 0.9546 tst 0.9487
+epoch 120: trn: time 1.90 s, loss 0.0787, trn 0.9984, val 0.9533 tst 0.9476
+epoch 121: trn: time 1.55 s, loss 0.1946, trn 0.9928, val 0.9527 tst 0.9472
+epoch 122: trn: time 1.37 s, loss 0.5292, trn 0.9863, val 0.9524 tst 0.9479
+epoch 123: trn: time 1.54 s, loss 0.0950, trn 0.9941, val 0.9532 tst 0.9491
+epoch 124: trn: time 1.54 s, loss 0.0972, trn 0.9943, val 0.9535 tst 0.9501
+epoch 125: trn: time 1.43 s, loss 0.1189, trn 0.9920, val 0.9540 tst 0.9509
+epoch 126: trn: time 1.67 s, loss 0.1481, trn 0.9953, val 0.9544 tst 0.9515
+epoch 127: trn: time 1.39 s, loss 0.3079, trn 0.9917, val 0.9541 tst 0.9513
+epoch 128: trn: time 1.31 s, loss 0.1172, trn 0.9900, val 0.9543 tst 0.9506
+epoch 129: trn: time 1.63 s, loss 0.1017, trn 0.9935, val 0.9538 tst 0.9493
+epoch 130: trn: time 1.59 s, loss 0.0976, trn 0.9924, val 0.9536 tst 0.9486
+epoch 131: trn: time 1.30 s, loss 0.0956, trn 0.9942, val 0.9542 tst 0.9484
+epoch 132: trn: time 1.41 s, loss 0.1205, trn 0.9931, val 0.9549 tst 0.9479
+epoch 133: trn: time 1.52 s, loss 0.1182, trn 0.9920, val 0.9553 tst 0.9470
+epoch 134: trn: time 1.43 s, loss 0.1188, trn 0.9882, val 0.9553 tst 0.9463
+epoch 135: trn: time 1.44 s, loss 0.0932, trn 0.9938, val 0.9554 tst 0.9457
+epoch 136: trn: time 1.65 s, loss 0.1589, trn 0.9919, val 0.9555 tst 0.9452
+epoch 137: trn: time 1.58 s, loss 0.0871, trn 0.9956, val 0.9560 tst 0.9452
+epoch 138: trn: time 1.68 s, loss 0.1679, trn 0.9917, val 0.9568 tst 0.9465
+epoch 139: trn: time 1.58 s, loss 0.1081, trn 0.9911, val 0.9578 tst 0.9472
+epoch 140: trn: time 1.60 s, loss 0.0928, trn 0.9947, val 0.9575 tst 0.9476
+epoch 141: trn: time 1.50 s, loss 0.0902, trn 0.9961, val 0.9568 tst 0.9478
+epoch 142: trn: time 1.44 s, loss 0.0761, trn 0.9965, val 0.9564 tst 0.9478
+epoch 143: trn: time 1.42 s, loss 0.0754, trn 0.9975, val 0.9558 tst 0.9475
+epoch 144: trn: time 1.64 s, loss 0.1265, trn 0.9904, val 0.9553 tst 0.9473
+epoch 145: trn: time 1.52 s, loss 0.0885, trn 0.9946, val 0.9548 tst 0.9472
+epoch 146: trn: time 1.68 s, loss 0.0995, trn 0.9942, val 0.9533 tst 0.9472
+epoch 147: trn: time 1.44 s, loss 0.1031, trn 0.9904, val 0.9529 tst 0.9474
+epoch 148: trn: time 1.62 s, loss 0.1165, trn 0.9945, val 0.9526 tst 0.9473
+epoch 149: trn: time 1.62 s, loss 0.1169, trn 0.9882, val 0.9526 tst 0.9470
+epoch 150: trn: time 1.57 s, loss 0.1478, trn 0.9890, val 0.9532 tst 0.9471
+epoch 151: trn: time 1.53 s, loss 0.0747, trn 0.9974, val 0.9532 tst 0.9479
+epoch 152: trn: time 1.69 s, loss 0.0982, trn 0.9940, val 0.9536 tst 0.9486
+epoch 153: trn: time 1.44 s, loss 0.0921, trn 0.9938, val 0.9539 tst 0.9490
+epoch 154: trn: time 1.54 s, loss 0.0736, trn 0.9948, val 0.9547 tst 0.9491
+epoch 155: trn: time 1.52 s, loss 0.1068, trn 0.9946, val 0.9554 tst 0.9495
+epoch 156: trn: time 1.46 s, loss 0.1402, trn 0.9897, val 0.9555 tst 0.9493
+epoch 157: trn: time 1.36 s, loss 0.1201, trn 0.9885, val 0.9550 tst 0.9485
+epoch 158: trn: time 1.49 s, loss 0.0647, trn 0.9975, val 0.9541 tst 0.9475
+epoch 159: trn: time 1.54 s, loss 0.0650, trn 0.9977, val 0.9532 tst 0.9467
+epoch 160: trn: time 1.54 s, loss 0.0728, trn 0.9951, val 0.9532 tst 0.9463
+epoch 161: trn: time 1.47 s, loss 0.1086, trn 0.9898, val 0.9528 tst 0.9459
+epoch 162: trn: time 1.34 s, loss 0.0670, trn 0.9964, val 0.9533 tst 0.9460
+epoch 163: trn: time 1.46 s, loss 0.0813, trn 0.9940, val 0.9540 tst 0.9461
+epoch 164: trn: time 1.62 s, loss 0.1014, trn 0.9943, val 0.9541 tst 0.9455
+epoch 165: trn: time 1.54 s, loss 0.0792, trn 0.9947, val 0.9537 tst 0.9451
+epoch 166: trn: time 1.39 s, loss 0.0759, trn 0.9930, val 0.9539 tst 0.9452
+epoch 167: trn: time 1.57 s, loss 0.1127, trn 0.9965, val 0.9543 tst 0.9452
+epoch 168: trn: time 1.27 s, loss 0.0702, trn 0.9975, val 0.9548 tst 0.9448
+epoch 169: trn: time 1.70 s, loss 0.0926, trn 0.9938, val 0.9549 tst 0.9446
+epoch 170: trn: time 1.48 s, loss 0.1530, trn 0.9914, val 0.9552 tst 0.9439
+epoch 171: trn: time 1.34 s, loss 0.0788, trn 0.9953, val 0.9549 tst 0.9437
+epoch 172: trn: time 1.58 s, loss 0.0727, trn 0.9965, val 0.9548 tst 0.9446
+epoch 173: trn: time 1.61 s, loss 0.1916, trn 0.9870, val 0.9550 tst 0.9458
+epoch 174: trn: time 1.67 s, loss 0.0613, trn 0.9985, val 0.9552 tst 0.9475
+epoch 175: trn: time 1.39 s, loss 0.1180, trn 0.9932, val 0.9552 tst 0.9491
+epoch 176: trn: time 1.28 s, loss 0.5320, trn 0.9905, val 0.9555 tst 0.9500
+epoch 177: trn: time 1.47 s, loss 0.0697, trn 0.9971, val 0.9557 tst 0.9504
+epoch 178: trn: time 1.73 s, loss 0.0649, trn 0.9964, val 0.9558 tst 0.9506
+epoch 179: trn: time 1.35 s, loss 0.0921, trn 0.9914, val 0.9562 tst 0.9508
+epoch 180: trn: time 1.27 s, loss 0.0711, trn 0.9965, val 0.9562 tst 0.9503
+epoch 181: trn: time 1.35 s, loss 0.0661, trn 0.9968, val 0.9559 tst 0.9499
+epoch 182: trn: time 1.46 s, loss 0.0573, trn 0.9977, val 0.9560 tst 0.9499
+epoch 183: trn: time 1.40 s, loss 0.0667, trn 0.9960, val 0.9556 tst 0.9497
+epoch 184: trn: time 1.42 s, loss 0.0689, trn 0.9961, val 0.9552 tst 0.9487
+epoch 185: trn: time 1.46 s, loss 0.1279, trn 0.9941, val 0.9543 tst 0.9475
+epoch 186: trn: time 1.41 s, loss 0.0721, trn 0.9966, val 0.9539 tst 0.9463
+epoch 187: trn: time 1.58 s, loss 0.2120, trn 0.9936, val 0.9533 tst 0.9462
+epoch 188: trn: time 1.54 s, loss 0.0834, trn 0.9976, val 0.9531 tst 0.9468
+epoch 189: trn: time 1.46 s, loss 0.0826, trn 0.9928, val 0.9533 tst 0.9477
+epoch 190: trn: time 1.39 s, loss 0.0618, trn 0.9982, val 0.9535 tst 0.9484
+epoch 191: trn: time 1.61 s, loss 0.0718, trn 0.9962, val 0.9541 tst 0.9481
+epoch 192: trn: time 1.27 s, loss 0.0684, trn 0.9965, val 0.9546 tst 0.9476
+epoch 193: trn: time 1.45 s, loss 0.0811, trn 0.9976, val 0.9551 tst 0.9474
+epoch 194: trn: time 1.53 s, loss 0.0671, trn 0.9971, val 0.9560 tst 0.9472
+epoch 195: trn: time 1.51 s, loss 0.0621, trn 0.9968, val 0.9558 tst 0.9471
+epoch 196: trn: time 1.46 s, loss 0.1268, trn 0.9949, val 0.9553 tst 0.9466
+epoch 197: trn: time 1.33 s, loss 0.0662, trn 0.9968, val 0.9544 tst 0.9461
+epoch 198: trn: time 1.50 s, loss 0.0942, trn 0.9934, val 0.9543 tst 0.9453
+epoch 199: trn: time 1.51 s, loss 0.4105, trn 0.9941, val 0.9539 tst 0.9436
+end test 0.944 time 1.505 s
+repeat 7
+  0%|          | 0/10556 [00:00<?, ?it/s] 45%|████▍     | 4708/10556 [00:00<00:00, 47074.10it/s] 98%|█████████▊| 10323/10556 [00:00<00:00, 52410.04it/s]100%|██████████| 10556/10556 [00:00<00:00, 52180.77it/s]
+torch.Size([2, 5278])
+Val param {'lr': 0.001, 'layer1': 1, 'layer2': 2, 'hidden_dim_1wl': 128, 'hidden_dim_2wl': 32, 'dp1': 0.5, 'dp2': 0.0, 'dp3': 0.8, 'ln0': False, 'ln1': True, 'ln2': True, 'ln3': False, 'act1': False, 'act2': False, 'act3': True}
+use_feat
+batch size1053
+epoch 0: trn: time 1.21 s, loss 1.3795, trn 0.5001, val 0.5919 best
+tst 0.6030
+epoch 1: trn: time 1.36 s, loss 1.5284, trn 0.5930, val 0.6490 best
+tst 0.6623
+epoch 2: trn: time 1.26 s, loss 1.0003, trn 0.6734, val 0.6908 best
+tst 0.6984
+epoch 3: trn: time 1.35 s, loss 0.8178, trn 0.7264, val 0.7281 best
+tst 0.7287
+epoch 4: trn: time 1.25 s, loss 1.5143, trn 0.7112, val 0.7583 best
+tst 0.7639
+epoch 5: trn: time 1.39 s, loss 0.7968, trn 0.7631, val 0.7835 best
+tst 0.7940
+epoch 6: trn: time 1.20 s, loss 0.9663, trn 0.8327, val 0.8010 best
+tst 0.8144
+epoch 7: trn: time 1.29 s, loss 0.8877, trn 0.8265, val 0.8193 best
+tst 0.8302
+epoch 8: trn: time 1.46 s, loss 0.9661, trn 0.8579, val 0.8342 best
+tst 0.8410
+epoch 9: trn: time 1.46 s, loss 1.0401, trn 0.8582, val 0.8466 best
+tst 0.8499
+epoch 10: trn: time 1.57 s, loss 1.5725, trn 0.8666, val 0.8557 best
+tst 0.8570
+epoch 11: trn: time 1.47 s, loss 0.8678, trn 0.8714, val 0.8658 best
+tst 0.8647
+epoch 12: trn: time 1.49 s, loss 0.8556, trn 0.8802, val 0.8738 best
+tst 0.8712
+epoch 13: trn: time 1.37 s, loss 1.0198, trn 0.8839, val 0.8814 best
+tst 0.8776
+epoch 14: trn: time 1.11 s, loss 3.0505, trn 0.8960, val 0.8872 best
+tst 0.8833
+epoch 15: trn: time 1.34 s, loss 0.7121, trn 0.9137, val 0.8915 best
+tst 0.8876
+epoch 16: trn: time 1.46 s, loss 3.2939, trn 0.9034, val 0.8950 best
+tst 0.8911
+epoch 17: trn: time 1.13 s, loss 0.4285, trn 0.9291, val 0.8988 best
+tst 0.8934
+epoch 18: trn: time 1.40 s, loss 0.6975, trn 0.9098, val 0.9015 best
+tst 0.8948
+epoch 19: trn: time 1.43 s, loss 1.0573, trn 0.9189, val 0.9049 best
+tst 0.8970
+epoch 20: trn: time 1.20 s, loss 0.6555, trn 0.9248, val 0.9075 best
+tst 0.8989
+epoch 21: trn: time 1.05 s, loss 0.8388, trn 0.9348, val 0.9094 best
+tst 0.9009
+epoch 22: trn: time 1.39 s, loss 0.4853, trn 0.9245, val 0.9120 best
+tst 0.9022
+epoch 23: trn: time 1.42 s, loss 1.0787, trn 0.9408, val 0.9138 best
+tst 0.9034
+epoch 24: trn: time 1.33 s, loss 0.5808, trn 0.9418, val 0.9154 best
+tst 0.9042
+epoch 25: trn: time 1.36 s, loss 0.7919, trn 0.9311, val 0.9166 best
+tst 0.9050
+epoch 26: trn: time 1.45 s, loss 0.5738, trn 0.9426, val 0.9175 best
+tst 0.9050
+epoch 27: trn: time 1.34 s, loss 0.5920, trn 0.9347, val 0.9179 best
+tst 0.9048
+epoch 28: trn: time 1.34 s, loss 0.3605, trn 0.9536, val 0.9169 tst 0.9047
+epoch 29: trn: time 1.28 s, loss 0.5296, trn 0.9429, val 0.9167 tst 0.9056
+epoch 30: trn: time 1.30 s, loss 0.3131, trn 0.9531, val 0.9165 tst 0.9078
+epoch 31: trn: time 1.19 s, loss 0.4026, trn 0.9509, val 0.9169 tst 0.9099
+epoch 32: trn: time 1.34 s, loss 0.8462, trn 0.9481, val 0.9172 tst 0.9113
+epoch 33: trn: time 1.43 s, loss 0.5293, trn 0.9500, val 0.9185 best
+tst 0.9123
+epoch 34: trn: time 1.19 s, loss 0.3427, trn 0.9496, val 0.9200 best
+tst 0.9129
+epoch 35: trn: time 1.29 s, loss 0.4081, trn 0.9461, val 0.9210 best
+tst 0.9129
+epoch 36: trn: time 1.25 s, loss 0.4291, trn 0.9511, val 0.9215 best
+tst 0.9129
+epoch 37: trn: time 1.43 s, loss 0.3877, trn 0.9575, val 0.9220 best
+tst 0.9132
+epoch 38: trn: time 1.44 s, loss 0.9611, trn 0.9476, val 0.9226 best
+tst 0.9142
+epoch 39: trn: time 1.21 s, loss 0.7502, trn 0.9473, val 0.9229 best
+tst 0.9155
+epoch 40: trn: time 1.43 s, loss 0.6239, trn 0.9558, val 0.9235 best
+tst 0.9168
+epoch 41: trn: time 1.38 s, loss 0.4011, trn 0.9623, val 0.9241 best
+tst 0.9177
+epoch 42: trn: time 1.26 s, loss 1.5380, trn 0.9491, val 0.9254 best
+tst 0.9177
+epoch 43: trn: time 1.35 s, loss 0.2890, trn 0.9685, val 0.9266 best
+tst 0.9178
+epoch 44: trn: time 1.29 s, loss 0.4240, trn 0.9580, val 0.9278 best
+tst 0.9177
+epoch 45: trn: time 1.53 s, loss 0.3141, trn 0.9572, val 0.9278 best
+tst 0.9179
+epoch 46: trn: time 1.45 s, loss 0.9139, trn 0.9520, val 0.9288 best
+tst 0.9181
+epoch 47: trn: time 1.55 s, loss 0.2462, trn 0.9674, val 0.9296 best
+tst 0.9191
+epoch 48: trn: time 1.44 s, loss 0.3036, trn 0.9686, val 0.9309 best
+tst 0.9201
+epoch 49: trn: time 1.38 s, loss 0.4028, trn 0.9604, val 0.9315 best
+tst 0.9209
+epoch 50: trn: time 1.40 s, loss 0.3119, trn 0.9669, val 0.9306 tst 0.9215
+epoch 51: trn: time 1.10 s, loss 0.2736, trn 0.9723, val 0.9301 tst 0.9222
+epoch 52: trn: time 1.42 s, loss 0.3796, trn 0.9667, val 0.9293 tst 0.9232
+epoch 53: trn: time 1.30 s, loss 0.2381, trn 0.9800, val 0.9289 tst 0.9242
+epoch 54: trn: time 1.04 s, loss 0.6890, trn 0.9628, val 0.9300 tst 0.9247
+epoch 55: trn: time 1.48 s, loss 0.5450, trn 0.9640, val 0.9312 tst 0.9250
+epoch 56: trn: time 1.23 s, loss 0.5367, trn 0.9698, val 0.9324 best
+tst 0.9248
+epoch 57: trn: time 1.48 s, loss 0.3387, trn 0.9752, val 0.9342 best
+tst 0.9251
+epoch 58: trn: time 1.16 s, loss 0.2702, trn 0.9655, val 0.9361 best
+tst 0.9258
+epoch 59: trn: time 1.10 s, loss 0.7237, trn 0.9664, val 0.9369 best
+tst 0.9259
+epoch 60: trn: time 1.39 s, loss 0.2837, trn 0.9779, val 0.9377 best
+tst 0.9258
+epoch 61: trn: time 1.33 s, loss 0.3495, trn 0.9697, val 0.9385 best
+tst 0.9251
+epoch 62: trn: time 1.31 s, loss 0.2442, trn 0.9766, val 0.9386 best
+tst 0.9252
+epoch 63: trn: time 1.30 s, loss 0.2650, trn 0.9661, val 0.9388 best
+tst 0.9257
+epoch 64: trn: time 1.50 s, loss 2.2018, trn 0.9617, val 0.9384 tst 0.9269
+epoch 65: trn: time 1.20 s, loss 0.4259, trn 0.9734, val 0.9383 tst 0.9285
+epoch 66: trn: time 1.28 s, loss 0.2926, trn 0.9726, val 0.9382 tst 0.9289
+epoch 67: trn: time 1.24 s, loss 0.3701, trn 0.9743, val 0.9375 tst 0.9289
+epoch 68: trn: time 1.25 s, loss 0.3614, trn 0.9801, val 0.9364 tst 0.9288
+epoch 69: trn: time 1.27 s, loss 0.6035, trn 0.9747, val 0.9363 tst 0.9283
+epoch 70: trn: time 1.34 s, loss 0.5073, trn 0.9634, val 0.9364 tst 0.9281
+epoch 71: trn: time 1.11 s, loss 0.5310, trn 0.9658, val 0.9372 tst 0.9275
+epoch 72: trn: time 1.50 s, loss 0.1970, trn 0.9816, val 0.9372 tst 0.9271
+epoch 73: trn: time 1.48 s, loss 0.1753, trn 0.9834, val 0.9369 tst 0.9271
+epoch 74: trn: time 1.16 s, loss 0.3568, trn 0.9808, val 0.9369 tst 0.9271
+epoch 75: trn: time 1.44 s, loss 0.9050, trn 0.9718, val 0.9377 tst 0.9263
+epoch 76: trn: time 1.09 s, loss 0.1818, trn 0.9820, val 0.9384 tst 0.9252
+epoch 77: trn: time 1.63 s, loss 0.1756, trn 0.9844, val 0.9389 best
+tst 0.9242
+epoch 78: trn: time 1.39 s, loss 0.1766, trn 0.9853, val 0.9392 best
+tst 0.9239
+epoch 79: trn: time 1.16 s, loss 0.6604, trn 0.9760, val 0.9391 tst 0.9239
+epoch 80: trn: time 1.48 s, loss 0.2005, trn 0.9810, val 0.9393 best
+tst 0.9245
+epoch 81: trn: time 1.30 s, loss 0.3115, trn 0.9795, val 0.9397 best
+tst 0.9258
+epoch 82: trn: time 1.09 s, loss 0.1728, trn 0.9846, val 0.9405 best
+tst 0.9269
+epoch 83: trn: time 1.50 s, loss 0.5127, trn 0.9765, val 0.9403 tst 0.9277
+epoch 84: trn: time 1.39 s, loss 0.2213, trn 0.9806, val 0.9400 tst 0.9282
+epoch 85: trn: time 1.42 s, loss 0.3047, trn 0.9869, val 0.9395 tst 0.9282
+epoch 86: trn: time 1.36 s, loss 0.1638, trn 0.9865, val 0.9390 tst 0.9275
+epoch 87: trn: time 1.34 s, loss 0.2107, trn 0.9811, val 0.9384 tst 0.9274
+epoch 88: trn: time 1.18 s, loss 0.1903, trn 0.9833, val 0.9388 tst 0.9277
+epoch 89: trn: time 1.25 s, loss 0.1457, trn 0.9900, val 0.9388 tst 0.9284
+epoch 90: trn: time 1.80 s, loss 0.4962, trn 0.9808, val 0.9392 tst 0.9293
+epoch 91: trn: time 1.31 s, loss 0.1749, trn 0.9849, val 0.9388 tst 0.9294
+epoch 92: trn: time 1.38 s, loss 0.2027, trn 0.9850, val 0.9395 tst 0.9286
+epoch 93: trn: time 1.41 s, loss 0.1926, trn 0.9813, val 0.9402 tst 0.9279
+epoch 94: trn: time 1.45 s, loss 0.1649, trn 0.9841, val 0.9414 best
+tst 0.9276
+epoch 95: trn: time 1.34 s, loss 0.2811, trn 0.9826, val 0.9424 best
+tst 0.9276
+epoch 96: trn: time 1.28 s, loss 0.1541, trn 0.9868, val 0.9430 best
+tst 0.9276
+epoch 97: trn: time 1.43 s, loss 0.2033, trn 0.9847, val 0.9429 tst 0.9281
+epoch 98: trn: time 1.41 s, loss 0.2235, trn 0.9867, val 0.9431 best
+tst 0.9291
+epoch 99: trn: time 1.20 s, loss 0.2464, trn 0.9896, val 0.9431 best
+tst 0.9298
+epoch 100: trn: time 1.42 s, loss 0.1967, trn 0.9834, val 0.9434 best
+tst 0.9299
+epoch 101: trn: time 1.35 s, loss 0.4917, trn 0.9885, val 0.9427 tst 0.9303
+epoch 102: trn: time 1.39 s, loss 0.1810, trn 0.9833, val 0.9415 tst 0.9297
+epoch 103: trn: time 1.29 s, loss 0.5073, trn 0.9855, val 0.9401 tst 0.9288
+epoch 104: trn: time 1.42 s, loss 0.1700, trn 0.9840, val 0.9392 tst 0.9288
+epoch 105: trn: time 1.34 s, loss 0.2685, trn 0.9850, val 0.9384 tst 0.9293
+epoch 106: trn: time 1.15 s, loss 0.1613, trn 0.9873, val 0.9384 tst 0.9296
+epoch 107: trn: time 1.48 s, loss 0.1600, trn 0.9859, val 0.9385 tst 0.9299
+epoch 108: trn: time 1.41 s, loss 0.2393, trn 0.9891, val 0.9383 tst 0.9297
+epoch 109: trn: time 1.49 s, loss 0.3861, trn 0.9893, val 0.9392 tst 0.9296
+epoch 110: trn: time 1.32 s, loss 0.2602, trn 0.9891, val 0.9394 tst 0.9294
+epoch 111: trn: time 1.28 s, loss 0.1245, trn 0.9889, val 0.9394 tst 0.9291
+epoch 112: trn: time 1.41 s, loss 0.1197, trn 0.9917, val 0.9393 tst 0.9289
+epoch 113: trn: time 1.44 s, loss 0.2392, trn 0.9833, val 0.9397 tst 0.9286
+epoch 114: trn: time 1.61 s, loss 0.1359, trn 0.9869, val 0.9398 tst 0.9283
+epoch 115: trn: time 1.05 s, loss 0.1479, trn 0.9887, val 0.9399 tst 0.9285
+epoch 116: trn: time 1.31 s, loss 0.1319, trn 0.9890, val 0.9404 tst 0.9291
+epoch 117: trn: time 1.54 s, loss 0.4958, trn 0.9855, val 0.9401 tst 0.9299
+epoch 118: trn: time 1.25 s, loss 0.1186, trn 0.9922, val 0.9391 tst 0.9305
+epoch 119: trn: time 1.33 s, loss 0.1366, trn 0.9916, val 0.9385 tst 0.9307
+epoch 120: trn: time 1.20 s, loss 0.1722, trn 0.9919, val 0.9389 tst 0.9303
+epoch 121: trn: time 1.28 s, loss 0.4493, trn 0.9866, val 0.9392 tst 0.9301
+epoch 122: trn: time 1.43 s, loss 0.2123, trn 0.9851, val 0.9398 tst 0.9302
+epoch 123: trn: time 1.30 s, loss 0.1609, trn 0.9917, val 0.9400 tst 0.9299
+epoch 124: trn: time 1.23 s, loss 0.1177, trn 0.9908, val 0.9419 tst 0.9301
+epoch 125: trn: time 1.35 s, loss 0.4783, trn 0.9880, val 0.9431 tst 0.9301
+epoch 126: trn: time 1.20 s, loss 0.1029, trn 0.9944, val 0.9434 tst 0.9299
+epoch 127: trn: time 1.12 s, loss 0.3184, trn 0.9898, val 0.9434 tst 0.9301
+epoch 128: trn: time 1.14 s, loss 0.1273, trn 0.9890, val 0.9435 best
+tst 0.9301
+epoch 129: trn: time 1.13 s, loss 0.1978, trn 0.9895, val 0.9440 best
+tst 0.9303
+epoch 130: trn: time 1.08 s, loss 0.1179, trn 0.9920, val 0.9437 tst 0.9304
+epoch 131: trn: time 1.11 s, loss 0.1023, trn 0.9932, val 0.9439 tst 0.9306
+epoch 132: trn: time 1.29 s, loss 0.0889, trn 0.9969, val 0.9437 tst 0.9305
+epoch 133: trn: time 1.23 s, loss 0.1187, trn 0.9941, val 0.9436 tst 0.9305
+epoch 134: trn: time 1.03 s, loss 0.1384, trn 0.9924, val 0.9434 tst 0.9305
+epoch 135: trn: time 1.34 s, loss 0.0991, trn 0.9957, val 0.9430 tst 0.9307
+epoch 136: trn: time 1.50 s, loss 0.1267, trn 0.9909, val 0.9429 tst 0.9311
+epoch 137: trn: time 1.40 s, loss 0.1971, trn 0.9928, val 0.9426 tst 0.9312
+epoch 138: trn: time 1.30 s, loss 0.1218, trn 0.9925, val 0.9430 tst 0.9312
+epoch 139: trn: time 1.22 s, loss 0.1121, trn 0.9911, val 0.9434 tst 0.9310
+epoch 140: trn: time 1.09 s, loss 0.1061, trn 0.9963, val 0.9433 tst 0.9307
+epoch 141: trn: time 1.62 s, loss 0.0784, trn 0.9976, val 0.9433 tst 0.9301
+epoch 142: trn: time 1.36 s, loss 0.1036, trn 0.9926, val 0.9437 tst 0.9297
+epoch 143: trn: time 1.47 s, loss 0.3218, trn 0.9874, val 0.9434 tst 0.9293
+epoch 144: trn: time 1.53 s, loss 0.1041, trn 0.9921, val 0.9426 tst 0.9287
+epoch 145: trn: time 1.30 s, loss 0.2656, trn 0.9896, val 0.9431 tst 0.9282
+epoch 146: trn: time 1.51 s, loss 0.0974, trn 0.9934, val 0.9424 tst 0.9279
+epoch 147: trn: time 1.57 s, loss 0.0984, trn 0.9919, val 0.9424 tst 0.9278
+epoch 148: trn: time 1.44 s, loss 0.1920, trn 0.9883, val 0.9429 tst 0.9283
+epoch 149: trn: time 1.41 s, loss 0.0916, trn 0.9946, val 0.9431 tst 0.9290
+epoch 150: trn: time 1.24 s, loss 0.1182, trn 0.9928, val 0.9437 tst 0.9297
+epoch 151: trn: time 1.84 s, loss 0.3884, trn 0.9889, val 0.9437 tst 0.9308
+epoch 152: trn: time 1.27 s, loss 0.0912, trn 0.9937, val 0.9444 best
+tst 0.9314
+epoch 153: trn: time 1.34 s, loss 0.0863, trn 0.9933, val 0.9445 best
+tst 0.9316
+epoch 154: trn: time 1.27 s, loss 0.1129, trn 0.9932, val 0.9434 tst 0.9320
+epoch 155: trn: time 1.30 s, loss 0.1109, trn 0.9918, val 0.9430 tst 0.9322
+epoch 156: trn: time 1.11 s, loss 0.1436, trn 0.9906, val 0.9433 tst 0.9330
+epoch 157: trn: time 1.29 s, loss 0.2260, trn 0.9875, val 0.9428 tst 0.9339
+epoch 158: trn: time 1.31 s, loss 0.0910, trn 0.9944, val 0.9428 tst 0.9337
+epoch 159: trn: time 1.49 s, loss 0.1105, trn 0.9948, val 0.9424 tst 0.9339
+epoch 160: trn: time 1.53 s, loss 0.1323, trn 0.9936, val 0.9420 tst 0.9334
+epoch 161: trn: time 1.13 s, loss 0.1011, trn 0.9933, val 0.9421 tst 0.9326
+epoch 162: trn: time 1.07 s, loss 0.0797, trn 0.9966, val 0.9421 tst 0.9319
+epoch 163: trn: time 1.41 s, loss 0.1645, trn 0.9921, val 0.9420 tst 0.9314
+epoch 164: trn: time 1.33 s, loss 0.2243, trn 0.9890, val 0.9429 tst 0.9311
+epoch 165: trn: time 1.32 s, loss 0.0826, trn 0.9953, val 0.9434 tst 0.9312
+epoch 166: trn: time 1.26 s, loss 0.0861, trn 0.9930, val 0.9437 tst 0.9315
+epoch 167: trn: time 1.44 s, loss 0.1071, trn 0.9916, val 0.9442 tst 0.9316
+epoch 168: trn: time 1.51 s, loss 0.0812, trn 0.9954, val 0.9444 tst 0.9321
+epoch 169: trn: time 1.35 s, loss 0.0827, trn 0.9947, val 0.9458 best
+tst 0.9325
+epoch 170: trn: time 1.31 s, loss 0.0788, trn 0.9939, val 0.9458 tst 0.9330
+epoch 171: trn: time 1.09 s, loss 0.0677, trn 0.9972, val 0.9457 tst 0.9332
+epoch 172: trn: time 1.27 s, loss 0.1317, trn 0.9927, val 0.9458 tst 0.9333
+epoch 173: trn: time 1.35 s, loss 0.0734, trn 0.9958, val 0.9462 best
+tst 0.9334
+epoch 174: trn: time 1.45 s, loss 0.0885, trn 0.9917, val 0.9463 best
+tst 0.9333
+epoch 175: trn: time 1.31 s, loss 0.0660, trn 0.9977, val 0.9459 tst 0.9331
+epoch 176: trn: time 1.33 s, loss 0.0834, trn 0.9949, val 0.9459 tst 0.9328
+epoch 177: trn: time 1.28 s, loss 0.0652, trn 0.9981, val 0.9461 tst 0.9323
+epoch 178: trn: time 1.37 s, loss 0.2437, trn 0.9929, val 0.9464 best
+tst 0.9322
+epoch 179: trn: time 1.34 s, loss 0.0874, trn 0.9952, val 0.9465 best
+tst 0.9315
+epoch 180: trn: time 1.42 s, loss 0.0950, trn 0.9892, val 0.9469 best
+tst 0.9311
+epoch 181: trn: time 1.08 s, loss 0.0774, trn 0.9965, val 0.9476 best
+tst 0.9308
+epoch 182: trn: time 1.40 s, loss 0.1822, trn 0.9951, val 0.9479 best
+tst 0.9306
+epoch 183: trn: time 1.20 s, loss 0.0608, trn 0.9984, val 0.9480 best
+tst 0.9303
+epoch 184: trn: time 1.48 s, loss 0.0704, trn 0.9975, val 0.9482 best
+tst 0.9302
+epoch 185: trn: time 1.38 s, loss 0.2396, trn 0.9928, val 0.9487 best
+tst 0.9301
+epoch 186: trn: time 1.20 s, loss 0.0885, trn 0.9934, val 0.9484 tst 0.9298
+epoch 187: trn: time 1.29 s, loss 0.1319, trn 0.9946, val 0.9481 tst 0.9294
+epoch 188: trn: time 1.33 s, loss 0.0759, trn 0.9961, val 0.9480 tst 0.9288
+epoch 189: trn: time 1.21 s, loss 0.0615, trn 0.9974, val 0.9479 tst 0.9284
+epoch 190: trn: time 1.13 s, loss 0.0689, trn 0.9973, val 0.9478 tst 0.9287
+epoch 191: trn: time 1.45 s, loss 0.1530, trn 0.9948, val 0.9476 tst 0.9289
+epoch 192: trn: time 1.38 s, loss 0.0825, trn 0.9938, val 0.9469 tst 0.9287
+epoch 193: trn: time 1.50 s, loss 0.0770, trn 0.9957, val 0.9467 tst 0.9286
+epoch 194: trn: time 1.26 s, loss 0.0876, trn 0.9920, val 0.9464 tst 0.9284
+epoch 195: trn: time 1.23 s, loss 0.0760, trn 0.9953, val 0.9460 tst 0.9286
+epoch 196: trn: time 1.16 s, loss 0.0604, trn 0.9975, val 0.9462 tst 0.9288
+epoch 197: trn: time 1.38 s, loss 0.0697, trn 0.9950, val 0.9466 tst 0.9287
+epoch 198: trn: time 1.16 s, loss 0.1593, trn 0.9964, val 0.9468 tst 0.9291
+epoch 199: trn: time 1.50 s, loss 0.0710, trn 0.9954, val 0.9466 tst 0.9288
+end test 0.929 time 1.501 s
+repeat 8
+  0%|          | 0/10556 [00:00<?, ?it/s] 57%|█████▋    | 6017/10556 [00:00<00:00, 60155.00it/s]100%|██████████| 10556/10556 [00:00<00:00, 65711.47it/s]
+torch.Size([2, 5278])
+Val param {'lr': 0.001, 'layer1': 1, 'layer2': 2, 'hidden_dim_1wl': 128, 'hidden_dim_2wl': 32, 'dp1': 0.5, 'dp2': 0.0, 'dp3': 0.8, 'ln0': False, 'ln1': True, 'ln2': True, 'ln3': False, 'act1': False, 'act2': False, 'act3': True}
+use_feat
+batch size1053
+epoch 0: trn: time 1.38 s, loss 1.5422, trn 0.4585, val 0.5502 best
+tst 0.5584
+epoch 1: trn: time 1.53 s, loss 1.4153, trn 0.5659, val 0.6203 best
+tst 0.6107
+epoch 2: trn: time 1.16 s, loss 0.8432, trn 0.6469, val 0.6768 best
+tst 0.6510
+epoch 3: trn: time 1.08 s, loss 1.9500, trn 0.6881, val 0.7257 best
+tst 0.6956
+epoch 4: trn: time 1.21 s, loss 1.4529, trn 0.7139, val 0.7730 best
+tst 0.7429
+epoch 5: trn: time 1.45 s, loss 2.5974, trn 0.7900, val 0.8086 best
+tst 0.7805
+epoch 6: trn: time 1.11 s, loss 1.4788, trn 0.7928, val 0.8354 best
+tst 0.8130
+epoch 7: trn: time 1.38 s, loss 0.7266, trn 0.8324, val 0.8545 best
+tst 0.8346
+epoch 8: trn: time 1.27 s, loss 1.5929, trn 0.8506, val 0.8670 best
+tst 0.8481
+epoch 9: trn: time 1.44 s, loss 0.9072, trn 0.8580, val 0.8763 best
+tst 0.8590
+epoch 10: trn: time 1.32 s, loss 0.9676, trn 0.8543, val 0.8862 best
+tst 0.8700
+epoch 11: trn: time 1.36 s, loss 1.3754, trn 0.8618, val 0.8965 best
+tst 0.8824
+epoch 12: trn: time 1.16 s, loss 0.8093, trn 0.8918, val 0.9051 best
+tst 0.8897
+epoch 13: trn: time 1.30 s, loss 1.8921, trn 0.8891, val 0.9094 best
+tst 0.8957
+epoch 14: trn: time 1.27 s, loss 0.6875, trn 0.8890, val 0.9124 best
+tst 0.9002
+epoch 15: trn: time 1.38 s, loss 2.5514, trn 0.9063, val 0.9147 best
+tst 0.9030
+epoch 16: trn: time 1.11 s, loss 2.0687, trn 0.8920, val 0.9187 best
+tst 0.9068
+epoch 17: trn: time 1.42 s, loss 2.1123, trn 0.9028, val 0.9235 best
+tst 0.9107
+epoch 18: trn: time 1.15 s, loss 0.8795, trn 0.9263, val 0.9275 best
+tst 0.9149
+epoch 19: trn: time 1.27 s, loss 0.4060, trn 0.9294, val 0.9300 best
+tst 0.9176
+epoch 20: trn: time 1.40 s, loss 0.5248, trn 0.9245, val 0.9336 best
+tst 0.9213
+epoch 21: trn: time 1.33 s, loss 2.6966, trn 0.9188, val 0.9361 best
+tst 0.9241
+epoch 22: trn: time 1.28 s, loss 0.5980, trn 0.9249, val 0.9380 best
+tst 0.9262
+epoch 23: trn: time 1.27 s, loss 1.3252, trn 0.9279, val 0.9384 best
+tst 0.9276
+epoch 24: trn: time 1.21 s, loss 1.7568, trn 0.9309, val 0.9382 tst 0.9284
+epoch 25: trn: time 1.11 s, loss 0.7686, trn 0.9218, val 0.9378 tst 0.9289
+epoch 26: trn: time 1.59 s, loss 0.4309, trn 0.9271, val 0.9390 best
+tst 0.9300
+epoch 27: trn: time 1.69 s, loss 0.9259, trn 0.9340, val 0.9411 best
+tst 0.9318
+epoch 28: trn: time 1.22 s, loss 0.6062, trn 0.9374, val 0.9440 best
+tst 0.9338
+epoch 29: trn: time 1.30 s, loss 1.2090, trn 0.9276, val 0.9466 best
+tst 0.9351
+epoch 30: trn: time 1.43 s, loss 0.9289, trn 0.9438, val 0.9482 best
+tst 0.9359
+epoch 31: trn: time 1.12 s, loss 0.3109, trn 0.9554, val 0.9494 best
+tst 0.9357
+epoch 32: trn: time 1.37 s, loss 0.6622, trn 0.9521, val 0.9492 tst 0.9360
+epoch 33: trn: time 1.34 s, loss 0.6107, trn 0.9398, val 0.9497 best
+tst 0.9360
+epoch 34: trn: time 1.37 s, loss 1.0983, trn 0.9465, val 0.9496 tst 0.9368
+epoch 35: trn: time 1.13 s, loss 0.6269, trn 0.9520, val 0.9503 best
+tst 0.9386
+epoch 36: trn: time 1.09 s, loss 0.4209, trn 0.9496, val 0.9512 best
+tst 0.9408
+epoch 37: trn: time 1.33 s, loss 0.9656, trn 0.9444, val 0.9507 tst 0.9421
+epoch 38: trn: time 1.13 s, loss 0.7966, trn 0.9572, val 0.9491 tst 0.9425
+epoch 39: trn: time 1.10 s, loss 1.0144, trn 0.9589, val 0.9480 tst 0.9424
+epoch 40: trn: time 1.34 s, loss 0.3387, trn 0.9558, val 0.9480 tst 0.9424
+epoch 41: trn: time 1.32 s, loss 0.2739, trn 0.9621, val 0.9492 tst 0.9429
+epoch 42: trn: time 1.49 s, loss 1.4560, trn 0.9483, val 0.9514 best
+tst 0.9432
+epoch 43: trn: time 1.27 s, loss 1.0016, trn 0.9546, val 0.9534 best
+tst 0.9432
+epoch 44: trn: time 1.31 s, loss 6.5708, trn 0.9537, val 0.9553 best
+tst 0.9432
+epoch 45: trn: time 1.35 s, loss 0.5412, trn 0.9603, val 0.9566 best
+tst 0.9435
+epoch 46: trn: time 1.32 s, loss 0.4668, trn 0.9560, val 0.9577 best
+tst 0.9438
+epoch 47: trn: time 1.42 s, loss 0.4807, trn 0.9569, val 0.9586 best
+tst 0.9439
+epoch 48: trn: time 1.23 s, loss 0.3866, trn 0.9622, val 0.9592 best
+tst 0.9444
+epoch 49: trn: time 1.06 s, loss 0.7657, trn 0.9549, val 0.9592 best
+tst 0.9453
+epoch 50: trn: time 1.27 s, loss 3.8564, trn 0.9711, val 0.9593 best
+tst 0.9460
+epoch 51: trn: time 1.06 s, loss 0.2478, trn 0.9687, val 0.9594 best
+tst 0.9470
+epoch 52: trn: time 1.05 s, loss 0.6329, trn 0.9609, val 0.9601 best
+tst 0.9475
+epoch 53: trn: time 1.31 s, loss 0.7953, trn 0.9570, val 0.9596 tst 0.9483
+epoch 54: trn: time 1.26 s, loss 0.5050, trn 0.9633, val 0.9586 tst 0.9484
+epoch 55: trn: time 1.34 s, loss 0.6512, trn 0.9599, val 0.9584 tst 0.9485
+epoch 56: trn: time 1.08 s, loss 1.4004, trn 0.9712, val 0.9587 tst 0.9488
+epoch 57: trn: time 1.05 s, loss 0.3392, trn 0.9807, val 0.9598 tst 0.9490
+epoch 58: trn: time 1.17 s, loss 0.2746, trn 0.9682, val 0.9599 tst 0.9493
+epoch 59: trn: time 1.07 s, loss 0.4367, trn 0.9713, val 0.9601 best
+tst 0.9494
+epoch 60: trn: time 1.35 s, loss 0.4681, trn 0.9682, val 0.9609 best
+tst 0.9502
+epoch 61: trn: time 1.28 s, loss 0.2509, trn 0.9762, val 0.9614 best
+tst 0.9507
+epoch 62: trn: time 1.15 s, loss 0.3248, trn 0.9631, val 0.9623 best
+tst 0.9508
+epoch 63: trn: time 1.10 s, loss 1.6483, trn 0.9739, val 0.9624 best
+tst 0.9514
+epoch 64: trn: time 1.26 s, loss 0.1993, trn 0.9825, val 0.9623 tst 0.9519
+epoch 65: trn: time 1.22 s, loss 0.5150, trn 0.9732, val 0.9616 tst 0.9523
+epoch 66: trn: time 1.25 s, loss 0.4566, trn 0.9720, val 0.9610 tst 0.9524
+epoch 67: trn: time 1.06 s, loss 0.5784, trn 0.9771, val 0.9605 tst 0.9520
+epoch 68: trn: time 1.32 s, loss 0.2172, trn 0.9767, val 0.9611 tst 0.9517
+epoch 69: trn: time 1.36 s, loss 0.2603, trn 0.9792, val 0.9618 tst 0.9515
+epoch 70: trn: time 1.09 s, loss 0.4098, trn 0.9677, val 0.9620 tst 0.9515
+epoch 71: trn: time 1.41 s, loss 0.2696, trn 0.9796, val 0.9632 best
+tst 0.9524
+epoch 72: trn: time 1.48 s, loss 0.4076, trn 0.9736, val 0.9637 best
+tst 0.9529
+epoch 73: trn: time 1.40 s, loss 0.2135, trn 0.9792, val 0.9632 tst 0.9534
+epoch 74: trn: time 1.42 s, loss 0.4097, trn 0.9751, val 0.9629 tst 0.9535
+epoch 75: trn: time 1.35 s, loss 0.2649, trn 0.9748, val 0.9621 tst 0.9538
+epoch 76: trn: time 1.26 s, loss 0.3953, trn 0.9723, val 0.9604 tst 0.9536
+epoch 77: trn: time 1.26 s, loss 0.1603, trn 0.9869, val 0.9604 tst 0.9532
+epoch 78: trn: time 1.66 s, loss 1.8511, trn 0.9805, val 0.9609 tst 0.9527
+epoch 79: trn: time 1.36 s, loss 0.9755, trn 0.9781, val 0.9610 tst 0.9525
+epoch 80: trn: time 1.16 s, loss 0.1684, trn 0.9832, val 0.9617 tst 0.9525
+epoch 81: trn: time 1.16 s, loss 0.3554, trn 0.9764, val 0.9633 tst 0.9528
+epoch 82: trn: time 1.15 s, loss 0.6995, trn 0.9868, val 0.9643 best
+tst 0.9533
+epoch 83: trn: time 1.12 s, loss 2.0828, trn 0.9817, val 0.9650 best
+tst 0.9538
+epoch 84: trn: time 1.44 s, loss 0.3362, trn 0.9812, val 0.9653 best
+tst 0.9545
+epoch 85: trn: time 1.30 s, loss 0.6319, trn 0.9807, val 0.9658 best
+tst 0.9553
+epoch 86: trn: time 1.64 s, loss 0.6800, trn 0.9746, val 0.9665 best
+tst 0.9560
+epoch 87: trn: time 1.25 s, loss 0.3825, trn 0.9805, val 0.9667 best
+tst 0.9561
+epoch 88: trn: time 1.15 s, loss 0.2420, trn 0.9806, val 0.9662 tst 0.9562
+epoch 89: trn: time 1.47 s, loss 0.5430, trn 0.9842, val 0.9655 tst 0.9562
+epoch 90: trn: time 1.43 s, loss 0.1474, trn 0.9889, val 0.9648 tst 0.9562
+epoch 91: trn: time 1.14 s, loss 0.1689, trn 0.9853, val 0.9644 tst 0.9566
+epoch 92: trn: time 1.11 s, loss 0.1847, trn 0.9829, val 0.9632 tst 0.9568
+epoch 93: trn: time 1.33 s, loss 0.1411, trn 0.9909, val 0.9635 tst 0.9569
+epoch 94: trn: time 1.28 s, loss 0.1575, trn 0.9868, val 0.9640 tst 0.9569
+epoch 95: trn: time 1.45 s, loss 0.1596, trn 0.9836, val 0.9650 tst 0.9572
+epoch 96: trn: time 1.39 s, loss 0.1673, trn 0.9838, val 0.9661 tst 0.9570
+epoch 97: trn: time 1.03 s, loss 0.1754, trn 0.9847, val 0.9662 tst 0.9564
+epoch 98: trn: time 1.20 s, loss 0.7479, trn 0.9803, val 0.9664 tst 0.9557
+epoch 99: trn: time 1.14 s, loss 0.2151, trn 0.9834, val 0.9657 tst 0.9549
+epoch 100: trn: time 1.44 s, loss 3.9000, trn 0.9838, val 0.9653 tst 0.9542
+epoch 101: trn: time 1.33 s, loss 0.3983, trn 0.9848, val 0.9651 tst 0.9548
+epoch 102: trn: time 1.33 s, loss 0.2199, trn 0.9847, val 0.9656 tst 0.9556
+epoch 103: trn: time 1.31 s, loss 0.1650, trn 0.9900, val 0.9657 tst 0.9559
+epoch 104: trn: time 1.34 s, loss 0.1215, trn 0.9936, val 0.9654 tst 0.9561
+epoch 105: trn: time 1.16 s, loss 0.1755, trn 0.9883, val 0.9655 tst 0.9560
+epoch 106: trn: time 1.27 s, loss 1.4487, trn 0.9849, val 0.9650 tst 0.9558
+epoch 107: trn: time 1.42 s, loss 0.4945, trn 0.9865, val 0.9654 tst 0.9556
+epoch 108: trn: time 1.25 s, loss 0.2250, trn 0.9893, val 0.9650 tst 0.9551
+epoch 109: trn: time 1.20 s, loss 0.3428, trn 0.9888, val 0.9651 tst 0.9547
+epoch 110: trn: time 1.27 s, loss 0.1550, trn 0.9882, val 0.9665 tst 0.9544
+epoch 111: trn: time 1.32 s, loss 0.4022, trn 0.9818, val 0.9673 best
+tst 0.9539
+epoch 112: trn: time 1.51 s, loss 0.1577, trn 0.9886, val 0.9670 tst 0.9540
+epoch 113: trn: time 1.49 s, loss 0.3690, trn 0.9843, val 0.9670 tst 0.9544
+epoch 114: trn: time 1.22 s, loss 0.1178, trn 0.9922, val 0.9669 tst 0.9549
+epoch 115: trn: time 1.38 s, loss 0.6048, trn 0.9836, val 0.9662 tst 0.9546
+epoch 116: trn: time 1.25 s, loss 0.1280, trn 0.9908, val 0.9644 tst 0.9545
+epoch 117: trn: time 1.21 s, loss 0.1213, trn 0.9918, val 0.9631 tst 0.9545
+epoch 118: trn: time 1.29 s, loss 0.2397, trn 0.9850, val 0.9623 tst 0.9544
+epoch 119: trn: time 1.09 s, loss 0.2886, trn 0.9864, val 0.9631 tst 0.9549
+epoch 120: trn: time 1.01 s, loss 0.1474, trn 0.9873, val 0.9644 tst 0.9552
+epoch 121: trn: time 1.27 s, loss 0.1632, trn 0.9915, val 0.9650 tst 0.9554
+epoch 122: trn: time 1.41 s, loss 0.1295, trn 0.9889, val 0.9658 tst 0.9551
+epoch 123: trn: time 1.35 s, loss 0.1069, trn 0.9941, val 0.9666 tst 0.9552
+epoch 124: trn: time 1.47 s, loss 0.1155, trn 0.9908, val 0.9674 best
+tst 0.9546
+epoch 125: trn: time 1.27 s, loss 0.1116, trn 0.9918, val 0.9686 best
+tst 0.9542
+epoch 126: trn: time 1.46 s, loss 0.2509, trn 0.9841, val 0.9696 best
+tst 0.9545
+epoch 127: trn: time 1.31 s, loss 0.3348, trn 0.9894, val 0.9702 best
+tst 0.9545
+epoch 128: trn: time 1.26 s, loss 0.1461, trn 0.9925, val 0.9704 best
+tst 0.9550
+epoch 129: trn: time 1.46 s, loss 0.4903, trn 0.9849, val 0.9698 tst 0.9555
+epoch 130: trn: time 1.39 s, loss 0.1979, trn 0.9839, val 0.9691 tst 0.9558
+epoch 131: trn: time 1.52 s, loss 0.1235, trn 0.9912, val 0.9675 tst 0.9566
+epoch 132: trn: time 1.41 s, loss 0.3427, trn 0.9868, val 0.9668 tst 0.9571
+epoch 133: trn: time 1.17 s, loss 0.0948, trn 0.9954, val 0.9662 tst 0.9576
+epoch 134: trn: time 1.36 s, loss 0.1101, trn 0.9920, val 0.9662 tst 0.9582
+epoch 135: trn: time 1.29 s, loss 0.1044, trn 0.9935, val 0.9666 tst 0.9582
+epoch 136: trn: time 1.50 s, loss 0.1294, trn 0.9931, val 0.9670 tst 0.9583
+epoch 137: trn: time 1.16 s, loss 0.1088, trn 0.9921, val 0.9671 tst 0.9581
+epoch 138: trn: time 1.35 s, loss 0.4684, trn 0.9882, val 0.9671 tst 0.9574
+epoch 139: trn: time 1.29 s, loss 0.2399, trn 0.9832, val 0.9673 tst 0.9566
+epoch 140: trn: time 1.39 s, loss 0.0898, trn 0.9950, val 0.9673 tst 0.9561
+epoch 141: trn: time 1.41 s, loss 0.1657, trn 0.9897, val 0.9681 tst 0.9559
+epoch 142: trn: time 1.22 s, loss 0.2288, trn 0.9906, val 0.9682 tst 0.9561
+epoch 143: trn: time 1.20 s, loss 0.0990, trn 0.9930, val 0.9691 tst 0.9558
+epoch 144: trn: time 1.45 s, loss 0.1157, trn 0.9945, val 0.9693 tst 0.9559
+epoch 145: trn: time 1.48 s, loss 0.2646, trn 0.9921, val 0.9691 tst 0.9561
+epoch 146: trn: time 1.29 s, loss 0.1765, trn 0.9889, val 0.9681 tst 0.9563
+epoch 147: trn: time 1.39 s, loss 0.1239, trn 0.9892, val 0.9675 tst 0.9566
+epoch 148: trn: time 1.29 s, loss 0.2137, trn 0.9909, val 0.9672 tst 0.9567
+epoch 149: trn: time 1.10 s, loss 0.1806, trn 0.9923, val 0.9671 tst 0.9568
+epoch 150: trn: time 1.19 s, loss 0.0913, trn 0.9958, val 0.9669 tst 0.9573
+epoch 151: trn: time 1.11 s, loss 0.2773, trn 0.9914, val 0.9674 tst 0.9577
+epoch 152: trn: time 1.33 s, loss 0.7139, trn 0.9904, val 0.9685 tst 0.9579
+epoch 153: trn: time 1.45 s, loss 0.1222, trn 0.9940, val 0.9689 tst 0.9583
+epoch 154: trn: time 1.38 s, loss 0.0940, trn 0.9936, val 0.9699 tst 0.9582
+epoch 155: trn: time 1.07 s, loss 0.1769, trn 0.9902, val 0.9700 tst 0.9583
+epoch 156: trn: time 1.22 s, loss 0.1486, trn 0.9841, val 0.9699 tst 0.9581
+epoch 157: trn: time 1.10 s, loss 0.0825, trn 0.9961, val 0.9701 tst 0.9576
+epoch 158: trn: time 1.37 s, loss 0.5844, trn 0.9925, val 0.9702 tst 0.9571
+epoch 159: trn: time 1.20 s, loss 0.3279, trn 0.9901, val 0.9699 tst 0.9572
+epoch 160: trn: time 1.29 s, loss 0.0810, trn 0.9938, val 0.9691 tst 0.9569
+epoch 161: trn: time 1.45 s, loss 6.3479, trn 0.9923, val 0.9692 tst 0.9568
+epoch 162: trn: time 1.14 s, loss 0.0924, trn 0.9956, val 0.9693 tst 0.9564
+epoch 163: trn: time 1.36 s, loss 0.0878, trn 0.9952, val 0.9694 tst 0.9566
+epoch 164: trn: time 1.29 s, loss 0.7625, trn 0.9942, val 0.9699 tst 0.9571
+epoch 165: trn: time 1.34 s, loss 0.1391, trn 0.9904, val 0.9699 tst 0.9569
+epoch 166: trn: time 1.10 s, loss 0.0976, trn 0.9909, val 0.9696 tst 0.9571
+epoch 167: trn: time 1.31 s, loss 0.1318, trn 0.9937, val 0.9695 tst 0.9569
+epoch 168: trn: time 1.30 s, loss 0.0842, trn 0.9955, val 0.9693 tst 0.9569
+epoch 169: trn: time 1.10 s, loss 0.0622, trn 0.9989, val 0.9695 tst 0.9569
+epoch 170: trn: time 1.09 s, loss 0.0666, trn 0.9972, val 0.9695 tst 0.9572
+epoch 171: trn: time 1.13 s, loss 0.0912, trn 0.9920, val 0.9692 tst 0.9572
+epoch 172: trn: time 1.27 s, loss 0.0868, trn 0.9935, val 0.9684 tst 0.9572
+epoch 173: trn: time 1.20 s, loss 0.3564, trn 0.9920, val 0.9677 tst 0.9573
+epoch 174: trn: time 1.29 s, loss 0.2040, trn 0.9944, val 0.9674 tst 0.9568
+epoch 175: trn: time 1.28 s, loss 0.0781, trn 0.9954, val 0.9670 tst 0.9564
+epoch 176: trn: time 1.28 s, loss 0.0805, trn 0.9938, val 0.9665 tst 0.9561
+epoch 177: trn: time 1.40 s, loss 0.0886, trn 0.9935, val 0.9669 tst 0.9562
+epoch 178: trn: time 1.22 s, loss 0.1030, trn 0.9953, val 0.9672 tst 0.9565
+epoch 179: trn: time 1.18 s, loss 0.1309, trn 0.9965, val 0.9678 tst 0.9567
+epoch 180: trn: time 1.36 s, loss 0.1184, trn 0.9933, val 0.9682 tst 0.9567
+epoch 181: trn: time 1.31 s, loss 0.0984, trn 0.9948, val 0.9688 tst 0.9568
+epoch 182: trn: time 1.26 s, loss 0.0857, trn 0.9921, val 0.9689 tst 0.9568
+epoch 183: trn: time 1.11 s, loss 0.0599, trn 0.9989, val 0.9696 tst 0.9566
+epoch 184: trn: time 1.33 s, loss 0.0733, trn 0.9961, val 0.9698 tst 0.9562
+epoch 185: trn: time 1.11 s, loss 0.3176, trn 0.9928, val 0.9698 tst 0.9558
+epoch 186: trn: time 1.18 s, loss 0.0892, trn 0.9914, val 0.9700 tst 0.9554
+epoch 187: trn: time 1.45 s, loss 0.1112, trn 0.9950, val 0.9700 tst 0.9553
+epoch 188: trn: time 1.40 s, loss 0.0795, trn 0.9927, val 0.9700 tst 0.9554
+epoch 189: trn: time 1.22 s, loss 0.0802, trn 0.9939, val 0.9699 tst 0.9554
+epoch 190: trn: time 1.13 s, loss 0.0862, trn 0.9952, val 0.9691 tst 0.9555
+epoch 191: trn: time 1.31 s, loss 0.1068, trn 0.9959, val 0.9680 tst 0.9556
+epoch 192: trn: time 1.43 s, loss 0.0788, trn 0.9951, val 0.9680 tst 0.9558
+epoch 193: trn: time 1.38 s, loss 0.1214, trn 0.9932, val 0.9688 tst 0.9564
+epoch 194: trn: time 1.34 s, loss 0.0617, trn 0.9982, val 0.9692 tst 0.9564
+epoch 195: trn: time 1.17 s, loss 0.1319, trn 0.9961, val 0.9700 tst 0.9562
+epoch 196: trn: time 1.44 s, loss 0.0836, trn 0.9949, val 0.9702 tst 0.9555
+epoch 197: trn: time 1.32 s, loss 0.0856, trn 0.9942, val 0.9697 tst 0.9546
+epoch 198: trn: time 1.43 s, loss 0.0852, trn 0.9935, val 0.9697 tst 0.9542
+epoch 199: trn: time 1.40 s, loss 0.0596, trn 0.9975, val 0.9696 tst 0.9544
+end test 0.954 time 1.395 s
+repeat 9
+  0%|          | 0/10556 [00:00<?, ?it/s] 46%|████▌     | 4823/10556 [00:00<00:00, 48220.04it/s]100%|██████████| 10556/10556 [00:00<00:00, 59229.84it/s]
+torch.Size([2, 5278])
+Val param {'lr': 0.001, 'layer1': 1, 'layer2': 2, 'hidden_dim_1wl': 128, 'hidden_dim_2wl': 32, 'dp1': 0.5, 'dp2': 0.0, 'dp3': 0.8, 'ln0': False, 'ln1': True, 'ln2': True, 'ln3': False, 'act1': False, 'act2': False, 'act3': True}
+use_feat
+batch size1053
+epoch 0: trn: time 1.25 s, loss 1.1561, trn 0.4686, val 0.5900 best
+tst 0.6072
+epoch 1: trn: time 1.48 s, loss 0.7816, trn 0.5785, val 0.6547 best
+tst 0.6738
+epoch 2: trn: time 1.20 s, loss 0.8848, trn 0.6495, val 0.7138 best
+tst 0.7213
+epoch 3: trn: time 1.47 s, loss 1.1224, trn 0.6926, val 0.7567 best
+tst 0.7675
+epoch 4: trn: time 1.59 s, loss 1.0521, trn 0.7359, val 0.7900 best
+tst 0.8017
+epoch 5: trn: time 1.14 s, loss 1.3898, trn 0.7558, val 0.8141 best
+tst 0.8291
+epoch 6: trn: time 1.39 s, loss 0.9295, trn 0.8030, val 0.8337 best
+tst 0.8487
+epoch 7: trn: time 1.27 s, loss 0.7006, trn 0.8268, val 0.8506 best
+tst 0.8645
+epoch 8: trn: time 1.45 s, loss 1.1097, trn 0.8471, val 0.8624 best
+tst 0.8769
+epoch 9: trn: time 1.51 s, loss 0.9363, trn 0.8340, val 0.8703 best
+tst 0.8850
+epoch 10: trn: time 1.46 s, loss 0.7279, trn 0.8795, val 0.8765 best
+tst 0.8908
+epoch 11: trn: time 1.29 s, loss 2.1350, trn 0.8750, val 0.8822 best
+tst 0.8972
+epoch 12: trn: time 1.29 s, loss 0.5497, trn 0.8877, val 0.8912 best
+tst 0.9063
+epoch 13: trn: time 1.20 s, loss 0.4870, trn 0.9083, val 0.8976 best
+tst 0.9153
+epoch 14: trn: time 1.27 s, loss 1.8595, trn 0.8992, val 0.9040 best
+tst 0.9219
+epoch 15: trn: time 1.22 s, loss 0.7787, trn 0.9190, val 0.9088 best
+tst 0.9270
+epoch 16: trn: time 1.47 s, loss 0.8307, trn 0.9180, val 0.9127 best
+tst 0.9301
+epoch 17: trn: time 1.57 s, loss 1.4139, trn 0.9208, val 0.9172 best
+tst 0.9324
+epoch 18: trn: time 1.29 s, loss 0.9469, trn 0.9087, val 0.9213 best
+tst 0.9331
+epoch 19: trn: time 1.39 s, loss 0.4265, trn 0.9369, val 0.9242 best
+tst 0.9339
+epoch 20: trn: time 1.44 s, loss 1.3140, trn 0.9269, val 0.9283 best
+tst 0.9347
+epoch 21: trn: time 1.40 s, loss 0.6214, trn 0.9456, val 0.9318 best
+tst 0.9355
+epoch 22: trn: time 1.41 s, loss 0.5708, trn 0.9394, val 0.9334 best
+tst 0.9360
+epoch 23: trn: time 1.09 s, loss 2.4225, trn 0.9265, val 0.9343 best
+tst 0.9362
+epoch 24: trn: time 1.50 s, loss 1.1448, trn 0.9403, val 0.9352 best
+tst 0.9378
+epoch 25: trn: time 1.48 s, loss 2.9184, trn 0.9491, val 0.9348 tst 0.9381
+epoch 26: trn: time 1.15 s, loss 1.3121, trn 0.9348, val 0.9349 tst 0.9392
+epoch 27: trn: time 1.40 s, loss 0.7236, trn 0.9416, val 0.9357 best
+tst 0.9404
+epoch 28: trn: time 1.38 s, loss 0.6309, trn 0.9420, val 0.9358 best
+tst 0.9420
+epoch 29: trn: time 1.25 s, loss 0.3519, trn 0.9458, val 0.9369 best
+tst 0.9429
+epoch 30: trn: time 1.22 s, loss 0.7080, trn 0.9478, val 0.9378 best
+tst 0.9437
+epoch 31: trn: time 1.06 s, loss 0.4508, trn 0.9482, val 0.9393 best
+tst 0.9442
+epoch 32: trn: time 1.21 s, loss 1.3157, trn 0.9563, val 0.9406 best
+tst 0.9448
+epoch 33: trn: time 1.23 s, loss 0.9034, trn 0.9407, val 0.9418 best
+tst 0.9450
+epoch 34: trn: time 1.53 s, loss 0.6808, trn 0.9448, val 0.9442 best
+tst 0.9447
+epoch 35: trn: time 1.70 s, loss 0.3983, trn 0.9471, val 0.9453 best
+tst 0.9443
+epoch 36: trn: time 1.29 s, loss 0.3229, trn 0.9599, val 0.9454 best
+tst 0.9447
+epoch 37: trn: time 1.40 s, loss 0.6105, trn 0.9529, val 0.9465 best
+tst 0.9453
+epoch 38: trn: time 1.20 s, loss 0.2732, trn 0.9722, val 0.9478 best
+tst 0.9461
+epoch 39: trn: time 1.21 s, loss 0.9292, trn 0.9448, val 0.9486 best
+tst 0.9470
+epoch 40: trn: time 1.22 s, loss 0.6865, trn 0.9589, val 0.9502 best
+tst 0.9476
+epoch 41: trn: time 1.34 s, loss 0.3559, trn 0.9493, val 0.9507 best
+tst 0.9479
+epoch 42: trn: time 1.20 s, loss 0.4825, trn 0.9661, val 0.9506 tst 0.9479
+epoch 43: trn: time 1.31 s, loss 0.2638, trn 0.9709, val 0.9503 tst 0.9479
+epoch 44: trn: time 1.42 s, loss 0.6832, trn 0.9455, val 0.9494 tst 0.9477
+epoch 45: trn: time 1.20 s, loss 0.3918, trn 0.9562, val 0.9489 tst 0.9476
+epoch 46: trn: time 1.32 s, loss 0.8704, trn 0.9554, val 0.9492 tst 0.9474
+epoch 47: trn: time 1.51 s, loss 0.2637, trn 0.9739, val 0.9499 tst 0.9479
+epoch 48: trn: time 1.38 s, loss 0.5189, trn 0.9557, val 0.9509 best
+tst 0.9488
+epoch 49: trn: time 1.39 s, loss 0.7071, trn 0.9638, val 0.9519 best
+tst 0.9489
+epoch 50: trn: time 1.48 s, loss 0.3484, trn 0.9674, val 0.9531 best
+tst 0.9495
+epoch 51: trn: time 1.34 s, loss 0.9588, trn 0.9644, val 0.9538 best
+tst 0.9500
+epoch 52: trn: time 1.21 s, loss 0.6751, trn 0.9693, val 0.9543 best
+tst 0.9502
+epoch 53: trn: time 1.52 s, loss 0.4537, trn 0.9746, val 0.9534 tst 0.9503
+epoch 54: trn: time 1.23 s, loss 0.4090, trn 0.9709, val 0.9532 tst 0.9496
+epoch 55: trn: time 1.18 s, loss 0.3316, trn 0.9656, val 0.9518 tst 0.9493
+epoch 56: trn: time 1.43 s, loss 0.4699, trn 0.9549, val 0.9506 tst 0.9495
+epoch 57: trn: time 1.28 s, loss 0.3313, trn 0.9678, val 0.9491 tst 0.9491
+epoch 58: trn: time 1.34 s, loss 0.2457, trn 0.9652, val 0.9482 tst 0.9489
+epoch 59: trn: time 1.33 s, loss 1.0201, trn 0.9708, val 0.9489 tst 0.9488
+epoch 60: trn: time 1.14 s, loss 0.4331, trn 0.9712, val 0.9505 tst 0.9494
+epoch 61: trn: time 1.18 s, loss 1.5254, trn 0.9693, val 0.9515 tst 0.9502
+epoch 62: trn: time 1.38 s, loss 0.3121, trn 0.9741, val 0.9524 tst 0.9505
+epoch 63: trn: time 1.23 s, loss 2.0202, trn 0.9670, val 0.9522 tst 0.9509
+epoch 64: trn: time 1.11 s, loss 0.1882, trn 0.9821, val 0.9527 tst 0.9509
+epoch 65: trn: time 1.43 s, loss 0.2874, trn 0.9661, val 0.9531 tst 0.9509
+epoch 66: trn: time 1.19 s, loss 0.3788, trn 0.9748, val 0.9539 tst 0.9513
+epoch 67: trn: time 1.39 s, loss 0.5803, trn 0.9772, val 0.9543 tst 0.9517
+epoch 68: trn: time 1.27 s, loss 0.9222, trn 0.9754, val 0.9543 best
+tst 0.9520
+epoch 69: trn: time 1.22 s, loss 0.2573, trn 0.9858, val 0.9540 tst 0.9520
+epoch 70: trn: time 1.32 s, loss 0.3001, trn 0.9662, val 0.9539 tst 0.9518
+epoch 71: trn: time 1.22 s, loss 0.2687, trn 0.9725, val 0.9530 tst 0.9516
+epoch 72: trn: time 1.07 s, loss 0.5876, trn 0.9762, val 0.9523 tst 0.9511
+epoch 73: trn: time 1.22 s, loss 0.2046, trn 0.9788, val 0.9519 tst 0.9512
+epoch 74: trn: time 1.27 s, loss 0.3734, trn 0.9773, val 0.9523 tst 0.9514
+epoch 75: trn: time 1.47 s, loss 0.2342, trn 0.9806, val 0.9526 tst 0.9517
+epoch 76: trn: time 1.35 s, loss 0.4728, trn 0.9745, val 0.9521 tst 0.9519
+epoch 77: trn: time 1.44 s, loss 0.4017, trn 0.9743, val 0.9515 tst 0.9522
+epoch 78: trn: time 1.47 s, loss 0.4101, trn 0.9796, val 0.9509 tst 0.9523
+epoch 79: trn: time 1.32 s, loss 0.2682, trn 0.9774, val 0.9502 tst 0.9524
+epoch 80: trn: time 1.25 s, loss 0.1875, trn 0.9861, val 0.9497 tst 0.9524
+epoch 81: trn: time 1.08 s, loss 0.1881, trn 0.9826, val 0.9501 tst 0.9526
+epoch 82: trn: time 1.48 s, loss 0.3221, trn 0.9819, val 0.9509 tst 0.9530
+epoch 83: trn: time 1.44 s, loss 0.6201, trn 0.9837, val 0.9508 tst 0.9529
+epoch 84: trn: time 1.53 s, loss 0.2059, trn 0.9854, val 0.9508 tst 0.9529
+epoch 85: trn: time 1.45 s, loss 0.2362, trn 0.9839, val 0.9505 tst 0.9526
+epoch 86: trn: time 1.34 s, loss 0.2832, trn 0.9802, val 0.9503 tst 0.9522
+epoch 87: trn: time 1.35 s, loss 0.2656, trn 0.9820, val 0.9502 tst 0.9520
+epoch 88: trn: time 1.44 s, loss 0.2628, trn 0.9834, val 0.9508 tst 0.9516
+epoch 89: trn: time 1.43 s, loss 0.2771, trn 0.9791, val 0.9512 tst 0.9514
+epoch 90: trn: time 1.44 s, loss 0.2941, trn 0.9866, val 0.9518 tst 0.9512
+epoch 91: trn: time 1.19 s, loss 0.1702, trn 0.9826, val 0.9522 tst 0.9516
+epoch 92: trn: time 1.50 s, loss 0.3186, trn 0.9757, val 0.9525 tst 0.9515
+epoch 93: trn: time 1.01 s, loss 0.2359, trn 0.9796, val 0.9528 tst 0.9513
+epoch 94: trn: time 1.46 s, loss 0.1865, trn 0.9851, val 0.9543 tst 0.9514
+epoch 95: trn: time 1.50 s, loss 0.3976, trn 0.9870, val 0.9547 best
+tst 0.9513
+epoch 96: trn: time 1.26 s, loss 0.1505, trn 0.9894, val 0.9543 tst 0.9517
+epoch 97: trn: time 1.46 s, loss 1.1192, trn 0.9814, val 0.9534 tst 0.9516
+epoch 98: trn: time 1.40 s, loss 0.1621, trn 0.9868, val 0.9525 tst 0.9515
+epoch 99: trn: time 1.39 s, loss 0.1539, trn 0.9871, val 0.9516 tst 0.9513
+epoch 100: trn: time 1.21 s, loss 0.2027, trn 0.9873, val 0.9519 tst 0.9513
+epoch 101: trn: time 1.39 s, loss 0.1542, trn 0.9886, val 0.9532 tst 0.9514
+epoch 102: trn: time 1.35 s, loss 0.1668, trn 0.9844, val 0.9530 tst 0.9514
+epoch 103: trn: time 1.24 s, loss 0.1487, trn 0.9873, val 0.9531 tst 0.9511
+epoch 104: trn: time 1.36 s, loss 0.1984, trn 0.9923, val 0.9541 tst 0.9510
+epoch 105: trn: time 1.41 s, loss 0.1911, trn 0.9884, val 0.9544 tst 0.9507
+epoch 106: trn: time 1.52 s, loss 0.1365, trn 0.9888, val 0.9551 best
+tst 0.9504
+epoch 107: trn: time 1.12 s, loss 0.2212, trn 0.9893, val 0.9558 best
+tst 0.9502
+epoch 108: trn: time 1.43 s, loss 0.1214, trn 0.9931, val 0.9559 best
+tst 0.9499
+epoch 109: trn: time 1.38 s, loss 0.5191, trn 0.9818, val 0.9557 tst 0.9496
+epoch 110: trn: time 1.09 s, loss 0.1579, trn 0.9909, val 0.9543 tst 0.9494
+epoch 111: trn: time 1.23 s, loss 0.1524, trn 0.9896, val 0.9529 tst 0.9494
+epoch 112: trn: time 1.27 s, loss 0.4141, trn 0.9845, val 0.9517 tst 0.9496
+epoch 113: trn: time 1.24 s, loss 0.1541, trn 0.9894, val 0.9522 tst 0.9501
+epoch 114: trn: time 1.29 s, loss 0.1364, trn 0.9886, val 0.9522 tst 0.9513
+epoch 115: trn: time 1.08 s, loss 0.1577, trn 0.9876, val 0.9536 tst 0.9520
+epoch 116: trn: time 1.43 s, loss 0.1371, trn 0.9923, val 0.9539 tst 0.9524
+epoch 117: trn: time 1.35 s, loss 0.1294, trn 0.9894, val 0.9533 tst 0.9521
+epoch 118: trn: time 1.43 s, loss 0.1464, trn 0.9886, val 0.9526 tst 0.9517
+epoch 119: trn: time 1.49 s, loss 0.2358, trn 0.9877, val 0.9527 tst 0.9514
+epoch 120: trn: time 1.33 s, loss 0.4214, trn 0.9910, val 0.9526 tst 0.9509
+epoch 121: trn: time 1.39 s, loss 0.4497, trn 0.9862, val 0.9535 tst 0.9507
+epoch 122: trn: time 1.32 s, loss 0.1028, trn 0.9935, val 0.9536 tst 0.9506
+epoch 123: trn: time 1.30 s, loss 0.1377, trn 0.9861, val 0.9530 tst 0.9502
+epoch 124: trn: time 1.61 s, loss 0.1432, trn 0.9869, val 0.9525 tst 0.9495
+epoch 125: trn: time 1.51 s, loss 0.1130, trn 0.9927, val 0.9526 tst 0.9493
+epoch 126: trn: time 1.03 s, loss 0.1201, trn 0.9923, val 0.9530 tst 0.9493
+epoch 127: trn: time 1.53 s, loss 0.1250, trn 0.9908, val 0.9541 tst 0.9496
+epoch 128: trn: time 1.45 s, loss 0.4097, trn 0.9905, val 0.9542 tst 0.9499
+epoch 129: trn: time 1.33 s, loss 0.2837, trn 0.9915, val 0.9538 tst 0.9504
+epoch 130: trn: time 1.11 s, loss 0.1171, trn 0.9916, val 0.9532 tst 0.9511
+epoch 131: trn: time 1.51 s, loss 0.3137, trn 0.9917, val 0.9523 tst 0.9514
+epoch 132: trn: time 1.41 s, loss 0.0860, trn 0.9965, val 0.9517 tst 0.9514
+epoch 133: trn: time 1.30 s, loss 0.0895, trn 0.9957, val 0.9500 tst 0.9512
+epoch 134: trn: time 1.42 s, loss 0.4432, trn 0.9897, val 0.9496 tst 0.9513
+epoch 135: trn: time 1.59 s, loss 0.1618, trn 0.9896, val 0.9493 tst 0.9513
+epoch 136: trn: time 1.46 s, loss 0.1842, trn 0.9915, val 0.9489 tst 0.9512
+epoch 137: trn: time 1.42 s, loss 0.1573, trn 0.9861, val 0.9485 tst 0.9503
+epoch 138: trn: time 1.44 s, loss 0.3241, trn 0.9877, val 0.9494 tst 0.9497
+epoch 139: trn: time 1.43 s, loss 0.1116, trn 0.9929, val 0.9510 tst 0.9497
+epoch 140: trn: time 1.46 s, loss 0.9986, trn 0.9874, val 0.9525 tst 0.9501
+epoch 141: trn: time 1.10 s, loss 0.1128, trn 0.9924, val 0.9527 tst 0.9502
+epoch 142: trn: time 1.11 s, loss 0.2209, trn 0.9855, val 0.9523 tst 0.9507
+epoch 143: trn: time 1.43 s, loss 0.1467, trn 0.9951, val 0.9530 tst 0.9508
+epoch 144: trn: time 1.38 s, loss 0.2543, trn 0.9867, val 0.9522 tst 0.9510
+epoch 145: trn: time 1.32 s, loss 0.3946, trn 0.9907, val 0.9516 tst 0.9508
+epoch 146: trn: time 1.07 s, loss 0.0860, trn 0.9953, val 0.9510 tst 0.9507
+epoch 147: trn: time 1.46 s, loss 0.1413, trn 0.9927, val 0.9507 tst 0.9501
+epoch 148: trn: time 1.37 s, loss 0.1286, trn 0.9889, val 0.9510 tst 0.9495
+epoch 149: trn: time 1.24 s, loss 0.0716, trn 0.9965, val 0.9507 tst 0.9488
+epoch 150: trn: time 1.29 s, loss 0.3379, trn 0.9939, val 0.9503 tst 0.9484
+epoch 151: trn: time 1.54 s, loss 0.0996, trn 0.9928, val 0.9503 tst 0.9485
+epoch 152: trn: time 1.38 s, loss 0.0915, trn 0.9944, val 0.9511 tst 0.9490
+epoch 153: trn: time 1.42 s, loss 0.1579, trn 0.9949, val 0.9521 tst 0.9494
+epoch 154: trn: time 1.44 s, loss 0.0783, trn 0.9961, val 0.9534 tst 0.9495
+epoch 155: trn: time 1.15 s, loss 0.0880, trn 0.9968, val 0.9540 tst 0.9499
+epoch 156: trn: time 1.39 s, loss 0.0984, trn 0.9922, val 0.9541 tst 0.9502
+epoch 157: trn: time 1.47 s, loss 0.1322, trn 0.9909, val 0.9540 tst 0.9505
+epoch 158: trn: time 1.30 s, loss 0.0930, trn 0.9941, val 0.9544 tst 0.9506
+epoch 159: trn: time 1.31 s, loss 0.0719, trn 0.9974, val 0.9547 tst 0.9506
+epoch 160: trn: time 1.20 s, loss 0.0813, trn 0.9957, val 0.9547 tst 0.9505
+epoch 161: trn: time 1.53 s, loss 0.0863, trn 0.9944, val 0.9543 tst 0.9502
+epoch 162: trn: time 1.31 s, loss 0.1830, trn 0.9923, val 0.9539 tst 0.9502
+epoch 163: trn: time 1.03 s, loss 0.0650, trn 0.9968, val 0.9535 tst 0.9496
+epoch 164: trn: time 1.09 s, loss 0.0845, trn 0.9937, val 0.9526 tst 0.9492
+epoch 165: trn: time 1.27 s, loss 0.2380, trn 0.9877, val 0.9525 tst 0.9491
+epoch 166: trn: time 1.04 s, loss 0.1900, trn 0.9932, val 0.9521 tst 0.9493
+epoch 167: trn: time 1.12 s, loss 0.0755, trn 0.9960, val 0.9532 tst 0.9495
+epoch 168: trn: time 1.37 s, loss 0.1781, trn 0.9944, val 0.9544 tst 0.9497
+epoch 169: trn: time 1.20 s, loss 0.0652, trn 0.9978, val 0.9551 tst 0.9495
+epoch 170: trn: time 1.11 s, loss 0.0724, trn 0.9971, val 0.9556 tst 0.9489
+epoch 171: trn: time 1.33 s, loss 0.0832, trn 0.9965, val 0.9553 tst 0.9481
+epoch 172: trn: time 1.25 s, loss 0.0946, trn 0.9903, val 0.9543 tst 0.9474
+epoch 173: trn: time 1.40 s, loss 0.0794, trn 0.9952, val 0.9533 tst 0.9471
+epoch 174: trn: time 1.32 s, loss 0.0587, trn 0.9985, val 0.9529 tst 0.9474
+epoch 175: trn: time 1.25 s, loss 0.1222, trn 0.9913, val 0.9521 tst 0.9477
+epoch 176: trn: time 1.33 s, loss 0.0691, trn 0.9953, val 0.9509 tst 0.9479
+epoch 177: trn: time 1.06 s, loss 0.0911, trn 0.9941, val 0.9495 tst 0.9481
+epoch 178: trn: time 1.25 s, loss 0.0690, trn 0.9973, val 0.9496 tst 0.9488
+epoch 179: trn: time 0.99 s, loss 0.1115, trn 0.9938, val 0.9495 tst 0.9494
+epoch 180: trn: time 1.36 s, loss 0.3054, trn 0.9949, val 0.9490 tst 0.9496
+epoch 181: trn: time 1.17 s, loss 0.0698, trn 0.9957, val 0.9485 tst 0.9500
+epoch 182: trn: time 1.14 s, loss 0.0779, trn 0.9954, val 0.9479 tst 0.9502
+epoch 183: trn: time 1.31 s, loss 0.0681, trn 0.9962, val 0.9475 tst 0.9501
+epoch 184: trn: time 1.46 s, loss 1.3387, trn 0.9897, val 0.9476 tst 0.9500
+epoch 185: trn: time 1.34 s, loss 0.0831, trn 0.9941, val 0.9468 tst 0.9497
+epoch 186: trn: time 1.08 s, loss 0.0637, trn 0.9948, val 0.9471 tst 0.9491
+epoch 187: trn: time 1.32 s, loss 0.1393, trn 0.9942, val 0.9469 tst 0.9486
+epoch 188: trn: time 1.15 s, loss 0.1091, trn 0.9939, val 0.9475 tst 0.9484
+epoch 189: trn: time 1.36 s, loss 0.0882, trn 0.9931, val 0.9475 tst 0.9482
+epoch 190: trn: time 1.27 s, loss 0.1893, trn 0.9917, val 0.9471 tst 0.9481
+epoch 191: trn: time 1.15 s, loss 0.0697, trn 0.9955, val 0.9473 tst 0.9485
+epoch 192: trn: time 1.20 s, loss 0.0835, trn 0.9920, val 0.9478 tst 0.9489
+epoch 193: trn: time 1.32 s, loss 0.0997, trn 0.9939, val 0.9484 tst 0.9493
+epoch 194: trn: time 1.08 s, loss 0.1310, trn 0.9927, val 0.9491 tst 0.9496
+epoch 195: trn: time 1.33 s, loss 0.0723, trn 0.9956, val 0.9504 tst 0.9500
+epoch 196: trn: time 1.45 s, loss 0.0986, trn 0.9913, val 0.9512 tst 0.9504
+epoch 197: trn: time 1.37 s, loss 0.0678, trn 0.9957, val 0.9516 tst 0.9508
+epoch 198: trn: time 1.35 s, loss 0.0761, trn 0.9947, val 0.9516 tst 0.9508
+epoch 199: trn: time 0.96 s, loss 0.0839, trn 0.9931, val 0.9518 tst 0.9508
+end test 0.951 time 0.962 s
