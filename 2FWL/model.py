@@ -121,14 +121,12 @@ class Net(nn.Module):
 
     def forward(self, x, ei, pos, ea=None):
         edge_index = ei
-        #x = self.feat
         x = self.embedding(x)
         if self.use_feat:
             x = torch.cat((x, self.feat), dim=1)
         n = x.shape[0]
         for i in range(self.layer1):
             x = self.nconvs[i](x, edge_index)
-        #pdb.set_trace()
         colx = x.unsqueeze(0).expand(n, -1, -1).reshape(n * n, -1)
         rowx = x.unsqueeze(1).expand(-1, n, -1).reshape(n * n, -1)
         x = rowx * colx
@@ -232,8 +230,6 @@ class Net_ddi(nn.Module):
     def forward(self, x, ei, pos, ea=None):
         edge_index = ei
         x = self.embedding(x)
-        import pdb
-        pdb.set_trace()
         if self.use_feat:
             x = torch.cat((x, self.feat), dim=1)
         n = x.shape[0]
