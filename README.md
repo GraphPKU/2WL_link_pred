@@ -30,7 +30,7 @@ To reproduce our results: Python 3.8 + Pytorch 1.10.0 + Pytorch-Geometric 2.0.2
 
 Other python libraries for train: Optuna 2.10.0
 
-USAGE
+Usage
 -----
 
 To reproduce results of Local 2-WL models on USAir using a designated gpu, you can use the following command:
