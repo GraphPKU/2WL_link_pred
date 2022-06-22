@@ -433,8 +433,6 @@ def check(dsname):
     pd.set_option('display.max_columns', None)
     df = study.trials_dataframe().drop(['state', 'datetime_start', 'datetime_complete', 'duration', 'number'],
                                        axis=1)
-    import pdb
-    pdb.set_trace()
 
 
 if __name__ == "__main__":

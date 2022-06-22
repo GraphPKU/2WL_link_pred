@@ -73,8 +73,6 @@ def load(args):
             data = sio.loadmat('data_SEAL/Celegans.mat')
             data = sio.loadmat('data_SEAL/{}.mat'.format(args["data_name"]))
             net = data['net']
-            import pdb
-            #pdb.set_trace()
             if 'group' in data:
                 # load node attributes (here a.k.a. node classes)
                 attributes = data['group'].toarray().astype('float32')
@@ -110,8 +108,6 @@ def load(args):
     print(data.edge_index.shape)
     if args["data_name"].startswith('ogbl'):
         split_edge = dataset.get_edge_split()
-        #import pdb
-        #pdb.set_trace()
         split_edge['train']['edge_neg'] = negative_sampling(
             data.edge_index,
             num_nodes=data.num_nodes,
@@ -150,13 +146,7 @@ def load(args):
 
 def do_edge_split(data, val_ratio=0.05, test_ratio=0.1, neg_pool_max = False):
     edge_index, _ = add_self_loops(data.edge_index)
-    import pdb
-    #pdb.set_trace()
     data = random_split_edges(data, val_ratio, test_ratio)
-    #data.train_pos_edge_index = to_undirected(data.train_pos_edge_index)
-    #data.val_pos_edge_index = to_undirected(data.val_pos_edge_index)
-    #data.test_pos_edge_index = to_undirected(data.test_pos_edge_index)
-
     if not neg_pool_max:
         data.train_neg_edge_index = negative_sampling(
             edge_index,
@@ -165,10 +155,6 @@ def do_edge_split(data, val_ratio=0.05, test_ratio=0.1, neg_pool_max = False):
         )
     else:
         data.train_neg_edge_index = torch.zeros((2, 0))
-        #else:
-    #    data.train_neg_edge_index = all_neg_edges(
-    #        data.train_pos_edge_index,
-    #        data.num_nodes)
 
     data.val_neg_edge_index = negative_sampling(
         torch.cat((edge_index, data.val_pos_edge_index), dim=-1),
