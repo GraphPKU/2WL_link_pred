@@ -1,0 +1,14 @@
+act0: false
+act1: false
+channels_1wl: 64
+channels_2wl: 64
+depth1: 3
+depth2: 2
+dp_1wl0: 0.0
+dp_1wl1: 0.0
+dp_2wl: 0.1
+dp_emb: 0.5
+dp_lin0: 0.8
+dp_lin1: 0.1
+epoch: 4000
+lr: 0.005
