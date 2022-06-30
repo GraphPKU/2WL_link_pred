@@ -17,7 +17,7 @@ Yang Hu, Xiyuan Wang, Zhouchen Lin, Pan Li, Muhan Zhang: Two-Dimensional Weisfei
 }
 ```
 
-2WLGNN is a series of link prediction algorithms that directly use links (2-node-tuples) as message passing unit and stimulate 2-WL test to realise its message passing. 
+2WLNet is a series of link prediction algorithms that directly use links (2-node-tuples) as message passing unit and stimulate 2-WL test to realise its message passing. 
 It first takes node feature or node degree as initial input, then use 1-WL-GNN and pooling function to obtain link representation, finally use 2-WL-GNN to get prediction 
 score for every questioned links. We adopt four different 2-WL tests: 2-WL, Local 2-WL, 2-FWL, Local 2-FWL, depending on which we construct four types of 2-WL-GNN layers.
 
