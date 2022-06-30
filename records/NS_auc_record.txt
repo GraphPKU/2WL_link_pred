@@ -1,0 +1,10 @@
+AUC:0.9768   Time:0.1117   
+AUC:0.9815   Time:0.1167   
+AUC:0.9826   Time:0.1222   
+AUC:0.9797   Time:0.1087   
+AUC:0.978   Time:0.1157   
+AUC:0.9745   Time:0.1127   
+AUC:0.971   Time:0.1147   
+AUC:0.9789   Time:0.1147   
+AUC:0.98   Time:0.1157   
+AUC:0.9848   Time:0.1067   

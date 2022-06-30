@@ -1,0 +1,10 @@
+act: true
+dp1: 0.4
+dp2: 0.0
+dp3: 0.0
+epoch: 1500
+hidden_dim_1: 16
+hidden_dim_2: 16
+layer1: 2
+layer2: 1
+lr: 0.01

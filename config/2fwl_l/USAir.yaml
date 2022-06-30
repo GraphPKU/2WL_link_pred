@@ -1,0 +1,11 @@
+dp_1wl: 0.0
+dp_2wl0: 0.0
+dp_2wl1: 0.0
+dp_emb: 0.0
+epoch: 1000
+hidden_dim_1wl: 64
+hidden_dim_2wl: 32
+layer1: 2
+layer2: 1
+layer3: 1
+lr: 0.01
