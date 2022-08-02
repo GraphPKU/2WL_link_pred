@@ -77,9 +77,8 @@ class WLNet(torch.nn.Module):
             if isinstance(m, nn.Linear):
                 nn.init.xavier_normal_(m.weight)
 
-    def forward(self, x, ei, pos1, pos2, ei2=None, test=False):
+    def forward(self, x, ei, pos, ei2=None, test=False):
         edge_index = ei
-        pos = pos1[pos2][:,0].reshape(-1, 2)
         n = x.shape[0]
         if self.use_feat:
             x = self.feat
@@ -342,6 +341,7 @@ class LocalFWLNet(nn.Module):
         self.max_x = max_x
         self.use_feat = use_feat
         self.use_degree = use_degree
+        self.use_appnp = use_appnp
         self.layer1 = layer1
         self.layer2 = layer2
         self.layer3 = layer3
@@ -411,8 +411,12 @@ class LocalFWLNet(nn.Module):
             x = torch.cat((x, self.feat), dim=1)
             if not self.use_degree:
                 x = self.feat
-        for i in range(self.layer1):
-            x = self.nconvs[i](x, edge_index)
+        x = self.lin1(x)
+        if not self.use_appnp:
+            for i in range(self.layer1):
+                x = self.nconvs[i](x, edge_index)
+        else:
+            x = self.nconvs(x, edge_index)
         t2 = time.time()
         xx = x[pos[:, 0]] * x[pos[:, 1]]
 
