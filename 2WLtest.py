@@ -22,19 +22,6 @@ def set_seed(seed: int):
     torch.cuda.manual_seed(seed)
     torch.cuda.manual_seed_all(seed)
 
-def evaluate_hits(pos_pred, neg_pred, K):
-    results = {}
-    evaluator = Evaluator(name='ogbl-collab')
-    evaluator.K = K
-    hits = evaluator.eval({
-        'y_pred_pos': pos_pred,
-        'y_pred_neg': neg_pred,
-    })[f'hits@{K}']
-
-    results[f'Hits@{K}'] = hits
-
-    return results
-
 def testparam(device="cpu", dsname="Celegans"):  # mod_params=(32, 2, 1, 0.0), lr=3e-4
     device = torch.device(device)
     bg = load_dataset(dsname, args.pattern)
@@ -72,7 +59,6 @@ def testparam(device="cpu", dsname="Celegans"):  # mod_params=(32, 2, 1, 0.0), l
 
     with open(f"config/{args.pattern}/{args.dataset}.yaml") as f:
         params = yaml.safe_load(f)
-
     valparam(**(params))
 
 
@@ -80,8 +66,8 @@ if __name__ == "__main__":
     import argparse
 
     parser = argparse.ArgumentParser(description='')
-    parser.add_argument('--pattern', type=str, default="2fwl_l")
-    parser.add_argument('--dataset', type=str, default="USAir")
+    parser.add_argument('--pattern', type=str, default="2wl_l")
+    parser.add_argument('--dataset', type=str, default="ogbl-collab")
     parser.add_argument('--device', type=int, default=0)
     parser.add_argument('--path', type=str, default="opt/")
     parser.add_argument('--test', action="store_true")
