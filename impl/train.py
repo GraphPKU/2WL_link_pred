@@ -4,7 +4,21 @@ import torch.nn.functional as F
 from sklearn.metrics import roc_auc_score
 from torch_geometric.utils import negative_sampling, add_self_loops
 from model import LocalWLNet
+from ogb.linkproppred import Evaluator
 import time
+
+def evaluate_hits(pos_pred, neg_pred, K):
+    results = {}
+    evaluator = Evaluator(name='ogbl-collab')
+    evaluator.K = K
+    hits = evaluator.eval({
+        'y_pred_pos': pos_pred,
+        'y_pred_neg': neg_pred,
+    })[f'hits@{K}']
+
+    results[f'Hits@{K}'] = hits
+
+    return results
 
 def train(mod, opt, dataset, batch_size, i):
     mod.train()
@@ -48,7 +62,11 @@ def train(mod, opt, dataset, batch_size, i):
     opt.step()
     with torch.no_grad():
         sig = pred.sigmoid().cpu().numpy()
-        score = roc_auc_score(y.cpu().numpy(), sig)
+        if False:
+            score = roc_auc_score(y.cpu().numpy(), sig)
+        else:
+            y = y.cpu().to(torch.bool)
+            score = evaluate_hits(sig[y], sig[~y], K=50)['Hits@50']
     i += 1
     if (i + 1) * pos_batchsize > perm1.shape[0]:
         i = 0
@@ -74,12 +92,15 @@ def test(mod, dataset, test=False):
             pred_links,
             dataset.ei2,
             True)
-    sig = pred.sigmoid().cpu()
+    sig = pred.squeeze().sigmoid().cpu()
     mask = torch.cat(
         [torch.ones([1, sig.shape[0]], dtype=bool), torch.zeros([1, sig.shape[0]], dtype=bool)]).t().reshape(
         -1, 1)
-
-    result = roc_auc_score(dataset.y[mask].squeeze().cpu().numpy(), sig)
+    if False:
+        result = roc_auc_score(dataset.y[mask].squeeze().cpu().numpy(), sig)
+    else:
+        y = dataset.y[mask].to(torch.bool)
+        result = evaluate_hits(sig[y], sig[~y], K=50)['Hits@50']
     return result
 
 def train_routine(dsname, mod, opt, trn_ds, val_ds, tst_ds, epoch, verbose=False):
