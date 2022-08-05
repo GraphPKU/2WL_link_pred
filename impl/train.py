@@ -96,7 +96,8 @@ def test(mod, dataset, test=False):
     if False:
         result = roc_auc_score(dataset.y[mask].squeeze().cpu().numpy(), sig)
     else:
-        y = dataset.y.flatten()[:sig.shape[0]].to(torch.bool)
+        y = dataset.y.flatten()[:sig.shape[0]].to(torch.bool).cpu()
+        print("auc", roc_auc_score(y.numpy(), sig), end=" ", flush=True)
         result = evaluate_hits(sig[y], sig[~y], K=50)['Hits@50']
     return result
 

@@ -1,9 +1,9 @@
 act0: false
 act1: true
-channels_1wl: 64
-channels_2wl: 64
+channels_1wl: 32
+channels_2wl: 16
 depth1: 2
-depth2: 2
+depth2: 1
 dp_1wl0: 0.3
 dp_1wl1: 0.0
 dp_2wl: 0.1

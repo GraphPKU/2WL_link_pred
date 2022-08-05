@@ -131,8 +131,8 @@ class LocalWLNet(nn.Module):
             nn.Dropout(p=dp, inplace=True),
             nn.ReLU(inplace=True) if actx else nn.Identity())
 
-        relu_conv = lambda insize, outsize, dp, act: Seq([
-            GCNConv(insize, outsize),
+        relu_conv = lambda insize, outsize, dp, act, **kwargs: Seq([
+            GCNConv(insize, outsize, **kwargs),
             GraphNorm(outsize),
             Dropout(p=dp, inplace=True),
             nn.ReLU(inplace=True) if act else nn.Identity()
@@ -147,18 +147,21 @@ class LocalWLNet(nn.Module):
                 relu_lin(node_feat.shape[-1], channels_1wl, dp_lin1, True, False)
             )
         else:
-            self.emb = nn.Sequential(nn.Embedding(max_x + 1, channels_1wl),
+            self.emb = None 
+            '''
+            nn.Sequential(nn.Embedding(max_x + 1, channels_1wl),
                                      GraphNorm(channels_1wl),
                                      Dropout(p=dp_emb, inplace=True))
+            '''
 
         self.conv1s = nn.ModuleList(
             [relu_conv(channels_1wl, channels_1wl, dp_1wl0, act0) for _ in range(depth1 - 1)] +
             [relu_conv(channels_1wl, channels_2wl, dp_1wl1, act1)])
 
         self.conv2s = nn.ModuleList(
-            [relu_conv(channels_2wl, channels_2wl, dp_2wl, True) for _ in range(depth2)])
+            [relu_conv(channels_2wl, channels_2wl, dp_2wl, True, decomposed_layers=2) for _ in range(depth2)])
         self.conv2s_r = nn.ModuleList(
-            [relu_conv(channels_2wl, channels_2wl, dp_2wl, True) for _ in range(depth2)])
+            [relu_conv(channels_2wl, channels_2wl, dp_2wl, True, decomposed_layers=2) for _ in range(depth2)])
         self.pred = nn.Linear(channels_2wl, 1)
 
     def forward(self, x, edge1, pos, idx = None, ei2 = None, test = False):
@@ -172,10 +175,8 @@ class LocalWLNet(nn.Module):
         for i in range(len(self.conv2s)):
             x = self.conv2s[i](x, edge2) + self.conv2s_r[i](x, edge2_r)
         x = x[idx]
-        mask = torch.cat(
-            [torch.ones([1, x.shape[0] // 2], dtype=bool),
-             torch.zeros([1, x.shape[0] // 2], dtype=bool)]).t().reshape(-1)
-        x = x[mask] * x[~mask]
+        N = x.shape[0]
+        x = x.reshape(N//2, 2, -1).prod(dim=1)
         x = self.pred(x)
         return x
 

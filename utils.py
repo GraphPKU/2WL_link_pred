@@ -2,7 +2,7 @@ import torch
 from torch import Tensor
 from torch_scatter import scatter_add
 from scipy.sparse import csr_matrix
-from torch_sparse import spspmm
+from torch_sparse import SparseTensor, spspmm
 import numpy as np
 
 @torch.jit.script
@@ -21,28 +21,32 @@ def set_mul(a: Tensor, b: Tensor):
 @torch.jit.script
 def check_in_set(target, set):
     # target (n,), set(m,)
-    a = target.reshape(-1, 1)
-    b = set.reshape(1, -1)
-    out = []
-    cutshape = 1024 * 1024 * 1024 // b.shape[1]
-    out = torch.cat([
-        torch.sum((a[i:i + cutshape] == b), dim=-1)
-        for i in range(0, a.shape[0], cutshape)
-    ])
+    sorted_set, _ = torch.sort(set)
+    hit = torch.searchsorted(sorted_set, target.flatten())
+    hit[hit==sorted_set.shape[0]] = 0
+    out = (target == sorted_set[hit]) 
     return out
 
 
-@torch.jit.script
+#@torch.jit.script
 def get_ei2(n_node: int, pos_edge, pred_edge):
 
     edge = torch.cat((pos_edge, pred_edge), dim=-1)  #pos.transpose(0, 1)
     idx = torch.arange(edge.shape[1], device=edge.device)
     idx_pos = torch.arange(pos_edge.shape[1], device=edge.device)
+    spm1 = SparseTensor(row = idx_pos, col=pos_edge[1], sparse_sizes=(idx_pos.shape[0], n_node))
+    spm2 = SparseTensor(row = edge[0], col=idx, sparse_sizes=(n_node, idx.shape[0]))
+    spe2: SparseTensor = spm1@spm2
+    row, col, _ = spe2.coo()
+    return torch.stack((row, col), dim=0) 
+    '''
     edge2 = [
         set_mul(idx_pos[pos_edge[1] == i], idx[edge[0] == i])
         for i in range(n_node)
     ]
     return torch.cat(edge2, dim=0).t()
+    '''
+
 
 def sparse_bmm(edge_index_0, a, edge_index_1, b, n, fast=False):
     m = a.shape[-1]
