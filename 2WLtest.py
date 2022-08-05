@@ -10,6 +10,7 @@ import torch
 from torch.optim import Adam
 from ogb.linkproppred import Evaluator
 import yaml
+import time
 
 import warnings
 warnings.filterwarnings("ignore")
@@ -81,4 +82,7 @@ if __name__ == "__main__":
     print(args.device)
     for i in range(10):
         set_seed(i + args.seed)
+        t1 = time.time()
         testparam(args.device, args.dataset)
+        t2 = time.time()
+        print(f"run {i} time {t2-t1:.1f} s", flush=True)

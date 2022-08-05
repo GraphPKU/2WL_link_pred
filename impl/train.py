@@ -12,8 +12,8 @@ def evaluate_hits(pos_pred, neg_pred, K):
     evaluator = Evaluator(name='ogbl-collab')
     evaluator.K = K
     hits = evaluator.eval({
-        'y_pred_pos': pos_pred,
-        'y_pred_neg': neg_pred,
+        'y_pred_pos': pos_pred.flatten(),
+        'y_pred_neg': neg_pred.flatten(),
     })[f'hits@{K}']
 
     results[f'Hits@{K}'] = hits
@@ -92,14 +92,11 @@ def test(mod, dataset, test=False):
             pred_links,
             dataset.ei2,
             True)
-    sig = pred.squeeze().sigmoid().cpu()
-    mask = torch.cat(
-        [torch.ones([1, sig.shape[0]], dtype=bool), torch.zeros([1, sig.shape[0]], dtype=bool)]).t().reshape(
-        -1, 1)
+    sig = pred.flatten().sigmoid().cpu()
     if False:
         result = roc_auc_score(dataset.y[mask].squeeze().cpu().numpy(), sig)
     else:
-        y = dataset.y[mask].to(torch.bool)
+        y = dataset.y.flatten()[:sig.shape[0]].to(torch.bool)
         result = evaluate_hits(sig[y], sig[~y], K=50)['Hits@50']
     return result
 
