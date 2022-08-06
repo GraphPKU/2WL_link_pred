@@ -2,7 +2,7 @@ from torch import nn
 import torch
 import torch.nn.functional as F
 from torch.nn.modules.dropout import Dropout
-from torch_geometric.nn import GCNConv, GraphNorm, SAGEConv, APPNP
+from torch_geometric.nn import GCNConv, GraphNorm, SAGEConv, APPNP, GINConv
 from utils import reverse, sparse_bmm, sparse_cat, add_zero, edge_list
 import time
 
@@ -112,18 +112,15 @@ class LocalWLNet(nn.Module):
                  channels_2wl=32,
                  depth1=1,
                  depth2=1,
-                 dp_lin0 = 0.7,
-                 dp_lin1 = 0.7,
-                 dp_emb = 0.5,
-                 dp_1wl0=0.5,
+                 dp_1wl=0.5,
                  dp_2wl=0.5,
-                 dp_1wl1=0.5,
                  act0 = True,
                  act1 = True,
+                 use_affine = False,
                  ):
         super().__init__()
 
-        use_affine = False
+        
 
         relu_lin = lambda a, b, dp, lnx, actx: nn.Sequential(
             nn.Linear(a, b),
@@ -133,7 +130,7 @@ class LocalWLNet(nn.Module):
 
         relu_conv = lambda insize, outsize, dp, act, **kwargs: Seq([
             GCNConv(insize, outsize, **kwargs),
-            GraphNorm(outsize),
+            nn.LayerNorm(outsize, elementwise_affine=use_affine),#GraphNorm(outsize),
             Dropout(p=dp, inplace=True),
             nn.ReLU(inplace=True) if act else nn.Identity()
         ])
@@ -142,10 +139,13 @@ class LocalWLNet(nn.Module):
         self.use_node_feat = use_node_feat
         self.node_feat = node_feat
         if use_node_feat:
-            self.lin1 = nn.Sequential(
+            self.lin1 = nn.Identity()
+            '''
+            nn.Sequential(
                 nn.Dropout(dp_lin0),
                 relu_lin(node_feat.shape[-1], channels_1wl, dp_lin1, True, False)
             )
+            '''
         else:
             self.emb = None 
             '''
@@ -155,30 +155,35 @@ class LocalWLNet(nn.Module):
             '''
 
         self.conv1s = nn.ModuleList(
-            [relu_conv(channels_1wl, channels_1wl, dp_1wl0, act0) for _ in range(depth1 - 1)] +
-            [relu_conv(channels_1wl, channels_2wl, dp_1wl1, act1)])
+            [relu_conv(node_feat.shape[-1], channels_1wl, dp_1wl, True)]+[relu_conv(channels_1wl, channels_1wl, dp_1wl, True) for _ in range(depth1 - 2)] +
+            [relu_conv(channels_1wl, channels_1wl, dp_1wl, act0)])
 
+        self.lin2 = nn.Linear(channels_1wl, channels_2wl)
         self.conv2s = nn.ModuleList(
-            [relu_conv(channels_2wl, channels_2wl, dp_2wl, True, decomposed_layers=2) for _ in range(depth2)])
+            [relu_conv(channels_2wl, channels_2wl, dp_2wl, act1, decomposed_layers=4) for _ in range(depth2)])
         self.conv2s_r = nn.ModuleList(
-            [relu_conv(channels_2wl, channels_2wl, dp_2wl, True, decomposed_layers=2) for _ in range(depth2)])
-        self.pred = nn.Linear(channels_2wl, 1)
+            [relu_conv(channels_2wl, channels_2wl, dp_2wl, act1, decomposed_layers=4) for _ in range(depth2)])
+        self.pred = nn.Sequential(nn.Linear(channels_2wl,channels_2wl), nn.ReLU(inplace=True), nn.Linear(channels_2wl, 1))
+        self.ln = nn.LayerNorm(channels_2wl)
+        print(self)
 
     def forward(self, x, edge1, pos, idx = None, ei2 = None, test = False):
-        edge2, edge2_r = reverse(ei2)
-
         x = self.lin1(self.node_feat) if self.use_node_feat else self.emb(x).squeeze()
-        for conv1 in self.conv1s:
-            x = conv1(x, edge1)
-
+        for i in range(len(self.conv1s)):
+            x = x + self.conv1s[i](x, edge1)
+        x = self.lin2(x)
+        x = self.ln(x)
         x = x[pos[:, 0]] * x[pos[:, 1]]
+        edge2, edge2_r = reverse(ei2)
         for i in range(len(self.conv2s)):
-            x = self.conv2s[i](x, edge2) + self.conv2s_r[i](x, edge2_r)
+            x = x + self.conv2s[i](x, edge2) + self.conv2s_r[i](x, edge2_r)
         x = x[idx]
         N = x.shape[0]
-        x = x.reshape(N//2, 2, -1).prod(dim=1)
+        x = x.reshape(N//2, 2, -1).mean(dim=1)
         x = self.pred(x)
         return x
+
+
 
 class FWLNet(nn.Module):
     def __init__(self,

@@ -11,6 +11,7 @@ from torch.optim import Adam
 from ogb.linkproppred import Evaluator
 import yaml
 import time
+import optuna
 
 import warnings
 warnings.filterwarnings("ignore")
@@ -34,6 +35,7 @@ def testparam(device="cpu", dsname="Celegans"):  # mod_params=(32, 2, 1, 0.0), l
     trn_ds = dataset(*bg.split(0))
     val_ds = dataset(*bg.split(1))
     tst_ds = dataset(*bg.split(2))
+    print(trn_ds.y.shape, torch.sum(trn_ds.y), val_ds.y.shape, torch.sum(val_ds.y), tst_ds.y.shape, torch.sum(tst_ds.y))
     if trn_ds.na != None:
         print("use node feature")
         trn_ds.na = trn_ds.na.to(device)
@@ -58,9 +60,22 @@ def testparam(device="cpu", dsname="Celegans"):  # mod_params=(32, 2, 1, 0.0), l
         opt = Adam(mod.parameters(), lr=lr)
         return train.train_routine(args.dataset, mod, opt, trn_ds, val_ds, tst_ds, epoch, verbose=True)
 
-    with open(f"config/{args.pattern}/{args.dataset}.yaml") as f:
-        params = yaml.safe_load(f)
-    valparam(**(params))
+    params = {"epoch": 100}
+    def opt(trial: optuna.Trial):
+        params["act0"] = trial.suggest_categorical("act0", [True, False])
+        params["act1"] = trial.suggest_categorical("act1", [True, False])
+        params["channels_1wl"] = trial.suggest_int("channels_1wl", 128, 128, 32)
+        params["channels_2wl"] = trial.suggest_int("channels_2wl", 16, 32, 8)
+        params["depth1"] = trial.suggest_int("depth1", 1, 4)
+        params["depth2"] = trial.suggest_int("depth2", 1, 1)
+        params["dp_1wl"] = trial.suggest_float("dp_1wl", 0.0, 0.9, step=0.1)
+        params["dp_2wl"] = trial.suggest_float("dp_2wl", 0.0, 0.9, step=0.1)
+        params["dp_2wl"] = trial.suggest_float("dp_2wl", 0.0, 0.9, step=0.1)
+        params["lr"] = trial.suggest_categorical("lr", [1e-4, 3e-4, 1e-3, 3e-3, 1e-2])
+        params["use_affine"] = trial.suggest_categorical("use_affine", [True, False])
+        return valparam(**(params))
+    stu = optuna.create_study("sqlite:///opt.db", study_name="collab", direction="maximize", load_if_exists=True)
+    stu.optimize(opt, 400)
 
 
 if __name__ == "__main__":

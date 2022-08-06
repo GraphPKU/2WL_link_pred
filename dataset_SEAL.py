@@ -112,7 +112,7 @@ def load(args):
         split_edge['train']['edge_neg'] = negative_sampling(
             data.edge_index,
             num_nodes=data.num_nodes,
-            num_neg_samples=split_edge['train']['edge'].shape[0]//20)
+            num_neg_samples=split_edge['train']['edge'].shape[0])
         split_edge['train']['edge'] = split_edge['train']['edge'].t()
         split_edge['valid']['edge'] = split_edge['valid']['edge'].t()
         split_edge['valid']['edge_neg'] = split_edge['valid']['edge_neg'].t()
@@ -120,7 +120,9 @@ def load(args):
         split_edge['test']['edge_neg'] = split_edge['test']['edge_neg'].t()
         print(split_edge['train']['edge'].shape)
         print(split_edge['train']['edge_neg'].shape)
+        print(split_edge['valid']['edge'].shape)
         print(split_edge['valid']['edge_neg'].shape)
+        print(split_edge['test']['edge'].shape)
         print(split_edge['test']['edge_neg'].shape)
     else:
         split_edge = do_edge_split(data, args["val_ratio"], args["test_ratio"], neg_pool_max)

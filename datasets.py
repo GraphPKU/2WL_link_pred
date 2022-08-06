@@ -148,6 +148,8 @@ def load_dataset(name, pattern, trn_ratio=0.8, val_ratio=0.05, test_ratio=0.1):
         test_pos = double(split_edge["test"]["edge"])
         test_neg = double(split_edge["test"]["edge_neg"])
 
+        for i in [train_pos, train_neg, val_pos, val_neg, test_pos, test_neg]:
+            print(i.shape)
 
         edge_pos = torch.cat((train_pos, val_pos, test_pos), dim=-1)
         edge_neg = torch.cat((train_neg, val_neg, test_neg), dim=-1)

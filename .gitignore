@@ -3,3 +3,4 @@
 *.out*
 */ogbl*
 *.ipynb
+*opt*
