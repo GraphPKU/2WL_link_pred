@@ -60,7 +60,16 @@ def testparam(device="cpu", dsname="Celegans"):  # mod_params=(32, 2, 1, 0.0), l
         opt = Adam(mod.parameters(), lr=lr)
         return train.train_routine(args.dataset, mod, opt, trn_ds, val_ds, tst_ds, epoch, verbose=True)
 
-    params = {"epoch": 100}
+    #params = {"epoch": 400}
+    #params.update({'act0': True, 'act1': True, 'channels_1wl': 128, 'channels_2wl': 32, 'depth1': 4, 'depth2': 1, 'dp_1wl': 0.1, 'dp_2wl': 0.4, 'lr': 0.001, 'use_affine': True})
+    #params["epoch"] = 800
+    #print(params)
+    #for i in range(10):
+        #set_seed(i)
+        #valparam(**params)
+    with open(f"config/{args.pattern}/{args.dataset}.yaml") as f:
+        params = yaml.safe_load(f)
+    valparam(**params)
     def opt(trial: optuna.Trial):
         params["act0"] = trial.suggest_categorical("act0", [True, False])
         params["act1"] = trial.suggest_categorical("act1", [True, False])
@@ -74,8 +83,8 @@ def testparam(device="cpu", dsname="Celegans"):  # mod_params=(32, 2, 1, 0.0), l
         params["lr"] = trial.suggest_categorical("lr", [1e-4, 3e-4, 1e-3, 3e-3, 1e-2])
         params["use_affine"] = trial.suggest_categorical("use_affine", [True, False])
         return valparam(**(params))
-    stu = optuna.create_study("sqlite:///opt.db", study_name="collab", direction="maximize", load_if_exists=True)
-    stu.optimize(opt, 400)
+    #stu = optuna.create_study("sqlite:///opt.db", study_name="collab_{}".format(params["epoch"]), direction="maximize", load_if_exists=True)
+    #stu.optimize(opt, 400)
 
 
 if __name__ == "__main__":

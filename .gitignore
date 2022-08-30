@@ -4,3 +4,6 @@
 */ogbl*
 *.ipynb
 *opt*
+*.test*
+*.fwl*
+records/*
