@@ -6,6 +6,15 @@ from torch_sparse import spspmm
 import numpy as np
 
 @torch.jit.script
+def reverseperm(perm: Tensor):
+    N = perm.shape[0]
+    ret = torch.empty_like(perm)
+    ret[perm] = torch.arange(N, 
+        dtype=torch.long, 
+        device=perm.device)
+    return ret
+
+@torch.jit.script
 def degree(ei: Tensor, num_node: int):
     return scatter_add(torch.ones_like(ei[1]), ei[1], dim_size=num_node)
 
@@ -284,3 +293,37 @@ def random_split_edges(data, val_ratio: float = 0.05,
     data.test_neg_edge_index = torch.stack([row, col], dim=0)
 
     return data
+
+class tensorDataloader:
+    def __init__(self, ei: Tensor, batch_size: int, ret_rev: bool=True):
+        self.ei = ei
+        self.length = self.ei.shape[1]
+        self.batch_size = batch_size
+        self.ret_rev = ret_rev
+
+    def __len__(self):
+        ret = self.length // self.batch_size
+        return ret
+
+    def __iter__(self):
+        self.ei = self.ei[:, torch.randperm(self.length, device=self.ei.device)]
+        self.idx = 0
+        return self
+
+    def get_batch(self):
+        if self.idx + self.batch_size > self.length:
+            return None
+        tar_ei = self.ei[:, self.idx:self.idx + self.batch_size]
+        if self.ret_rev:
+            ei = torch.cat((self.ei[:, :self.idx], self.ei[:, self.idx+ self.batch_size:]), dim=-1)
+            ret = (ei, tar_ei)
+        else:
+            ret = tar_ei
+        self.idx += self.batch_size
+        return ret
+
+    def __next__(self):
+        batch = self.get_batch()
+        if batch is None:
+            raise StopIteration
+        return batch
