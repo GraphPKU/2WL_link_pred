@@ -1,5 +1,3 @@
-from os import terminal_size
-from this import d
 from torch import nn
 import torch
 import torch.nn.functional as F
@@ -651,11 +649,15 @@ class WXYFWLNet(nn.Module):
                     relu_sage(hidden_dim_1, hidden_dim_1, dp2)
                     for i in range(layer1 - 1)
                 ])
-        self.lin1 = nn.Linear(hidden_dim_1, hidden_dim_2)
+        self.lin1 = nn.Sequential(nn.Linear(hidden_dim_1, hidden_dim_2), nn.LayerNorm(hidden_dim_2), nn.ReLU(inplace=True))
         relu_lin = lambda a, b, dp: nn.Sequential(
             nn.Linear(a, b), nn.Dropout(p=dp, inplace=True),
             nn.ReLU(inplace=True))
         self.mlps_1 = nn.ModuleList([
+                relu_lin(hidden_dim_2, hidden_dim_2, dp3)
+                for i in range(layer2)
+            ])
+        self.mlps_2 = nn.ModuleList([
                 relu_lin(hidden_dim_2, hidden_dim_2, dp3)
                 for i in range(layer2)
             ])
@@ -680,8 +682,8 @@ class WXYFWLNet(nn.Module):
         x = self.lin1(x.unsqueeze(0) * x.unsqueeze(1)) 
         x = x * self.adjemb(ei, x.shape[0])
         for i in range(self.layer2):
-            x = x + self.mlps_1[i]((x.permute(2, 0, 1) @ x.permute(2, 0, 1)).permute(1, 2, 0))
-        x = x[tar_edge[0], tar_edge[1]]
+            x = x + (self.mlps_1[i](x).permute(2, 0, 1) @ self.mlps_2[i](x).permute(2, 0, 1)).permute(1, 2, 0)
+        x = x[tar_edge[0], tar_edge[1]] + x[tar_edge[1], tar_edge[0]]
         x = self.lin_dir(x)
         return x
 

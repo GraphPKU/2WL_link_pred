@@ -1,5 +1,3 @@
-
-from __future__ import barry_as_FLUFL
 from utils import tensorDataloader
 import torch.nn.functional as F
 from torch_geometric.data import ClusterData, ClusterLoader
@@ -21,29 +19,31 @@ def to_undirected(ei):
     return torch.cat((ei, ei[[1, 0]]), dim=-1)
 
 ds_name = "ogbl-collab"
-dataset = PygLinkPropPredDataset(name=ds_name)
+dataset = PygLinkPropPredDataset(name=ds_name, root="./data/")
 data = dataset[0]
 es = dataset.get_edge_split()
 device = torch.device("cuda")
 
 
-
-def test(num_clu, nnodes, nbin, nes, datalist, mod: nn.Module, evaluator, split="valid"):
-    num_pos, num_neg = nbin[split]["edge"].shape[1], nbin[split]["edge_neg"].shape[1]
+@torch.no_grad()
+def test(num_clu, nnodes, partptr, nbin, nes, datalist, mod: nn.Module, evaluator, split="valid"):
+    mod.eval()
+    num_pos, num_neg = nbin[split]["edge"].shape[0], nbin[split]["edge_neg"].shape[0]
     tb = torch.cat((nbin[split]["edge"], nbin[split]["edge_neg"]))
     te = torch.cat((nes[split]["edge"], nes[split]["edge_neg"]), dim=-1)
-    pred = torch.zeros((num_pos, num_neg))
+    pred = torch.zeros((num_pos+num_neg))
     for i in range(num_clu):
         ei = datalist[i]
         mask = tb==i
-        tar_ei = te[mask]
-        x = torch.ones(nnodes[i], dtype=torch.long)
-        pred[mask] = mod(x, to_undirected(ei), tar_ei).cpu()
+        tar_ei = te[:, mask] - partptr[i]
+        x = torch.ones(nnodes[i], device=ei.device, dtype=torch.long)
+        pred[mask] = mod(x, to_undirected(ei), tar_ei).cpu().flatten()
     return evaluator.eval({'y_pred_pos': pred[:num_pos],
             'y_pred_neg': pred[num_pos:]})["hits@50"]
 
 def train(num_clu, nnodes, datalist, negdatalist, max_iter, mod: nn.Module, opt: Optimizer, batch_size: int):
     losss = []
+    mod.train()
     for i in range(num_clu):
         dl = tensorDataloader(datalist[i], batch_size, ret_rev=True)
         dlneg = tensorDataloader(negdatalist[i], batch_size, ret_rev=False)
@@ -72,14 +72,14 @@ def routine(num_clu: int, num_epoch: int, lr: float, batch_size: int, **kwargs):
     cld = ClusterData(data, num_clu)
     cld.partptr = cld.partptr.to(device, non_blocking=True)
     cld.perm = cld.perm.to(device, non_blocking=True)
-    nnodes = torch.diff(cld.partptr).numpy()
+    nnodes = torch.diff(cld.partptr).cpu().numpy()
     revperm = reverseperm(cld.perm)
     nei = revperm[data.edge_index].to(device, non_blocking=True)
     neibin = torch.searchsorted(cld.partptr, nei, right=True) - 1
     neibin[0, neibin[0]!=neibin[1]] = -1
     neibin = neibin[0]
     print("neibin end", flush=True)
-    datalist = [nei[:, neibin==i] for i in range(num_clu)]
+    datalist = [nei[:, neibin==i] - cld.partptr[i] for i in range(num_clu)]
     negdatalist = [negative_sampling(datalist[i], nnodes[i], 10*datalist[i].shape[1]) for i in range(num_clu)]
     datalist = [to_directed(_) for _ in datalist]
 
@@ -101,11 +101,24 @@ def routine(num_clu: int, num_epoch: int, lr: float, batch_size: int, **kwargs):
 
     model = buildmodel(max_x = 2).to(device, non_blocking=True)
     opt =  Adam(model.parameters(), lr=lr)
-
+    from time import time
     for i in range(num_epoch):
+        t0 = time()
         loss = train(num_clu, nnodes, datalist, negdatalist, 5, model, opt, batch_size)
-        validscore = test(num_clu, nnodes, nbin, nes, datalist, model, Evaluator(ds_name), "valid")
-        testscore = test(num_clu, nnodes, nbin, nes, datalist, model, Evaluator(ds_name), "test")
-        print(f"{i}: {loss} {validscore} {testscore}")
+        t1 = time()
+        validscore = test(num_clu, nnodes, cld.partptr, nbin, nes, datalist, model, Evaluator(ds_name), "valid")
+        t2 = time()
+        testscore = test(num_clu, nnodes, cld.partptr, nbin, nes, datalist, model, Evaluator(ds_name), "test")
+        t3 = time()        
+        print(f"{i}: time {t1-t0:.1f} {t2-t1:.1f} {t3-t2:.1f} {loss} {validscore} {testscore}", flush=True)
 
-routine(25, 20, 3e-3, 256)
+import argparse
+parser = argparse.ArgumentParser()
+parser.add_argument("--nc", type=int)
+args = parser.parse_args()
+
+
+for nc in [args.nc]:
+    for bs in [16, 32, 64]:
+        print("ncbs", nc, bs)
+        routine(nc, 50, 3e-4, bs)
