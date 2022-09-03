@@ -52,7 +52,7 @@ def train(num_clu, nnodes, datalist, negdatalist, max_iter, mod: nn.Module, opt:
             if j > max_iter:
                 break
             ei, tar_ei = batch
-            opt.zero_grad()
+            opt.zero_grad(set_to_none=True)
             negedge = next(dlneg)
             x = torch.ones(nnodes[i], dtype=torch.long, device=ei.device)
             pred = mod(x, to_undirected(ei), torch.cat((tar_ei, negedge), dim=-1))

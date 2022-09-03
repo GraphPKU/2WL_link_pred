@@ -471,150 +471,9 @@ class LocalFWLNet(nn.Module):
 
 
 from torch_geometric.utils import degree, to_undirected
-import torch_sparse
 from torch_sparse import SparseTensor
 from torch import Tensor
 
-def eito2ei(self, num_node: int, ei: Tensor):
-    num_edge = ei.shape[1]
-    rowptr = 2*torch.arange(num_node+1, device=ei.device)
-    inci = SparseTensor(rowptr=rowptr, col=ei.t().flatten(),sparse_sizes=(num_edge, num_node))
-    inciT = SparseTensor(colptr=rowptr, row=ei.t().flatten(), sparse_sizes=(num_node, num_edge))
-    adj = inci@inciT
-    return adj
-
-class LocalFWLNet(nn.Module):
-    def __init__(self,
-                 max_x,
-                 use_feat=False,
-                 feat=None,
-                 use_degree=True,
-                 use_appnp=False,
-                 reduce_feat=False,
-                 sum_pooling=False,
-                 hidden_dim_1wl=20,
-                 hidden_dim_2wl=20,
-                 layer1=2,
-                 layer2=1,
-                 layer3=1,
-                 dp_emb=0.0,
-                 dp_lin0=0.0,
-                 dp_lin1=0.0,
-                 dp_1wl=0.0,
-                 dp_2wl0=0.0,
-                 dp_2wl1=0.0,
-                 alpha=0.1,
-                 ln_lin=False,
-                 ln_1wl=False,
-                 ln_2wl0=False,
-                 ln_2wl1=False,
-                 gn_1wl=True,
-                 gn_2wl1=True,
-                 act_lin=False,
-                 act_1wl=True,
-                 act_2wl0=True,
-                 act_2wl1=True,
-                 fast_bsmm = False,
-                 use_ea=False,
-                 easize=None):
-        super(LocalFWLNet, self).__init__()
-        assert use_feat or use_degree
-        self.use_ea = use_ea
-        self.max_x = max_x
-        self.use_feat = use_feat
-        self.use_degree = use_degree
-        self.use_appnp = use_appnp
-        self.layer1 = layer1
-        self.layer2 = layer2
-        self.layer3 = layer3
-        self.fast = fast_bsmm
-        self.sum_pooling = sum_pooling
-        relu_sage = lambda a, b, dp, lnx, gnx, actx: Seq([
-            GCNConv(a, b),
-            nn.LayerNorm(b, elementwise_affine=use_affine) if lnx else nn.Identity(),
-            GraphNorm(b) if gnx else nn.Identity(),
-            nn.Dropout(dp, inplace=True),
-            nn.ReLU(inplace=True) if actx else nn.Identity()
-        ])
-        relu_lin = lambda a, b, dp, lnx, gnx, actx: nn.Sequential(
-            nn.Linear(a, b),
-            nn.LayerNorm(b, elementwise_affine=use_affine) if lnx else nn.Identity(),
-            GraphNorm(b) if gnx else nn.Identity(),
-            nn.Dropout(p=dp, inplace=True),
-            nn.ReLU(inplace=True) if actx else nn.Identity())
-        use_affine = False
-        input_node_size = hidden_dim_1wl if use_degree else 0
-        if use_feat:
-            input_node_size += feat.shape[1]
-            self.feat = nn.parameter.Parameter(feat, requires_grad=False)
-        self.embedding = nn.Sequential(
-            nn.Embedding(max_x + 1, hidden_dim_1wl),
-            nn.Dropout(p=dp_emb))
-        if not use_appnp:
-            self.nconvs = nn.ModuleList(
-                [relu_sage(input_node_size, hidden_dim_1wl, dp_1wl, ln_1wl, gn_1wl, act_1wl)] + [
-                    relu_sage(hidden_dim_1wl, hidden_dim_1wl, dp_1wl, ln_1wl, gn_1wl, act_1wl)
-                    for _ in range(layer1 - 1)
-                ])
-        else:
-            self.nconvs = APPNP(layer1, alpha)
-        if reduce_feat:
-            assert self.use_feat
-            self.lin1 = nn.Sequential(
-                nn.Dropout(dp_lin0),
-                relu_lin(input_node_size, hidden_dim_1wl, dp_lin1, ln_lin, False, act_lin)
-            )
-        else:
-            self.lin1 = nn.Identity()
-        input_edge_size = hidden_dim_1wl
-
-        self.mlps_1 = relu_lin(input_edge_size * 2, hidden_dim_2wl, dp_2wl0, ln_2wl0, False, act_2wl0)
-        self.mlps_2 = nn.ModuleList(
-            [relu_lin(input_edge_size * 2, hidden_dim_2wl, dp_2wl0, ln_2wl0, False, act_2wl0)] + [
-             relu_lin(input_edge_size * 2, hidden_dim_2wl, dp_2wl0, ln_2wl0, False, act_2wl0)
-             for _ in range(layer2 - 1)
-            ])
-        self.mlps_3 = nn.ModuleList(
-            [relu_lin(hidden_dim_2wl + 1, hidden_dim_2wl, dp_2wl1, ln_2wl1, gn_2wl1, act_2wl1)
-             for _ in range(layer3)
-            ])
-        if not sum_pooling:
-            self.lin_dir = nn.Linear(hidden_dim_1wl + hidden_dim_2wl, 1)
-
-    def onewl(self, x, ei):
-        x = self.embedding(x)
-        if self.use_feat:
-            x = torch.cat((x, self.feat), dim=1)
-            if not self.use_degree:
-                x = self.feat
-        x = self.lin1(x)
-        for i in range(self.layer1):
-            x = self.nconvs[i](x, ei)
-        return x
-
-    def forward(self, x, ei, tarei):
-        n = x.shape[0]
-        fullei = torch.cat((ei, tarei), dim=-1)
-        x = self.onewl(x, to_undirected(ei, num_nodes=x.shape[0]))
-        xx = x[fullei[0]] * x[fullei[1]]
-
-        x = self.mlps_1(xx)
-
-        for i in range(self.layer3):
-            if i < self.layer2:
-                mul = self.mlps_2[i](val)
-            x = sparse_bmm(current_edges, x, edge_index, mul, n, fast=self.fast)
-            current_edges, value = sparse_cat(x, edge_index, torch.ones((edge_index.shape[1], 1), device=x.device))
-            x = self.mlps_3[i](value)
-        sm = torch.sparse.FloatTensor(torch.cat([current_edges[1].unsqueeze(0), current_edges[0].unsqueeze(0)], 0), x,
-                                      torch.Size([n, n, x.shape[-1]])).coalesce().values()
-        x = x * sm
-        x = add_zero(x, pos.t().cpu().numpy(), current_edges)
-        pred_list = edge_list(current_edges, pos.t(), n)
-        x = x[pred_list]
-        x = torch.cat([x, xx], 1)
-        x = self.lin_dir(x) if not self.sum_pooling else torch.sum(x, dim=-1, keepdim=True)
-        return x
 
 
 class WXYFWLNet(nn.Module):
@@ -678,11 +537,12 @@ class WXYFWLNet(nn.Module):
         return self.eiemb(eim)
         
     def forward(self, x, ei, tar_edge):
+        norm = x.shape[0] ** (-0.5)
         x = self.onewl(x, ei)
         x = self.lin1(x.unsqueeze(0) * x.unsqueeze(1)) 
         x = x * self.adjemb(ei, x.shape[0])
         for i in range(self.layer2):
-            x = x + (self.mlps_1[i](x).permute(2, 0, 1) @ self.mlps_2[i](x).permute(2, 0, 1)).permute(1, 2, 0)
+            x = x + norm * (self.mlps_1[i](x).permute(2, 0, 1) @ self.mlps_2[i](x).permute(2, 0, 1)).permute(1, 2, 0)
         x = x[tar_edge[0], tar_edge[1]] + x[tar_edge[1], tar_edge[0]]
         x = self.lin_dir(x)
         return x
