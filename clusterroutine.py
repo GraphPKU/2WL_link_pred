@@ -31,13 +31,13 @@ def test(num_clu, nnodes, partptr, nbin, nes, datalist, mod: nn.Module, evaluato
     num_pos, num_neg = nbin[split]["edge"].shape[0], nbin[split]["edge_neg"].shape[0]
     tb = torch.cat((nbin[split]["edge"], nbin[split]["edge_neg"]))
     te = torch.cat((nes[split]["edge"], nes[split]["edge_neg"]), dim=-1)
-    pred = torch.zeros((num_pos+num_neg))
+    pred = torch.zeros((num_pos+num_neg), device=datalist[0].device)
     for i in range(num_clu):
         ei = datalist[i]
         mask = tb==i
         tar_ei = te[:, mask] - partptr[i]
         x = torch.ones(nnodes[i], device=ei.device, dtype=torch.long)
-        pred[mask] = mod(x, to_undirected(ei), tar_ei).cpu().flatten()
+        pred[mask] = mod(x, to_undirected(ei), tar_ei).flatten()
     return evaluator.eval({'y_pred_pos': pred[:num_pos],
             'y_pred_neg': pred[num_pos:]})["hits@50"]
 
@@ -54,15 +54,13 @@ def train(num_clu, nnodes, datalist, negdatalist, max_iter, mod: nn.Module, opt:
             ei, tar_ei = batch
             opt.zero_grad()
             negedge = next(dlneg)
-            totaledge = torch.cat((tar_ei, negedge), dim=-1)
-            x = torch.ones(nnodes[i], dtype=torch.long, device=totaledge.device)
-            pred = mod(x, to_undirected(ei), totaledge)
-            pospred, negpred = pred[:tar_ei.shape[1]], pred[tar_ei.shape[1]:]
-            loss = -(F.logsigmoid(pospred).mean() + F.logsigmoid(-negpred).mean())
+            x = torch.ones(nnodes[i], dtype=torch.long, device=ei.device)
+            pred = mod(x, to_undirected(ei), torch.cat((tar_ei, negedge), dim=-1))
+            loss = -F.logsigmoid(pred[:tar_ei.shape[1]]).mean() - F.logsigmoid(-pred[tar_ei.shape[1]:]).mean()
             loss.backward()
             opt.step()
-            losss.append(loss.item())
-    return np.average(losss)
+            losss.append(loss)
+    return np.average([i.item() for i in losss])
 
 def buildmodel(**kwargs)->nn.Module:
     from model import WXYFWLNet
