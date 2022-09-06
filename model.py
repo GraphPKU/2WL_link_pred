@@ -480,14 +480,17 @@ class WXYFWLNet(nn.Module):
     def __init__(self,
                  max_x,
                  feat=None,
-                 hidden_dim_1=16,
+                 hidden_dim_1=4,
                  hidden_dim_2=4,
                  layer1=2,
                  layer2=2,
                  dp1=0.0,
                  dp2=0.0,
-                 dp3=0.0):
+                 dp3=0.0,
+                 cat="mul"):
         super().__init__()
+        assert cat in ["mul", "add"]
+        self.cat = cat
         self.layer1 = layer1
         self.layer2 = layer2
         input_node_size = hidden_dim_1
@@ -508,10 +511,13 @@ class WXYFWLNet(nn.Module):
                     relu_sage(hidden_dim_1, hidden_dim_1, dp2)
                     for i in range(layer1 - 1)
                 ])
-        self.lin1 = nn.Sequential(nn.Linear(hidden_dim_1, hidden_dim_2), nn.LayerNorm(hidden_dim_2), nn.ReLU(inplace=True))
+        if hidden_dim_1 != hidden_dim_2:
+            self.lin1 = nn.Sequential(nn.Linear(hidden_dim_1, hidden_dim_2), nn.LayerNorm(hidden_dim_2), nn.ReLU(inplace=True))
+        else:
+            self.lin1 = nn.Identity()
         relu_lin = lambda a, b, dp: nn.Sequential(
             nn.Linear(a, b), nn.Dropout(p=dp, inplace=True),
-            nn.ReLU(inplace=True))
+            nn.LeakyReLU(inplace=True))
         self.mlps_1 = nn.ModuleList([
                 relu_lin(hidden_dim_2, hidden_dim_2, dp3)
                 for i in range(layer2)
@@ -542,7 +548,10 @@ class WXYFWLNet(nn.Module):
         x = self.lin1(x.unsqueeze(0) * x.unsqueeze(1)) 
         x = x * self.adjemb(ei, x.shape[0])
         for i in range(self.layer2):
-            x = x + norm * (self.mlps_1[i](x).permute(2, 0, 1) @ self.mlps_2[i](x).permute(2, 0, 1)).permute(1, 2, 0)
+            if self.cat == "mul":
+                x = x * norm * (self.mlps_1[i](x).permute(2, 0, 1) @ self.mlps_2[i](x).permute(2, 0, 1)).permute(1, 2, 0)
+            elif self.cat == "add":
+                x = x + norm * (self.mlps_1[i](x).permute(2, 0, 1) @ self.mlps_2[i](x).permute(2, 0, 1)).permute(1, 2, 0)
         x = x[tar_edge[0], tar_edge[1]] + x[tar_edge[1], tar_edge[0]]
         x = self.lin_dir(x)
         return x
