@@ -1,0 +1,12 @@
+nohup: ignoring input
+WARNING:root:The OGB package is out of date. Your version is 1.3.3, while the latest version is 1.3.4.
+/scratch/mhzhang/.conda/envs/wxy/lib/python3.9/site-packages/torch_geometric/deprecation.py:12: UserWarning: 'data.ClusterData' is deprecated, use 'loader.ClusterData' instead
+  warnings.warn(out)
+Computing METIS partitioning...
+Done!
+ncbs 30 16
+neibin end
+datalist end
+/scratch/mhzhang/wxy/2WL_link_pred/clusterroutine.py:94: UserWarning: torch.searchsorted(): input value tensor is non-contiguous, this will lower the performance due to extra data copy when converting non-contiguous tensor to contiguous, please use contiguous input value tensor if possible. This message will only appear once per program. (Triggered internally at  /opt/conda/conda-bld/pytorch_1646756402876/work/aten/src/ATen/native/BucketizationUtils.h:28.)
+  tb = torch.searchsorted(cld.partptr, nes[key1][key2], right=True) - 1
+nes end

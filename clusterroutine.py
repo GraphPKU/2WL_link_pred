@@ -97,7 +97,7 @@ def routine(num_clu: int, num_epoch: int, lr: float, batch_size: int, **kwargs):
 
     print("nes end", flush=True)
 
-    model = buildmodel(max_x = 2).to(device, non_blocking=True)
+    model = buildmodel(max_x = 2, layer1=0).to(device, non_blocking=True)
     opt =  Adam(model.parameters(), lr=lr)
     from time import time
     for i in range(num_epoch):
