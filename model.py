@@ -516,7 +516,7 @@ class WXYFWLNet(nn.Module):
         else:
             self.lin1 = nn.Identity()
         relu_lin = lambda a, b, dp: nn.Sequential(
-            nn.Linear(a, b), nn.Dropout(p=dp, inplace=True),
+            nn.Linear(a, b), nn.Dropout(p=dp, inplace=True) if dp>0.01 else nn.Identity(),
             nn.LeakyReLU(inplace=True))
         self.mlps_1 = nn.ModuleList([
                 relu_lin(hidden_dim_2, hidden_dim_2, dp3)
@@ -698,6 +698,7 @@ class Net(nn.Module):
                  use_ea=False,
                  easize=None):
         super(Net, self).__init__()
+        self.nowl = layer1 == 0
         self.use_ea = use_ea
         self.max_x = max_x
         self.use_feat = use_feat
