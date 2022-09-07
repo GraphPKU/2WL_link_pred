@@ -90,7 +90,7 @@ def test(num_clu,
         mask = tb == i
         tar_ei = te[:, mask] - partptr[i]
         x = degree(ei.flatten(), nnodes[i]).to(torch.long)#torch.ones(nnodes[i], device=ei.device, dtype=torch.long)
-        pred[mask] = mod(x, to_undirected(ei), tar_ei).flatten()
+        pred[mask] = torch.sigmoid(mod(x, to_undirected(ei), tar_ei).flatten())
     if cnaapred is not None:
         pred[tb == -1] = cnaapred
     return evaluator.eval({
@@ -198,17 +198,17 @@ def routine(num_clu: int, num_epoch: int, lr: float, batch_size: int,
     Y[:exedge["train"]["edge"].shape[1]] = 1
     exmodel.fit(X, Y)
     valexpred = torch.from_numpy(
-        exmodel.predict(
+        exmodel.predict_proba(
             torch.cat((exedge["valid"]["edge"],
                       exedge["valid"]["edge_neg"])).cpu().numpy())).flatten().to(device)
     tstexpred = torch.from_numpy(
-        exmodel.predict(
+        exmodel.predict_proba(
             torch.cat((exedge["test"]["edge"],
                       exedge["test"]["edge_neg"])).cpu().numpy())).flatten().to(device)
     del exedge, texedge, texedge_idx, exmodel, X, Y
     print("nes end", flush=True)
-
-    model = buildmodel(max_x=2000, layer1=2).to(device, non_blocking=True)
+    #exit()
+    model = buildmodel(max_x=2000, layer1=0).to(device, non_blocking=True)
     opt = Adam(model.parameters(), lr=lr)
     from time import time
     for i in range(num_epoch):
