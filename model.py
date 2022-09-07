@@ -513,8 +513,8 @@ class WXYFWLNet(nn.Module):
                     for i in range(layer1 - 1)
                 ])
 
-        self.lin1 = nn.Sequential(nn.Linear(hidden_dim_1, hidden_dim_2), nn.LayerNorm(hidden_dim_2), nn.LeakyReLU(inplace=True))
-        self.lin2 = nn.Sequential(nn.Linear(hidden_dim_1, hidden_dim_2), nn.LayerNorm(hidden_dim_2), nn.LeakyReLU(inplace=True))
+        self.lin1 = nn.Linear(hidden_dim_1, hidden_dim_2)
+        self.lin2 = nn.Linear(hidden_dim_1, hidden_dim_2)
         relu_lin = lambda a, b, dp: nn.Sequential(
             nn.Linear(a, b), 
             nn.LeakyReLU(inplace=True))
