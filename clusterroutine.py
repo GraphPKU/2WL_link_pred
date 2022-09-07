@@ -200,11 +200,11 @@ def routine(num_clu: int, num_epoch: int, lr: float, batch_size: int,
     valexpred = torch.from_numpy(
         exmodel.predict_proba(
             torch.cat((exedge["valid"]["edge"],
-                      exedge["valid"]["edge_neg"])).cpu().numpy())[:, 1]).flatten().to(device)
+                      exedge["valid"]["edge_neg"])).cpu().numpy())[:, 1]).flatten().to(torch.float).to(device)
     tstexpred = torch.from_numpy(
         exmodel.predict_proba(
             torch.cat((exedge["test"]["edge"],
-                      exedge["test"]["edge_neg"])).cpu().numpy())[:, 1]).flatten().to(device)
+                      exedge["test"]["edge_neg"])).cpu().numpy())[:, 1]).flatten().to(torch.float).to(device)
     del exedge, texedge, texedge_idx, exmodel, X, Y
     print("nes end", flush=True)
     #exit()
