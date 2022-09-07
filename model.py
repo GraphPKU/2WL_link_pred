@@ -512,10 +512,9 @@ class WXYFWLNet(nn.Module):
                     relu_sage(hidden_dim_1, hidden_dim_1, dp2)
                     for i in range(layer1 - 1)
                 ])
-        if hidden_dim_1 != hidden_dim_2:
-            self.lin1 = nn.Sequential(nn.Linear(hidden_dim_1, hidden_dim_2), nn.LayerNorm(hidden_dim_2), nn.ReLU(inplace=True))
-        else:
-            self.lin1 = nn.Identity()
+
+        self.lin1 = nn.Sequential(nn.Linear(hidden_dim_1, hidden_dim_2), nn.LayerNorm(hidden_dim_2), nn.LeakyReLU(inplace=True))
+        self.lin2 = nn.Sequential(nn.Linear(hidden_dim_1, hidden_dim_2), nn.LayerNorm(hidden_dim_2), nn.LeakyReLU(inplace=True))
         relu_lin = lambda a, b, dp: nn.Sequential(
             nn.Linear(a, b), 
             nn.LeakyReLU(inplace=True))
@@ -546,8 +545,7 @@ class WXYFWLNet(nn.Module):
     def forward(self, x, ei, tar_edge):
         norm = x.shape[0] ** (-0.5)
         x = self.onewl(x, ei)
-        x = self.lin1(x)
-        x = x.unsqueeze(0) * x.unsqueeze(1) 
+        x = self.lin1(x).unsqueeze(0) * self.lin2(x).unsqueeze(1) 
         x = x * self.adjemb(ei, x.shape[0])
         for i in range(self.layer2):
             if self.cat == "mul":
