@@ -478,7 +478,7 @@ from torch import Tensor
 
 class WXYFWLNet(nn.Module):
     def __init__(self,
-                 max_x,
+                 max_x=2000,
                  feat=None,
                  hidden_dim_1=4,
                  hidden_dim_2=4,
@@ -487,9 +487,9 @@ class WXYFWLNet(nn.Module):
                  dp1=0.0,
                  dp2=0.0,
                  dp3=0.0,
-                 cat="add"):
+                 cat="no"):
         super().__init__()
-        assert cat in ["mul", "add"]
+        assert cat in ["mul", "add", "no"]
         self.cat = cat
         self.layer1 = layer1
         self.layer2 = layer2
@@ -503,8 +503,9 @@ class WXYFWLNet(nn.Module):
                                        nn.Dropout(p=dp1))
         relu_sage = lambda a, b, dp: Seq([
             GCNConv(a, b),
-            nn.Dropout(dp, inplace=True),
-            nn.ReLU(inplace=True)
+            nn.LeakyReLU(inplace=True),
+            nn.Linear(b, b),
+            nn.LeakyReLU(inplace=True)
         ])
         self.nconvs = nn.ModuleList(
                 [relu_sage(input_node_size, hidden_dim_1, dp2)] + [
@@ -516,7 +517,7 @@ class WXYFWLNet(nn.Module):
         else:
             self.lin1 = nn.Identity()
         relu_lin = lambda a, b, dp: nn.Sequential(
-            nn.Linear(a, b), nn.Dropout(p=dp, inplace=True) if dp>0.01 else nn.Identity(),
+            nn.Linear(a, b), 
             nn.LeakyReLU(inplace=True))
         self.mlps_1 = nn.ModuleList([
                 relu_lin(hidden_dim_2, hidden_dim_2, dp3)
@@ -530,11 +531,12 @@ class WXYFWLNet(nn.Module):
         self.eiemb = nn.Embedding(3, hidden_dim_2)
 
     def onewl(self, x, ei):
+        x = degree(x)
         x = self.embedding(x)
         if self.feat is not None:
             x = torch.cat((x, self.feat), dim=1)
         for i in range(self.layer1):
-            x = self.nconvs[i](x, ei)
+            x = x + self.nconvs[i](x, ei)
         return x
 
     def adjemb(self, ei, nnode: int):
@@ -545,13 +547,16 @@ class WXYFWLNet(nn.Module):
     def forward(self, x, ei, tar_edge):
         norm = x.shape[0] ** (-0.5)
         x = self.onewl(x, ei)
-        x = self.lin1(x.unsqueeze(0) * x.unsqueeze(1)) 
+        x = self.lin1(x)
+        x = x.unsqueeze(0) * x.unsqueeze(1) 
         x = x * self.adjemb(ei, x.shape[0])
         for i in range(self.layer2):
             if self.cat == "mul":
                 x = x * norm * (self.mlps_1[i](x).permute(2, 0, 1) @ self.mlps_2[i](x).permute(2, 0, 1)).permute(1, 2, 0)
             elif self.cat == "add":
                 x = x + norm * (self.mlps_1[i](x).permute(2, 0, 1) @ self.mlps_2[i](x).permute(2, 0, 1)).permute(1, 2, 0)
+            elif self.cat == "no":
+                x = norm * (self.mlps_1[i](x).permute(2, 0, 1) @ self.mlps_2[i](x).permute(2, 0, 1)).permute(1, 2, 0)
         x = x[tar_edge[0], tar_edge[1]] + x[tar_edge[1], tar_edge[0]]
         x = self.lin_dir(x)
         return x

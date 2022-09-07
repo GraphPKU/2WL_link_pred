@@ -89,7 +89,7 @@ def test(num_clu,
         ei = datalist[i]
         mask = tb == i
         tar_ei = te[:, mask] - partptr[i]
-        x = torch.ones(nnodes[i], device=ei.device, dtype=torch.long)
+        x = degree(ei.flatten(), nnodes[i])#torch.ones(nnodes[i], device=ei.device, dtype=torch.long)
         pred[mask] = mod(x, to_undirected(ei), tar_ei).flatten()
     if cnaapred is not None:
         pred[tb == -1] = cnaapred
@@ -113,7 +113,7 @@ def train(num_clu, nnodes, datalist, negdatalist, max_iter, mod: nn.Module,
             ei, tar_ei = batch
             opt.zero_grad(set_to_none=True)
             negedge = next(dlneg)
-            x = torch.ones(nnodes[i], dtype=torch.long, device=ei.device)
+            x = degree(ei.flatten(), nnodes[i])
             pred = mod(x, to_undirected(ei),
                        torch.cat((tar_ei, negedge), dim=-1))
             loss = -F.logsigmoid(pred[:tar_ei.shape[1]]).mean() - F.logsigmoid(
@@ -208,7 +208,7 @@ def routine(num_clu: int, num_epoch: int, lr: float, batch_size: int,
     del exedge, texedge, texedge_idx, exmodel, X, Y
     print("nes end", flush=True)
 
-    model = buildmodel(max_x=2, layer1=0).to(device, non_blocking=True)
+    model = buildmodel(max_x=2000, layer1=2).to(device, non_blocking=True)
     opt = Adam(model.parameters(), lr=lr)
     from time import time
     for i in range(num_epoch):
