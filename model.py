@@ -487,7 +487,7 @@ class WXYFWLNet(nn.Module):
                  dp1=0.0,
                  dp2=0.0,
                  dp3=0.0,
-                 cat="mul"):
+                 cat="add"):
         super().__init__()
         assert cat in ["mul", "add"]
         self.cat = cat

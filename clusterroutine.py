@@ -27,7 +27,7 @@ def to_undirected(ei):
 def slicespm(spm: SparseTensor, tar: Tensor):
     spm.coalesce()
     row, col, val = spm.coo()
-    size1 = spm.sizes()[1]
+    size1 = spm.sizes()[1] + 5
     hashsp = row * size1 + col
     #hashsp, ids = torch.sort(hashsp)
     #val = val[ids]
@@ -46,14 +46,19 @@ def computeCNAA(ei, tarei, num_nodes):
                        sparse_sizes=(num_nodes, num_nodes)).cuda().coalesce()
     cn = slicespm(adj @ adj, tarei)
     deg = adj.sum(dim=1).flatten()
-    deg[deg < 0.5] += 1
+    deg[deg < 1.5] = 2
     idx = torch.arange(num_nodes, device=device)
     Dinv = SparseTensor(row=idx,
                         col=idx,
                         value=1 / deg,
                         sparse_sizes=(num_nodes, num_nodes)).cuda()
-    aa = slicespm(adj @ Dinv @ adj, tarei)
-    return torch.stack((aa, cn), dim=-1)
+    ra = slicespm(adj @ Dinv @ adj, tarei)
+    Dloginv = SparseTensor(row=idx,
+                        col=idx,
+                        value=1 /torch.log(deg),
+                        sparse_sizes=(num_nodes, num_nodes)).cuda()
+    aa = slicespm(adj @ Dloginv @ adj, tarei)
+    return torch.stack((ra, aa, cn), dim=-1)
 
 
 ds_name = "ogbl-collab"
@@ -146,7 +151,7 @@ def routine(num_clu: int, num_epoch: int, lr: float, batch_size: int,
 
     exedge = {"train": {}, "valid": {}, "test": {}}
     exedge["train"]["edge"] = to_directed(nei[:, neibin == -1])
-    exedge["train"]["edge"] = negative_sampling(nei,
+    exedge["train"]["edge_neg"] = negative_sampling(nei,
                                                 num_neg_samples=10 *
                                                 nei.shape[1])
 
@@ -173,7 +178,7 @@ def routine(num_clu: int, num_epoch: int, lr: float, batch_size: int,
     texedge = torch.cat([
         exedge[key1][key2] for key1 in ["train", "valid", "test"]
         for key2 in ["edge", "edge_neg"]
-    ])
+    ], dim=-1)
     texedge_idx = [0] + [
         exedge[key1][key2].shape[1] for key1 in ["train", "valid", "test"]
         for key2 in ["edge", "edge_neg"]
@@ -194,12 +199,12 @@ def routine(num_clu: int, num_epoch: int, lr: float, batch_size: int,
     exmodel.fit(X, Y)
     valexpred = torch.from_numpy(
         exmodel.predict(
-            torch.cat(exedge["valid"]["edge"],
-                      exedge["valid"]["edge_neg"]).cpu().numpy())).flatten()
+            torch.cat((exedge["valid"]["edge"],
+                      exedge["valid"]["edge_neg"])).cpu().numpy())).flatten().to(device)
     tstexpred = torch.from_numpy(
         exmodel.predict(
-            torch.cat(exedge["test"]["edge"],
-                      exedge["test"]["edge_neg"]).cpu().numpy())).flatten()
+            torch.cat((exedge["test"]["edge"],
+                      exedge["test"]["edge_neg"])).cpu().numpy())).flatten().to(device)
     del exedge, texedge, texedge_idx, exmodel, X, Y
     print("nes end", flush=True)
 
