@@ -89,7 +89,7 @@ def test(num_clu,
         ei = datalist[i]
         mask = tb == i
         tar_ei = te[:, mask] - partptr[i]
-        x = degree(ei.flatten(), nnodes[i])#torch.ones(nnodes[i], device=ei.device, dtype=torch.long)
+        x = degree(ei.flatten(), nnodes[i]).to(torch.long)#torch.ones(nnodes[i], device=ei.device, dtype=torch.long)
         pred[mask] = mod(x, to_undirected(ei), tar_ei).flatten()
     if cnaapred is not None:
         pred[tb == -1] = cnaapred
@@ -113,7 +113,7 @@ def train(num_clu, nnodes, datalist, negdatalist, max_iter, mod: nn.Module,
             ei, tar_ei = batch
             opt.zero_grad(set_to_none=True)
             negedge = next(dlneg)
-            x = degree(ei.flatten(), nnodes[i])
+            x = degree(ei.flatten(), nnodes[i]).to(torch.long)
             pred = mod(x, to_undirected(ei),
                        torch.cat((tar_ei, negedge), dim=-1))
             loss = -F.logsigmoid(pred[:tar_ei.shape[1]]).mean() - F.logsigmoid(

@@ -531,7 +531,6 @@ class WXYFWLNet(nn.Module):
         self.eiemb = nn.Embedding(3, hidden_dim_2)
 
     def onewl(self, x, ei):
-        x = degree(x)
         x = self.embedding(x)
         if self.feat is not None:
             x = torch.cat((x, self.feat), dim=1)
