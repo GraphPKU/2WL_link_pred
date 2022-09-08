@@ -481,13 +481,13 @@ class WXYFWLNet(nn.Module):
                  max_x=2000,
                  feat=None,
                  hidden_dim_1=16,
-                 hidden_dim_2=4,
+                 hidden_dim_2=6,
                  layer1=2,
                  layer2=2,
                  dp1=0.0,
                  dp2=0.0,
                  dp3=0.0,
-                 cat="no"):
+                 cat="mul"):
         super().__init__()
         assert cat in ["mul", "add", "no"]
         self.cat = cat
@@ -504,13 +504,13 @@ class WXYFWLNet(nn.Module):
                                        nn.Dropout(p=dp1))
         self.embedding_fn = lambda x: self.embedding(x)
         '''
-        self.embedding = nn.Sequential(nn.Linear(1, hidden_dim_1), nn.LeakyReLU(inplace=True), nn.Linear(hidden_dim_1, hidden_dim_1), nn.LeakyReLU(inplace=True))
+        self.embedding = nn.Sequential(nn.Linear(1, hidden_dim_1), nn.LeakyReLU(0.5, inplace=True), nn.Linear(hidden_dim_1, hidden_dim_1), nn.LeakyReLU(0.5, inplace=True))
         self.embedding_fn = lambda x: self.embedding(x)
         relu_sage = lambda a, b, dp: Seq([
             GCNConv(a, b),
-            nn.LeakyReLU(inplace=True),
+            nn.LeakyReLU(0.5, inplace=True),
             nn.Linear(b, b),
-            nn.LeakyReLU(inplace=True)
+            nn.LeakyReLU(0.5, inplace=True)
         ])
         self.nconvs = nn.ModuleList(
                 [relu_sage(input_node_size, hidden_dim_1, dp2)] + [
@@ -522,7 +522,7 @@ class WXYFWLNet(nn.Module):
         self.lin2 = nn.Linear(hidden_dim_1, hidden_dim_2)
         relu_lin = lambda a, b, dp: nn.Sequential(
             nn.Linear(a, b), 
-            nn.LeakyReLU(inplace=True))
+            nn.LeakyReLU(0.5, inplace=True))
         self.mlps_1 = nn.ModuleList([
                 relu_lin(hidden_dim_2, hidden_dim_2, dp3)
                 for i in range(layer2)
@@ -550,15 +550,15 @@ class WXYFWLNet(nn.Module):
     def forward(self, x, ei, tar_edge):
         norm = x.shape[0] ** (-0.5)
         x = self.onewl(x, ei)
-        x = self.lin1(x).unsqueeze(0) * self.lin2(x).unsqueeze(1) 
+        x = self.lin1(x).unsqueeze(0) + self.lin2(x).unsqueeze(1) 
         x = x * self.adjemb(ei, x.shape[0])
         for i in range(self.layer2):
             if self.cat == "mul":
-                x = x * norm * (self.mlps_1[i](x).permute(2, 0, 1) @ self.mlps_2[i](x).permute(2, 0, 1)).permute(1, 2, 0)
+                x = x * norm * (self.mlps_1[i](x.permute(2, 0, 1) @ x.permute(2, 0, 1))).permute(1, 2, 0)
             elif self.cat == "add":
-                x = x + norm * (self.mlps_1[i](x).permute(2, 0, 1) @ self.mlps_2[i](x).permute(2, 0, 1)).permute(1, 2, 0)
+                x = x + norm * (self.mlps_1[i](x.permute(2, 0, 1) @ x.permute(2, 0, 1))).permute(1, 2, 0)
             elif self.cat == "no":
-                x = norm * (self.mlps_1[i](x).permute(2, 0, 1) @ self.mlps_2[i](x).permute(2, 0, 1)).permute(1, 2, 0)
+                x = norm * (self.mlps_1[i](x.permute(2, 0, 1) @ x.permute(2, 0, 1))).permute(1, 2, 0)
         x = x[tar_edge[0], tar_edge[1]] + x[tar_edge[1], tar_edge[0]]
         x = self.lin_dir(x)
         return x
