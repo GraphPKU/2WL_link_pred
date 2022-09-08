@@ -480,7 +480,7 @@ class WXYFWLNet(nn.Module):
     def __init__(self,
                  max_x=2000,
                  feat=None,
-                 hidden_dim_1=4,
+                 hidden_dim_1=16,
                  hidden_dim_2=4,
                  layer1=2,
                  layer2=2,
@@ -499,8 +499,13 @@ class WXYFWLNet(nn.Module):
             self.register_buffer("feat", feat)
         else:
             self.feat = None
+        '''
         self.embedding = nn.Sequential(nn.Embedding(max_x + 1, hidden_dim_1),
                                        nn.Dropout(p=dp1))
+        self.embedding_fn = lambda x: self.embedding(x)
+        '''
+        self.embedding = nn.Sequential(nn.Linear(1, hidden_dim_1), nn.LeakyReLU(inplace=True), nn.Linear(hidden_dim_1, hidden_dim_1), nn.LeakyReLU(inplace=True))
+        self.embedding_fn = lambda x: self.embedding(x)
         relu_sage = lambda a, b, dp: Seq([
             GCNConv(a, b),
             nn.LeakyReLU(inplace=True),
