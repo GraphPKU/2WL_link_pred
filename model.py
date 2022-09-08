@@ -481,7 +481,7 @@ class WXYFWLNet(nn.Module):
                  max_x=2000,
                  feat=None,
                  hidden_dim_1=16,
-                 hidden_dim_2=6,
+                 hidden_dim_2=8,
                  layer1=2,
                  layer2=2,
                  dp1=0.0,
@@ -554,9 +554,9 @@ class WXYFWLNet(nn.Module):
         x = x * self.adjemb(ei, x.shape[0])
         for i in range(self.layer2):
             if self.cat == "mul":
-                x = x * norm * (self.mlps_1[i](x.permute(2, 0, 1) @ x.permute(2, 0, 1))).permute(1, 2, 0)
+                x = x * norm * (self.mlps_1[i]((x.permute(2, 0, 1) @ x.permute(2, 0, 1)).permute(1, 2, 0)))
             elif self.cat == "add":
-                x = x + norm * (self.mlps_1[i](x.permute(2, 0, 1) @ x.permute(2, 0, 1))).permute(1, 2, 0)
+                x = x + norm * (self.mlps_1[i]((x.permute(2, 0, 1) @ x.permute(2, 0, 1)).permute(1, 2, 0)))
             elif self.cat == "no":
                 x = norm * (self.mlps_1[i](x.permute(2, 0, 1) @ x.permute(2, 0, 1))).permute(1, 2, 0)
         x = x[tar_edge[0], tar_edge[1]] + x[tar_edge[1], tar_edge[0]]

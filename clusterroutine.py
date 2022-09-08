@@ -224,7 +224,7 @@ def routine(num_clu: int, num_epoch: int, lr: float, batch_size: int,
     del exedge, texedge, texedge_idx, exmodel, X, Y
     print("nes end", flush=True)
     #exit()
-    model = buildmodel(max_x=2000, layer1=0).to(device, non_blocking=True)
+    model = buildmodel(max_x=2000, layer1=1).to(device, non_blocking=True)
     opt = Adam(model.parameters(), lr=lr)
     from time import time
     for i in range(num_epoch):
