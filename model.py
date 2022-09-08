@@ -481,7 +481,7 @@ class WXYFWLNet(nn.Module):
                  max_x=2000,
                  feat=None,
                  hidden_dim_1=16,
-                 hidden_dim_2=6,
+                 hidden_dim_2=8,
                  layer1=2,
                  layer2=2,
                  dp1=0.0,
