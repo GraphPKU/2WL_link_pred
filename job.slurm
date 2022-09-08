@@ -13,7 +13,7 @@
 module load anaconda3/2021.11
 source ~/.bashrc
 source activate wxy
-CUDA_VISIBLE_DEVICES=0 nohup /scratch/mhzhang/.conda/envs/wxy/bin/python clusterroutine.py   --nc 20 > collab.20.no1wl_cnraaa_deg 2>&1 &
+CUDA_VISIBLE_DEVICES=0 nohup /scratch/mhzhang/.conda/envs/wxy/bin/python clusterroutine.py   --nc 20 > collab.20.no1wl_negdeg 2>&1 &
 #CUDA_VISIBLE_DEVICES=1 nohup /scratch/mhzhang/.conda/envs/wxy/bin/python clusterroutine.py  --nc 15 > collab.15.no1wl_cnaa_sigmoid 2>&1 &
 #CUDA_VISIBLE_DEVICES=2 nohup /scratch/mhzhang/.conda/envs/wxy/bin/python clusterroutine.py  --nc 25 > collab.25.no1wl_cnaa_sigmoid 2>&1 &
 #CUDA_VISIBLE_DEVICES=3 nohup /scratch/mhzhang/.conda/envs/wxy/bin/python clusterroutine.py  --nc 30 > collab.30.no1wl_cnaa_sigmoid 2>&1 &

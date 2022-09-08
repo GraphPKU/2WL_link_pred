@@ -91,7 +91,7 @@ def test(num_clu,
         ei = datalist[i]
         mask = tb == i
         tar_ei = te[:, mask] - partptr[i]
-        x = 1/(degree(ei.flatten(), nnodes[i])+1)
+        x = 1/(degree(ei.flatten(), nnodes[i])+1).reshape(-1, 1)
         pred[mask] = torch.sigmoid(mod(x, to_undirected(ei), tar_ei).flatten())
     if cnaapred is not None:
         pred[tb == -1] = cnaapred
@@ -115,7 +115,7 @@ def train(num_clu, nnodes, datalist, negdatalist, max_iter, mod: nn.Module,
             ei, tar_ei = batch
             opt.zero_grad(set_to_none=True)
             negedge = next(dlneg)
-            x = 1/(degree(ei.flatten(), nnodes[i])+1)
+            x = 1/(degree(ei.flatten(), nnodes[i])+1).reshape(-1, 1)
             pred = mod(x, to_undirected(ei),
                        torch.cat((tar_ei, negedge), dim=-1))
             loss = -F.logsigmoid(pred[:tar_ei.shape[1]]).mean() - F.logsigmoid(
@@ -211,6 +211,8 @@ def routine(num_clu: int, num_epoch: int, lr: float, batch_size: int,
             torch.cat(
                 (exedge["test"]["edge"], exedge["test"]["edge_neg"]
                  )).cpu().numpy())[:, 1]).flatten().to(torch.float).to(device)
+    valexpred[:] = 0
+    tstexpred[:] = 0
     '''
     postst = tstexpred[:exedge["test"]["edge"].shape[0]]
     negtst = tstexpred[exedge["test"]["edge"].shape[0]:]
