@@ -211,8 +211,8 @@ def routine(num_clu: int, num_epoch: int, lr: float, batch_size: int,
             torch.cat(
                 (exedge["test"]["edge"], exedge["test"]["edge_neg"]
                  )).cpu().numpy())[:, 1]).flatten().to(torch.float).to(device)
-    valexpred[:] = 0
-    tstexpred[:] = 0
+    #valexpred[:] = 0
+    #tstexpred[:] = 0
     '''
     postst = tstexpred[:exedge["test"]["edge"].shape[0]]
     negtst = tstexpred[exedge["test"]["edge"].shape[0]:]
