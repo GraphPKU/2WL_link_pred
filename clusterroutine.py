@@ -1,4 +1,3 @@
-import enum
 from utils import tensorDataloader
 import torch.nn.functional as F
 from torch_geometric.data import ClusterData, ClusterLoader
@@ -45,7 +44,7 @@ def computeCNAA(ei, tarei, num_nodes):
                        value=torch.ones_like(ei[1], dtype=torch.float),
                        sparse_sizes=(num_nodes, num_nodes)).cuda().coalesce()
     cn = slicespm(adj @ adj, tarei)
-    
+
     deg = adj.sum(dim=1).flatten()
     deg[deg < 1.5] = 2
     idx = torch.arange(num_nodes, device=device)
@@ -55,12 +54,12 @@ def computeCNAA(ei, tarei, num_nodes):
                         sparse_sizes=(num_nodes, num_nodes)).cuda()
     ra = slicespm(adj @ Dinv @ adj, tarei)
     Dloginv = SparseTensor(row=idx,
-                        col=idx,
-                        value=1 /torch.log(deg),
-                        sparse_sizes=(num_nodes, num_nodes)).cuda()
+                           col=idx,
+                           value=1 / torch.log(deg),
+                           sparse_sizes=(num_nodes, num_nodes)).cuda()
     aa = slicespm(adj @ Dloginv @ adj, tarei)
-    
-    return torch.stack((cn, ra, aa), dim=-1) # ra, aa,cn.unsqueeze(-1)  #
+
+    return torch.stack((cn, ra, aa), dim=-1)  # ra, aa,cn.unsqueeze(-1)  #
 
 
 ds_name = "ogbl-collab"
@@ -80,7 +79,8 @@ def test(num_clu,
          mod: nn.Module,
          evaluator,
          split="valid",
-         cnaapred=None):
+         cnaapred=None,
+         x_type: str = "negdeg"):
     mod.eval()
     num_pos, num_neg = nbin[split]["edge"].shape[0], nbin[split][
         "edge_neg"].shape[0]
@@ -91,7 +91,12 @@ def test(num_clu,
         ei = datalist[i]
         mask = tb == i
         tar_ei = te[:, mask] - partptr[i]
-        x = 1/(degree(ei.flatten(), nnodes[i])+1).reshape(-1, 1)
+        if x_type == "deg":
+            x = degree(ei.flatten(), nnodes[i]).reshape(-1, 1)
+        elif x_type == "negdeg":
+            x = 1 / (degree(ei.flatten(), nnodes[i]) + 1).reshape(-1, 1)
+        else:
+            x = torch.ones((nnodes[i]), device=ei.device)
         pred[mask] = torch.sigmoid(mod(x, to_undirected(ei), tar_ei).flatten())
     if cnaapred is not None:
         pred[tb == -1] = cnaapred
@@ -102,7 +107,7 @@ def test(num_clu,
 
 
 def train(num_clu, nnodes, datalist, negdatalist, max_iter, mod: nn.Module,
-          opt: Optimizer, batch_size: int):
+          opt: Optimizer, batch_size: int, x_type: str):
     losss = []
     mod.train()
     for i in range(num_clu):
@@ -115,7 +120,12 @@ def train(num_clu, nnodes, datalist, negdatalist, max_iter, mod: nn.Module,
             ei, tar_ei = batch
             opt.zero_grad(set_to_none=True)
             negedge = next(dlneg)
-            x = 1/(degree(ei.flatten(), nnodes[i])+1).reshape(-1, 1)
+            if x_type == "deg":
+                x = degree(ei.flatten(), nnodes[i]).reshape(-1, 1)
+            elif x_type == "negdeg":
+                x = 1 / (degree(ei.flatten(), nnodes[i]) + 1).reshape(-1, 1)
+            else:
+                x = torch.ones((nnodes[i]), device=ei.device)
             pred = mod(x, to_undirected(ei),
                        torch.cat((tar_ei, negedge), dim=-1))
             loss = -F.logsigmoid(pred[:tar_ei.shape[1]]).mean() - F.logsigmoid(
@@ -131,7 +141,12 @@ def buildmodel(**kwargs) -> nn.Module:
     return WXYFWLNet(**kwargs)
 
 
-def routine(num_clu: int, num_epoch: int, lr: float, batch_size: int,
+def routine(num_clu: int,
+            num_epoch: int,
+            lr: float,
+            batch_size: int,
+            use_heuristic: bool = True,
+            x_type: str = "deg",
             **kwargs):
     cld = ClusterData(data, num_clu)
     cld.partptr = cld.partptr.to(device, non_blocking=True)
@@ -154,9 +169,11 @@ def routine(num_clu: int, num_epoch: int, lr: float, batch_size: int,
     exedge = {"train": {}, "valid": {}, "test": {}}
     exedge["train"]["edge"] = to_directed(nei[:, neibin == -1])
     exedge["train"]["edge_neg"] = negative_sampling(
-        nei, num_neg_samples=exedge["train"]["edge"].shape[1]*10)
-    tbin = torch.searchsorted(cld.partptr, exedge["train"]["edge_neg"], right=True) - 1
-    exedge["train"]["edge_neg"] = exedge["train"]["edge_neg"][:, tbin[0]!=tbin[1]]
+        nei, num_neg_samples=exedge["train"]["edge"].shape[1] * 10)
+    tbin = torch.searchsorted(
+        cld.partptr, exedge["train"]["edge_neg"], right=True) - 1
+    exedge["train"]["edge_neg"] = exedge["train"][
+        "edge_neg"][:, tbin[0] != tbin[1]]
 
     print("datalist end", flush=True)
 
@@ -211,45 +228,65 @@ def routine(num_clu: int, num_epoch: int, lr: float, batch_size: int,
             torch.cat(
                 (exedge["test"]["edge"], exedge["test"]["edge_neg"]
                  )).cpu().numpy())[:, 1]).flatten().to(torch.float).to(device)
-    #valexpred[:] = 0
-    #tstexpred[:] = 0
-    '''
-    postst = tstexpred[:exedge["test"]["edge"].shape[0]]
-    negtst = tstexpred[exedge["test"]["edge"].shape[0]:]
-    print(postst.mean(), postst.min(), negtst.mean(), negtst.max())
-    print(exedge["test"]["edge"].mean(dim=0), exedge["test"]["edge"].min(dim=0),
-          exedge["test"]["edge_neg"].mean(dim=0), exedge["test"]["edge_neg"].max(dim=0))
-    exit()
-    '''
+    if not use_heuristic:
+        valexpred[:] = 0
+        tstexpred[:] = 0
     del exedge, texedge, texedge_idx, exmodel, X, Y
     print("nes end", flush=True)
     #exit()
-    model = buildmodel(max_x=2000, layer1=1).to(device, non_blocking=True)
+    model = buildmodel(max_x=2000, **kwargs).to(device, non_blocking=True)
     opt = Adam(model.parameters(), lr=lr)
     from time import time
+    best_val = 0
+    testscore = 0
     for i in range(num_epoch):
         t0 = time()
         loss = train(num_clu, nnodes, datalist, negdatalist, 5, model, opt,
-                     batch_size)
+                     batch_size, x_type)
         t1 = time()
-        validscore = test(num_clu, nnodes, cld.partptr, nbin, nes, datalist,
-                          model, Evaluator(ds_name), "valid", valexpred)
+        validscore = test(num_clu, nnodes,
+                          cld.partptr, nbin, nes, datalist, model,
+                          Evaluator(ds_name), "valid", valexpred, x_type)
         t2 = time()
-        testscore = test(num_clu, nnodes, cld.partptr, nbin, nes, datalist,
-                         model, Evaluator(ds_name), "test", tstexpred)
+        if validscore > best_val:
+            best_val = validscore
+            testscore = test(num_clu, nnodes,
+                             cld.partptr, nbin, nes, datalist, model,
+                             Evaluator(ds_name), "test", tstexpred, x_type)
         t3 = time()
         print(
             f"{i}: time {t1-t0:.1f} {t2-t1:.1f} {t3-t2:.1f} {loss} {validscore} {testscore}",
             flush=True)
+    return testscore
 
 
-import argparse
+import optuna
 
-parser = argparse.ArgumentParser()
-parser.add_argument("--nc", type=int)
-args = parser.parse_args()
 
-for nc in [args.nc]:
-    for bs in [16, 32, 64]:
-        print("ncbs", nc, bs)
-        routine(nc, 50, 3e-4, bs)
+def opt(trial: optuna.Trial):
+    use_heuristic = trial.suggest_categorical("use_heuristic", [True, False])
+    nc = trial.suggest_int("nc", 15, 40, step=5)
+    bs = trial.suggest_categorical("bs",
+                                   [16, 32, 64, 128, 256, 512, 1024, 2048])
+    lr = trial.suggest_categorical("lr", [1e-4, 3e-4, 1e-3, 3e-3, 1e-2])
+    layer1 = trial.suggest_int("layer1", 0, 3)
+    cat = trial.suggest_categorical("cat", ["mul", "add", "no"])
+    leaky_ratio = trial.suggest_categorical("leaky_ratio",
+                                            [1e-2, 3e-2, 1e-1, 3e-1])
+    x_type = trial.suggest_categorical("x_type", ["deg", "negdeg", "one"])
+    return routine(nc,
+                   50,
+                   lr,
+                   bs,
+                   use_heuristic,
+                   x_type,
+                   layer1=layer1,
+                   cat=cat,
+                   leaky_ratio=leaky_ratio)
+
+
+stu = optuna.create_study(f"sqlite:///collab.2fwl.db",
+                          study_name="collab",
+                          direction="maximize",
+                          load_if_exists=True)
+stu.optimize(opt, 50)

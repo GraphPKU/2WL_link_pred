@@ -487,7 +487,8 @@ class WXYFWLNet(nn.Module):
                  dp1=0.0,
                  dp2=0.0,
                  dp3=0.0,
-                 cat="mul"):
+                 cat="mul",
+                 leaky_ratio=0.5):
         super().__init__()
         assert cat in ["mul", "add", "no"]
         self.cat = cat
@@ -508,9 +509,9 @@ class WXYFWLNet(nn.Module):
         self.embedding_fn = lambda x: self.embedding(x)
         relu_sage = lambda a, b, dp: Seq([
             GCNConv(a, b),
-            nn.LeakyReLU(0.5, inplace=True),
+            nn.LeakyReLU(leaky_ratio, inplace=True),
             nn.Linear(b, b),
-            nn.LeakyReLU(0.5, inplace=True)
+            nn.LeakyReLU(leaky_ratio, inplace=True)
         ])
         self.nconvs = nn.ModuleList(
                 [relu_sage(input_node_size, hidden_dim_1, dp2)] + [
@@ -522,11 +523,15 @@ class WXYFWLNet(nn.Module):
         self.lin2 = nn.Linear(hidden_dim_1, hidden_dim_2)
         relu_lin = lambda a, b, dp: nn.Sequential(
             nn.Linear(a, b), 
-            nn.LeakyReLU(0.5, inplace=True))
-        self.mlps_1 = nn.ModuleList([
+            nn.LeakyReLU(leaky_ratio, inplace=True))
+        self.mlps_1 = nn.Identity()
+        self.act = nn.LeakyReLU(leaky_ratio, True)
+        '''
+        nn.ModuleList([
                 relu_lin(hidden_dim_2, hidden_dim_2, dp3)
                 for i in range(layer2)
             ])
+        '''
         self.mlps_2 = nn.ModuleList([
                 relu_lin(hidden_dim_2, hidden_dim_2, dp3)
                 for i in range(layer2)
@@ -551,6 +556,7 @@ class WXYFWLNet(nn.Module):
         norm = x.shape[0] ** (-0.5)
         x = self.onewl(x, ei)
         x = self.lin1(x).unsqueeze(0) + self.lin2(x).unsqueeze(1) 
+        x = self.act(x)
         x = x * self.adjemb(ei, x.shape[0])
         for i in range(self.layer2):
             if self.cat == "mul":
