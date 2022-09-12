@@ -96,7 +96,7 @@ def test(num_clu,
         elif x_type == "negdeg":
             x = 1 / (degree(ei.flatten(), nnodes[i]) + 1).reshape(-1, 1)
         else:
-            x = torch.ones((nnodes[i]), device=ei.device)
+            x = torch.ones((nnodes[i], 1), device=ei.device)
         pred[mask] = torch.sigmoid(mod(x, to_undirected(ei), tar_ei).flatten())
     if cnaapred is not None:
         pred[tb == -1] = cnaapred
@@ -125,7 +125,7 @@ def train(num_clu, nnodes, datalist, negdatalist, max_iter, mod: nn.Module,
             elif x_type == "negdeg":
                 x = 1 / (degree(ei.flatten(), nnodes[i]) + 1).reshape(-1, 1)
             else:
-                x = torch.ones((nnodes[i]), device=ei.device)
+                x = torch.ones((nnodes[i], 1), device=ei.device)
             pred = mod(x, to_undirected(ei),
                        torch.cat((tar_ei, negedge), dim=-1))
             loss = -F.logsigmoid(pred[:tar_ei.shape[1]]).mean() - F.logsigmoid(

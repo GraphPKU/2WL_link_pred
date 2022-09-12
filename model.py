@@ -524,7 +524,10 @@ class WXYFWLNet(nn.Module):
         relu_lin = lambda a, b, dp: nn.Sequential(
             nn.Linear(a, b), 
             nn.LeakyReLU(leaky_ratio, inplace=True))
-        self.mlps_1 = nn.Identity()
+        self.mlps_1 = nn.ModuleList([
+                nn.Identity()
+                for i in range(layer2)
+            ])
         self.act = nn.LeakyReLU(leaky_ratio, True)
         '''
         nn.ModuleList([
